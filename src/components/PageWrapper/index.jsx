@@ -13,7 +13,7 @@ const PageWrapper = () => {
     navigate("/");
   };
   const linkStyle = ({ isActive }) => ({
-    color: isActive ? "#2B061E" : "#4A4A4A",
+    color: isActive ? "rgb(243, 235, 235)" : "rgb(243, 235, 235)",
     textDecoration: "none",
     padding: "10px 15px",
     fontSize: "22px",
