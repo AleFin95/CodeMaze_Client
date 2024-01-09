@@ -1,0 +1,16 @@
+body {
+    margin: 0;
+}
+
+nav {
+    display: flex;
+    justify-content: flex-end;
+    gap:3em;
+    
+}
+
+nav h1 {
+    margin-right: 35em;
+}
+
+
