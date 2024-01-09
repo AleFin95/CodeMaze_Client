@@ -1,19 +1,11 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
-import '../../assets/App.css';
-import './index.css';
-import { SignUpComponent } from '../../components';
-import { useAuth } from '../../contexts';
 
-
-const LoginPage = () => {
+const SignUpComponent = ({ handleSignUpClick }) => {
+  const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [showSignUp, setShowSignUp] = useState(false);
-  const [showLogIn, setShowLogIn] = useState(true);
-  const navigateTo = useNavigate();
-  const { setToken } = useAuth();
+  const [isRegistrationSuccessful, setRegistrationSuccessful] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -24,21 +16,22 @@ const LoginPage = () => {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
+          username: username,
           email: email,
           password: password
         })
       };
 
       const response = await fetch(
-        'https:',
+        'https://',
         options
       );
 
-      if (response.status === 200) {
-        const { token } = await response.json();
-        localStorage.setItem('token', token);
-        setToken(token);
+      const data = await response.json();
 
+      if (response.status === 201) {
+        setRegistrationSuccessful(true);
+        handleSignUpClick();
         const Toast = Swal.mixin({
           toast: true,
           position: 'top-end',
@@ -53,9 +46,14 @@ const LoginPage = () => {
 
         Toast.fire({
           icon: 'success',
-          title: 'You have successfully logged in'
+          title: 'You have registered'
         });
-        navigateTo('/');
+      } else {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: `Registration error: ${data.error}`
+        });
       }
     } catch (error) {
       Swal.fire({
@@ -65,54 +63,54 @@ const LoginPage = () => {
       });
     }
   };
-
-  function handleSignUpClick() {
-    setShowLogIn(!showLogIn);
-    setShowSignUp(!showSignUp);
-  }
   return (
-    <div className='loginPage'>
-    <div className='loginHeader'>
-      <h1>Codemaze</h1>
-    </div>
-    {showLogIn && (
-      <>
+    <>
+      {!isRegistrationSuccessful && (
         <div className='login'>
-          <h2>Log In</h2>
+          <h2>Sign Up</h2>
           <form className='loginForm' onSubmit={handleSubmit}>
             <input
               type='text'
+              value={username}
               required
-              onChange={(e) => setEmail(e.target.value)}
+              placeholder='username'
+              autoComplete='off'
+              onChange={(e) => setUsername(e.target.value)}
+            />
+            <input
+              type='text'
               value={email}
+              required
               placeholder='email'
               autoComplete='off'
+              onChange={(e) => setEmail(e.target.value)}
             />
             <input
               type='password'
               required
-              onChange={(e) => setPassword(e.target.value)}
               placeholder='password'
               autoComplete='off'
-            ></input>
-            <input type='submit' value='Log in' className='login-button' />
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <input type='submit' value='Register' className='login-button' />
             <p>
-              No account?
+              Got an account?
               <button
                 type='button'
                 className='login-button'
                 onClick={handleSignUpClick}
               >
-                Sign up
+                Log in
               </button>
             </p>
           </form>
         </div>
-      </>
-    )}
-    {showSignUp && <SignUpComponent handleSignUpClick={handleSignUpClick} />}
-  </div>
-);
+      )}
+      {isRegistrationSuccessful && (
+        <p>Account successfully created! You can Log In !</p>
+      )}
+    </>
+  );
 };
 
-export default LoginPage
+export default SignUpComponent;
