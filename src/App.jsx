@@ -3,6 +3,7 @@ import './assets/app.css';
 import { Routes, Route } from 'react-router-dom';
 import { PageWrapper } from './components'
 import * as Pages from './pages'
+import ProtectedRoute from './routes';
 
 import { SignUpComponent } from './components';
 import { AuthProvider } from './contexts';
@@ -16,7 +17,9 @@ function App() {
         <PageWrapper />
       </header>
       <Routes>
-        <Route path="/" element={< Pages.HomePage/>}/>
+        <Route path='/' element={<ProtectedRoute redirectTo='/login' />}> 
+          <Route index element={< Pages.HomePage/>}/>
+        </Route>
         <Route path="/login" element={< Pages.LoginPage/>}/>
         <Route path='/signup' element={<SignUpComponent />} />     
         <Route path="/games" element={< Pages.GamesPage/>}/>     
