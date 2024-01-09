@@ -2,7 +2,7 @@ import React from 'react'
 import './App.css'
 import { Routes, Route } from 'react-router-dom';
 import { PageWrapper } from './components'
-import { HomePage } from './pages/HomePage/HomePage'
+import * as Pages from './pages'
 
 function App() {
 
@@ -12,7 +12,10 @@ function App() {
         <PageWrapper />
       </header>
       <Routes>
-        <Route path="/" element={< HomePage/>}/>   
+        <Route path="/" element={< Pages.HomePage/>}/>
+        <Route path="/login" element={< Pages.LoginPage/>}/>     
+        <Route path="/games" element={< Pages.GamesPage/>}/>     
+        <Route path="/ranking" element={< Pages.RankingPage/>}/>     
       </Routes>
     </>
   )
