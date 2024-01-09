@@ -17,9 +17,7 @@ function App() {
         <PageWrapper />
       </header>
       <Routes>
-        <Route path='/' element={<ProtectedRoute redirectTo='/login' />}> 
-          <Route index element={< Pages.HomePage/>}/>
-        </Route>
+        <Route path="/" element={< Pages.HomePage/>}/>
         <Route path="/login" element={< Pages.LoginPage/>}/>
         <Route path='/signup' element={<SignUpComponent />} />     
         <Route path="/games" element={< Pages.GamesPage/>}/>     
