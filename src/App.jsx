@@ -2,7 +2,7 @@ import React from 'react'
 import './App.css'
 import { Routes, Route } from 'react-router-dom';
 import { PageWrapper } from './components'
-import { HomePage } from './Pages/HomePage'
+import { HomePage } from './pages/HomePage/HomePage'
 
 function App() {
 
