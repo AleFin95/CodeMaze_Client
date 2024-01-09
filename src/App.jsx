@@ -1,5 +1,5 @@
 import React from 'react'
-import './assets/app.css';
+import './assets/App.css';
 import { Routes, Route } from 'react-router-dom';
 import { PageWrapper } from './components'
 import * as Pages from './pages'
