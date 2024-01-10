@@ -5,6 +5,7 @@ import '../../assets/App.css';
 import './index.css';
 import { SignUpComponent } from '../../components';
 import { useAuth } from '../../contexts';
+import { Video } from '../../components';
 
 
 const LoginPage = () => {
@@ -71,6 +72,8 @@ const LoginPage = () => {
     setShowSignUp(!showSignUp);
   }
   return (
+    <>
+    <Video/>
     <div className='loginPage'>
     <div className='loginHeader'>
       <h1>Codemaze</h1>
@@ -112,6 +115,7 @@ const LoginPage = () => {
     )}
     {showSignUp && <SignUpComponent handleSignUpClick={handleSignUpClick} />}
   </div>
+  </>
 );
 };
 

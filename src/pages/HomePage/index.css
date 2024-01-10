@@ -1,9 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Lemon&display=swap');
-body {
-    background-color: rgb(54, 50, 50);
-    color: rgb(243, 235, 235);
-    margin: 0;
+
+
+/*#page{
+    background-image: url("https://wallpapercave.com/wp/wp4469691.jpg");
 }
+*/
 
 #middle {
     display: flex;

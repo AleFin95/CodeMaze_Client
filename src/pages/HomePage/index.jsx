@@ -1,6 +1,7 @@
 import React from 'react'
 import './index.css'
  
+import { Video } from '../../components';
 
 export const HomePage = () => {
 
@@ -10,6 +11,7 @@ export const HomePage = () => {
 
   return (
     <>
+    <Video/>
     <section id="page">
       <section id="top">
         <div className="message">

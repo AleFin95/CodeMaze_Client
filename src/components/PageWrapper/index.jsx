@@ -36,6 +36,9 @@ const PageWrapper = () => {
             <NavLink to="/ranking" style={linkStyle}>
                 Ranking
             </NavLink>
+            <NavLink to="/game" style={linkStyle}>
+                Game
+            </NavLink>
         {isLoggedIn && (
             <NavLink to="/profile" style={linkStyle}>
                 Profile
