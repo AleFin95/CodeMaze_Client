@@ -1,12 +1,15 @@
 import React from 'react'
 import './index.css'
- 
+import { useNavigate,Link } from "react-router-dom";
+
 import { Video } from '../../components';
 
 export const HomePage = () => {
 
-
-
+  const hide = ()=> {
+    const section = document.querySelector('#page');
+    section.classList.add('hidden');
+  }
 
 
   return (
@@ -16,19 +19,21 @@ export const HomePage = () => {
       <section id="top">
         <div className="message">
           <h1>Level Up your coding game</h1>
-          <p>Play with your friends</p>
-          <p>Use your favourite programming language</p>
-        </div>
+          <ul class="fa-ul">
+            <li> <i class="fa fa-arrow-circle-right circle fa-2x" aria-hidden="true"></i>Play with your friends! </li>
+            <li> <i class="fa fa-arrow-circle-right fa-2x" aria-hidden="true"></i>Multiple programming languages to choose from! </li>
+          </ul>
+       </div>
       </section>
       <section id="middle">
         <h1>Start your coding journey now!</h1>
         <div class="buttons">
-          <button class="button1"> 1 Vs 1</button>
-          <button class="button2">Solo mode</button>
+          <button class="button1"> <Link id="link1" to='/game'>1 Vs 1</Link></button>
+          <button class="button2"><Link id="link2" to='/game'>Solo mode</Link></button>
         </div>
       </section>
       <section>
-        <h2>Play for free</h2>
+        <h2> </h2>
       </section>
     </section> 
     </>

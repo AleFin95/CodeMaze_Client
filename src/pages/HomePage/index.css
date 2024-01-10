@@ -47,6 +47,7 @@
     color: #fff;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Adding a subtle shadow for depth */
     transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out; /* Adding transitions for a smooth effect */
+    border-style: double ;
 }
 
 .button2 {
@@ -100,16 +101,55 @@
 .message {   
     border-radius: 40px;
     padding-bottom: 90px;  
-    margin-left: 9em;
+    margin-left: 1em;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap:0em;
+    margin-top: 2em;
+    font-family: 'Lemon', serif;
 }
+
+.fa-ul {
+    
+ display: flex;
+ flex-direction: column;
+ gap: 1em;
+ 
+ 
+}
+
+.message li i {
+    font-size: 40px;
+    color: #3498db;
+    animation: arrowBounce 2s infinite;
+}
+
+#link1,#link2 {
+    text-decoration: none;
+    color: white;
+}
+
+
+@keyframes arrowBounce {
+    0%, 100% {
+      transform: translateX(0);
+    }
+    50% {
+      transform: translateX(20px);
+    }
+}
+.message li {
+    display: flex;
+    gap: 2em;
+    font-size: 30px;
+     
+ align-items: center;
+}
+/*<li><i class="fa-li fa fa-spinner fa-spin"></i>List icons</li>*/
 
 .message h1 {
     font-size: 30px;
-    
 }
 
 .message p {
@@ -165,6 +205,7 @@
 #games div:hover .buttons  {
    display: flex;
 }
+
 .hidden {
     transform: translateX(-100%); /* Move the section to the left to hide it */
 }
