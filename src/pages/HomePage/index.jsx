@@ -1,47 +1,25 @@
 import React from 'react'
 import './index.css'
+import { TopicsComponent } from '../../components';
 
 export const HomePage = () => {
   return (
     <>
     <section id="page">
-    <section id="top">
-      <div className="message">
+      <section id="top">
+        <div className="message">
           <h1>Level Up your coding game</h1>
           <p>Play with your friends</p>
           <p>Use your favourite programming language</p>
-      </div>
-    </section>
-    <section id="middle">
-      <h2>Games</h2>
-        <div className="filters">
-            <p>Top Games</p>
-            <p>MongoDB</p>
-            <p id="showAll">Show All</p> 
         </div>
-        <section id="games">
-          <div>
-          <div className="buttons">
-            <p>1 vs 1</p>
-            <p>Solo mode</p>
-          </div>
-          </div>
-          <div>
-          <div className="buttons">
-            <p>1 vs 1</p>
-            <p>Solo mode</p>
-          </div>
-          </div>
-          <div>
-          <div className="buttons">
-            <p>1 vs 1</p>
-            <p>Solo mode</p>
-          </div>
-          </div>
-          <div></div>
-        </section>
       </section>
-    </section>
+      <section id="middle">
+        <TopicsComponent/>
+      </section>
+      <section>
+        <h2>Play for free</h2>
+      </section>
+    </section> 
     </>
   )
 }
