@@ -32,9 +32,6 @@ const PageWrapper = () => {
                 Home
             </NavLink>
         )}
-            <NavLink to="/games" style={linkStyle}>
-                Games
-            </NavLink>
             <NavLink to="/ranking" style={linkStyle}>
                 Ranking
             </NavLink>
