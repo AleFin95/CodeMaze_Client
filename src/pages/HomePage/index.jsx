@@ -1,10 +1,12 @@
 import React from 'react'
 import './index.css'
 import { TopicsComponent } from '../../components';
+import { Video } from '../../components';
 
 export const HomePage = () => {
   return (
     <>
+    <Video/>
     <section id="page">
       <section id="top">
         <div className="message">
