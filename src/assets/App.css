@@ -2,7 +2,7 @@ body {
   text-align: center;
   font-weight: 300;
   position: relative;
-  color: rgba(16, 25, 94, 0.422);
+  color: white;
   overflow: auto;
   overflow-x: hidden;
 }

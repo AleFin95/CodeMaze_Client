@@ -9,11 +9,17 @@
 #middle {
     display: flex;
     flex-direction: column;
-    margin-top: 0em;
-    padding:20px;
+    margin-top: 2em;
+   /* padding:20px;*/
     border-radius: 30px;
-    margin-left: 390px ;
-    margin-right: 390px ;
+    gap:1em;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 2em;
 }
  
 #middle h2 {
@@ -24,6 +30,53 @@
     margin: 0;
     margin-bottom: 2em;
 }
+
+#middle button {
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 20px 20px;
+    font-size: 24px;
+    border-radius: 5px;
+    text-transform: uppercase;
+    font-family: 'Lemon', serif;
+}
+
+.button1 {
+    background-color: #3498db;
+    color: #fff;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Adding a subtle shadow for depth */
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out; /* Adding transitions for a smooth effect */
+    border-style: double ;
+}
+
+.button2 {
+    background-color: #3498db;
+    color: #fff;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Adding a subtle shadow for depth */
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out; /* Adding transitions for a smooth effect */
+}
+
+.button1:hover {
+    transform: scale(1.05); /* Enlarge the button slightly on hover */
+    box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.2); /* Adjusting shadow on hover for depth */
+}
+
+.button2:hover {
+    transform: scale(1.05); /* Enlarge the button slightly on hover */
+    box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.2); /* Adjusting shadow on hover for depth */
+}
+
+.button1:active  {
+    transform: scale(0.95); /* Slightly shrink the button when clicked */
+    box-shadow: none; /* Remove shadow on click */
+}
+
+.button2:active  {
+    transform: scale(0.95); /* Slightly shrink the button when clicked */
+    box-shadow: none; /* Remove shadow on click */
+}
+
 
 #middle h1 {
     font-size: 40px;
@@ -42,22 +95,61 @@
     justify-content: flex-start;
     background-size: cover;
     background-position:  center center;
-
+    transition: transform 0.5s ease-out;
 }
 
 .message {   
     border-radius: 40px;
     padding-bottom: 90px;  
-    margin-left: 9em;
+    margin-left: 1em;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap:0em;
+    margin-top: 2em;
+    font-family: 'Lemon', serif;
 }
+
+.fa-ul {
+    
+ display: flex;
+ flex-direction: column;
+ gap: 1em;
+ 
+ 
+}
+
+.message li i {
+    font-size: 40px;
+    color: #3498db;
+    animation: arrowBounce 2s infinite;
+}
+
+#link1,#link2 {
+    text-decoration: none;
+    color: white;
+}
+
+
+@keyframes arrowBounce {
+    0%, 100% {
+      transform: translateX(0);
+    }
+    50% {
+      transform: translateX(20px);
+    }
+}
+.message li {
+    display: flex;
+    gap: 2em;
+    font-size: 30px;
+     
+ align-items: center;
+}
+/*<li><i class="fa-li fa fa-spinner fa-spin"></i>List icons</li>*/
 
 .message h1 {
     font-size: 30px;
-    
 }
 
 .message p {
@@ -70,6 +162,7 @@
     flex-direction: row;
     justify-content: center;
     gap:1em;
+    transition: transform 4s ease-out;
     /*margin-right: 10em;
     margin-left: 10em;*/
 }
@@ -83,7 +176,6 @@
     cursor: pointer;
     /* Initially transparent */
     transition: 1 ease;
-    
 }
 
 .first {
@@ -105,29 +197,6 @@
 .fifth {
     background-image: url("https://img.icons8.com/external-flaticons-flat-flat-icons/452/external-debug-computer-programming-flaticons-flat-flat-icons.png ");
 }
- 
-#games .buttons {
-    display: none;
-    flex-direction: column;
-    justify-content: flex-start;
-    gap:1em;
-    margin-top: 0;
-    padding: 0;
-    height: 0;
-}
-
-.buttons p {
-    background-color: brown;
-    padding: 10px;
-    margin-left: 30px;
-    margin-right: 30px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 22px;
-    margin-top: 0;
-    margin-bottom: 0;
-}
-
 
 .buttons p:hover {
     background-color: rgb(207, 93, 93);
@@ -137,10 +206,14 @@
    display: flex;
 }
 
+.hidden {
+    transform: translateX(-100%); /* Move the section to the left to hide it */
+}
 
-
-
-
+footer {
+    display: flex;
+    flex-direction: column;
+}
 
 
 
