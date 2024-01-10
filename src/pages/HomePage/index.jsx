@@ -6,25 +6,40 @@ export const HomePage = () => {
     <>
     <section id="page">
     <section id="top">
-      <div class="message">
+      <div className="message">
           <h1>Level Up your coding game</h1>
           <p>Play with your friends</p>
           <p>Use your favourite programming language</p>
       </div>
     </section>
     <section id="middle">
-      <h1>Games</h1>
-        <div class="filters">
+      <h2>Games</h2>
+        <div className="filters">
             <p>Top Games</p>
             <p>MongoDB</p>
             <p id="showAll">Show All</p> 
         </div>
-        <div class="games">
-          <img src="https://images.freecreatives.com/wp-content/uploads/2015/04/amazing-video-game-art-wallpapers-sci-fi-videogames-game.png" alt="image"/>
-          <img src="https://images.freecreatives.com/wp-content/uploads/2015/04/amazing-video-game-art-wallpapers-sci-fi-videogames-game.png" alt="image"/>
-          <img src="https://images.freecreatives.com/wp-content/uploads/2015/04/amazing-video-game-art-wallpapers-sci-fi-videogames-game.png" alt="image"/>
-          <img src="https://images.freecreatives.com/wp-content/uploads/2015/04/amazing-video-game-art-wallpapers-sci-fi-videogames-game.png" alt="image"/>
-        </div>
+        <section id="games">
+          <div>
+          <div className="buttons">
+            <p>1 vs 1</p>
+            <p>Solo mode</p>
+          </div>
+          </div>
+          <div>
+          <div className="buttons">
+            <p>1 vs 1</p>
+            <p>Solo mode</p>
+          </div>
+          </div>
+          <div>
+          <div className="buttons">
+            <p>1 vs 1</p>
+            <p>Solo mode</p>
+          </div>
+          </div>
+          <div></div>
+        </section>
       </section>
     </section>
     </>

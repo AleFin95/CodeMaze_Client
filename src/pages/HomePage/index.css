@@ -1,6 +1,7 @@
 body {
-    background-image: url("https://wallpapercave.com/wp/wp3194559.jpg");
+    background-image: url("https://wallpapercave.com/wp/wp4469691.jpg");
     color: rgb(243, 235, 235);
+    margin: 0;
 }
 
 #middle {
@@ -9,11 +10,11 @@ body {
     margin-top: 0em;
     padding:20px;
     border-radius: 30px;
-    margin-left: 150px ;
-    margin-right: 150px ;
+    margin-left: 400px ;
+    margin-right: 400px ;
 }
  
-#middle h1 {
+#middle h2 {
     font-size: 40px;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     display: flex;
@@ -24,13 +25,14 @@ body {
 #top {
     padding: 20px;
     border-radius: 30px;
-    margin-right: 150px;
-    margin-left: 150px;
+    margin-right: 400px;
+    margin-left: 400px;
     margin-bottom: 0em;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
-    background-image: url("https://wallpapercave.com/wp/wp2856468.jpg");
+    background-image: url("https://img.freepik.com/free-vector/green-data-technology-background-with-binary-code_53876-119581.jpg?w=826&t=st=1704827065~exp=1704827665~hmac=f76ecede881272d6675eaaf3e4fba24597f7791a022ca8b50ccbd476c888c615");
     display: flex;
     justify-content: flex-start;
+    
 }
 
 .message {   
@@ -44,54 +46,102 @@ body {
 }
 
 .message h1 {
-    font-size: 40px;
+    font-size: 30px;
    
 }
 
 .message p {
-    font-size: 30px;
+    font-size: 20px;
     margin-top: 0.1em;
 }
 
-.games {
+#games {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     gap:1em;
+    
     /*margin-right: 10em;
     margin-left: 10em;*/
 }
-
+/*
 .games img{
     width: 230px ;
     height: 270px ;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
     border-radius: 10px;
     
-}
+}*/
 
 .filters {
     display: flex;
     flex-direction: row;
     font-size: 20px;
-    gap:3em;
+    gap:5em;
     margin: 0;
 }
  
-.button {
-    display: flex;
-    justify-content: center;
+.filters p{
+    cursor: pointer;
 }
+
 #showAll {
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
     background-color: rgb(92, 89, 89);
     border-style: none;
     border-radius: 3px;
-    margin-left: 57em;
+    margin-left: 40em;
     padding: 10px 30px;
     margin-bottom: 0;
+}
+
+#showAll:hover {
+    background-color: rgb(138, 138, 124);
+}
+
+#games div {
+    background-image: url("https://c4.wallpaperflare.com/wallpaper/931/1002/528/the-elder-scrolls-v-skyrim-deus-ex-human-revolution-call-of-duty-modern-warfare-3-dark-souls-wallpaper-preview.jpg");
+    height: 350px;
+    width: 250px;
+    background-size: cover;
+    background-position: center center;
+    border-radius: 10px;
+    cursor: pointer;
+  
+    /* Initially transparent */
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
+    transition: opacity 0.3s ease; /* Smooth transition effect */
+    overflow: hidden;
+
+}
+
+#games .buttons {
+    display: none;
+ 
+}
+
+.buttons p {
+    background-color: brown;
+    padding: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+.buttons p:hover {
+    background-color: rgb(207, 93, 93);
+}
+
+#games div:hover .buttons  {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     
 }
+
+
 
 
 
