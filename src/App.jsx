@@ -19,8 +19,7 @@ function App() {
       <Routes>
         <Route path="/" element={< Pages.HomePage/>}/>
         <Route path="/login" element={< Pages.LoginPage/>}/>
-        <Route path='/signup' element={<SignUpComponent />} />     
-        <Route path="/games" element={< Pages.GamesPage/>}/>     
+        <Route path='/signup' element={<SignUpComponent />} />      
         <Route path="/ranking" element={< Pages.RankingPage/>}/>     
       </Routes>
       </AuthProvider>
