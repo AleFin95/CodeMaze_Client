@@ -1,6 +1,10 @@
-#root {
-  margin: 0;
+/*#root {
+   margin: 0;
   text-align: center;
+}*/
+body {
+ /* background-image: url("https://silicondales.com/wp-content/uploads/2023/09/replatforming-enterprise-to-wordpress.jpg");
+ */background-color: blue;
 }
 /*
 .logo {
