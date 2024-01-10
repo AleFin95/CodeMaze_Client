@@ -19,17 +19,17 @@ export const HomePage = () => {
       <section id="top">
         <div className="message">
           <h1>Level Up your coding game</h1>
-          <ul class="fa-ul">
-            <li> <i class="fa fa-arrow-circle-right circle fa-2x" aria-hidden="true"></i>Play with your friends! </li>
-            <li> <i class="fa fa-arrow-circle-right fa-2x" aria-hidden="true"></i>Multiple programming languages to choose from! </li>
+          <ul className="fa-ul">
+            <li> <i className="fa fa-arrow-circle-right circle fa-2x" aria-hidden="true"></i>Play with your friends! </li>
+            <li> <i className="fa fa-arrow-circle-right fa-2x" aria-hidden="true"></i>Multiple programming languages to choose from! </li>
           </ul>
-       </div>
+        </div>
       </section>
       <section id="middle">
-        <h1>Start your coding journey now!</h1>
-        <div class="buttons">
-          <button class="button1"> <Link id="link1" to='/game'>1 Vs 1</Link></button>
-          <button class="button2"><Link id="link2" to='/game'>Solo mode</Link></button>
+        <h2>Start your coding journey now!</h2>
+        <div className="buttons">
+          <button className="button1"> <Link id="link1" to='/game'>1 Vs 1</Link></button>
+          <button className="button2"><Link id="link2" to='/game'>Solo mode</Link></button>
         </div>
       </section>
       <section>
