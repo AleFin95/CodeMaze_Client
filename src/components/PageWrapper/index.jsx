@@ -6,6 +6,7 @@ const PageWrapper = () => {
 
   const navigate = useNavigate();
 
+  
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("username");
@@ -13,7 +14,7 @@ const PageWrapper = () => {
     navigate("/");
   };
   const linkStyle = ({ isActive }) => ({
-    color: isActive ? "#2B061E" : "#4A4A4A",
+    color: isActive ? "rgb(243, 235, 235)" : "rgb(243, 235, 235)",
     textDecoration: "none",
     padding: "10px 15px",
     fontSize: "22px",
@@ -32,11 +33,11 @@ const PageWrapper = () => {
                 Home
             </NavLink>
         )}
-            <NavLink to="/games" style={linkStyle}>
-                Games
-            </NavLink>
             <NavLink to="/ranking" style={linkStyle}>
                 Ranking
+            </NavLink>
+            <NavLink to="/game" style={linkStyle}>
+                Game
             </NavLink>
         {isLoggedIn && (
             <NavLink to="/profile" style={linkStyle}>

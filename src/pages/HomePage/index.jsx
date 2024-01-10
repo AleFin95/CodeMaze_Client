@@ -1,30 +1,41 @@
 import React from 'react'
 import './index.css'
+import { useNavigate,Link } from "react-router-dom";
+
+import { Video } from '../../components';
 
 export const HomePage = () => {
+
+  const hide = ()=> {
+    const section = document.querySelector('#page');
+    section.classList.add('hidden');
+  }
+
+
   return (
     <>
-    <section id="top">
-      <div class="message">
-        <div>
+    <Video/>
+    <section id="page">
+      <section id="top">
+        <div className="message">
           <h1>Level Up your coding game</h1>
-          <p>Play with your friends</p>
-          <p>Use your favourite programming language</p>
-        </div>
-        <img src="https://i.ytimg.com/vi/I7YYJObe5SU/maxresdefault.jpg" alt="initialImage"></img>
-      </div>
-    </section>
-    <section id="middle">
-      <h1>Games</h1>
-        <div class="filters">
-          <p>Top Games</p>
-          <p>MongoDB</p> 
-          <button>Show all</button>
-        </div>
-        <div class="games">
-          <img src="https://images.freecreatives.com/wp-content/uploads/2015/04/amazing-video-game-art-wallpapers-sci-fi-videogames-game.png" alt="image"/>
+          <ul class="fa-ul">
+            <li> <i class="fa fa-arrow-circle-right circle fa-2x" aria-hidden="true"></i>Play with your friends! </li>
+            <li> <i class="fa fa-arrow-circle-right fa-2x" aria-hidden="true"></i>Multiple programming languages to choose from! </li>
+          </ul>
+       </div>
+      </section>
+      <section id="middle">
+        <h1>Start your coding journey now!</h1>
+        <div class="buttons">
+          <button class="button1"> <Link id="link1" to='/game'>1 Vs 1</Link></button>
+          <button class="button2"><Link id="link2" to='/game'>Solo mode</Link></button>
         </div>
       </section>
+      <section>
+        <h2> </h2>
+      </section>
+    </section> 
     </>
   )
 }

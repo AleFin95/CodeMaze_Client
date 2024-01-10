@@ -1,55 +1,219 @@
-body {
-    margin-top: 3em;
+@import url('https://fonts.googleapis.com/css2?family=Lemon&display=swap');
+
+
+/*#page{
+    background-image: url("https://wallpapercave.com/wp/wp4469691.jpg");
 }
+*/
 
 #middle {
     display: flex;
     flex-direction: column;
-    background-color: rgb(132, 132, 243);
-    margin-top: 3em;
-    padding:20px;
+    margin-top: 2em;
+   /* padding:20px;*/
     border-radius: 30px;
+    gap:1em;
 }
 
-#middle h1 {
-    font-size: 40px;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    justify-content: flex-start;
-    margin-top: 0;
-}
-
-#top {
-    padding: 20px;
-    background-color: rgb(132, 132, 243);
-    border-radius: 30px;
-}
-.message {
+.buttons {
     display: flex;
     flex-direction: row;
     justify-content: center;
     gap: 2em;
-    
 }
-
-.message img {
-    height:200px ;
-    width: 200px;
-}
-
-.games img{
-    width: 200px ;
-    height: 200px ;
-}
-
-.filters {
+ 
+#middle h2 {
+    font-size: 30px;
+    font-family: 'Lemon', serif;
     display: flex;
     justify-content: center;
-    flex-direction: row;
-    gap:3em;
-    margin-bottom: 1em;
-   
+    margin: 0;
+    margin-bottom: 2em;
 }
 
+#middle button {
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 20px 20px;
+    font-size: 24px;
+    border-radius: 5px;
+    text-transform: uppercase;
+    font-family: 'Lemon', serif;
+}
+
+.button1 {
+    background-color: #3498db;
+    color: #fff;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Adding a subtle shadow for depth */
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out; /* Adding transitions for a smooth effect */
+    border-style: double ;
+}
+
+.button2 {
+    background-color: #3498db;
+    color: #fff;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Adding a subtle shadow for depth */
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out; /* Adding transitions for a smooth effect */
+}
+
+.button1:hover {
+    transform: scale(1.05); /* Enlarge the button slightly on hover */
+    box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.2); /* Adjusting shadow on hover for depth */
+}
+
+.button2:hover {
+    transform: scale(1.05); /* Enlarge the button slightly on hover */
+    box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.2); /* Adjusting shadow on hover for depth */
+}
+
+.button1:active  {
+    transform: scale(0.95); /* Slightly shrink the button when clicked */
+    box-shadow: none; /* Remove shadow on click */
+}
+
+.button2:active  {
+    transform: scale(0.95); /* Slightly shrink the button when clicked */
+    box-shadow: none; /* Remove shadow on click */
+}
+
+
+#middle h1 {
+    font-size: 40px;
+    font-family: 'Lemon', serif;
+}
+
+#top {
+    padding: 20px;
+    border-radius: 30px;
+    margin-right: 400px;
+    margin-left: 400px;
+    margin-bottom: 0em;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+    background-image: url("https://wallpapercave.com/wp/wp7664856.png");
+    display: flex;
+    justify-content: flex-start;
+    background-size: cover;
+    background-position:  center center;
+    transition: transform 0.5s ease-out;
+}
+
+.message {   
+    border-radius: 40px;
+    padding-bottom: 90px;  
+    margin-left: 1em;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap:0em;
+    margin-top: 2em;
+    font-family: 'Lemon', serif;
+}
+
+.fa-ul {
+    
+ display: flex;
+ flex-direction: column;
+ gap: 1em;
+ 
+ 
+}
+
+.message li i {
+    font-size: 40px;
+    color: #3498db;
+    animation: arrowBounce 2s infinite;
+}
+
+#link1,#link2 {
+    text-decoration: none;
+    color: white;
+}
+
+
+@keyframes arrowBounce {
+    0%, 100% {
+      transform: translateX(0);
+    }
+    50% {
+      transform: translateX(20px);
+    }
+}
+.message li {
+    display: flex;
+    gap: 2em;
+    font-size: 30px;
+     
+ align-items: center;
+}
+/*<li><i class="fa-li fa fa-spinner fa-spin"></i>List icons</li>*/
+
+.message h1 {
+    font-size: 30px;
+}
+
+.message p {
+    font-size: 20px;
+    margin-top: 0.1em;
+}
+
+#games {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap:1em;
+    transition: transform 4s ease-out;
+    /*margin-right: 10em;
+    margin-left: 10em;*/
+}
+
+#games div {
+    height: 300px;
+    width: 220px;
+    background-size: cover;
+    background-position: center center;
+    border-radius: 10px;
+    cursor: pointer;
+    /* Initially transparent */
+    transition: 1 ease;
+}
+
+.first {
+    background-image: url("https://img.icons8.com/external-flaticons-flat-flat-icons/452/external-debug-computer-programming-flaticons-flat-flat-icons.png");
+}
+
+.second {
+    background-image: url("https://img.icons8.com/external-flaticons-flat-flat-icons/452/external-debug-computer-programming-flaticons-flat-flat-icons.png");
+}
+
+.third {
+    background-image: url("https://img.icons8.com/external-flaticons-flat-flat-icons/452/external-debug-computer-programming-flaticons-flat-flat-icons.png ");
+}
+
+.fourth {
+    background-image: url("https://img.icons8.com/external-flaticons-flat-flat-icons/452/external-debug-computer-programming-flaticons-flat-flat-icons.png ");
+}
+
+.fifth {
+    background-image: url("https://img.icons8.com/external-flaticons-flat-flat-icons/452/external-debug-computer-programming-flaticons-flat-flat-icons.png ");
+}
+
+.buttons p:hover {
+    background-color: rgb(207, 93, 93);
+}
+
+#games div:hover .buttons  {
+   display: flex;
+}
+
+.hidden {
+    transform: translateX(-100%); /* Move the section to the left to hide it */
+}
+
+footer {
+    display: flex;
+    flex-direction: column;
+}
 
 
 

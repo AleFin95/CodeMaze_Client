@@ -1,5 +1,5 @@
 import React from 'react'
-import './assets/app.css';
+import './assets/App.css';
 import { Routes, Route } from 'react-router-dom';
 import { PageWrapper } from './components'
 import * as Pages from './pages'
@@ -19,8 +19,8 @@ function App() {
       <Routes>
         <Route path="/" element={< Pages.HomePage/>}/>
         <Route path="/login" element={< Pages.LoginPage/>}/>
-        <Route path='/signup' element={<SignUpComponent />} />     
-        <Route path="/games" element={< Pages.GamesPage/>}/>     
+        <Route path='/signup' element={<SignUpComponent />} />      
+        <Route path="/game" element={< Pages.GamePage/>}/>
         <Route path="/ranking" element={< Pages.RankingPage/>}/>     
       </Routes>
       </AuthProvider>
