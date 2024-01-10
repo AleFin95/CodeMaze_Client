@@ -1,8 +1,13 @@
 import React from 'react'
 import './index.css'
-import { TopicsComponent } from '../../components';
+ 
 
 export const HomePage = () => {
+
+
+
+
+
   return (
     <>
     <section id="page">
@@ -14,7 +19,11 @@ export const HomePage = () => {
         </div>
       </section>
       <section id="middle">
-        <TopicsComponent/>
+        <h1>Start your coding journey now!</h1>
+        <div class="buttons">
+          <button class="button1"> 1 Vs 1</button>
+          <button class="button2">Solo mode</button>
+        </div>
       </section>
       <section>
         <h2>Play for free</h2>
