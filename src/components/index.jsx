@@ -5,3 +5,5 @@ export { default as GameNavbar } from "./GameNavbar";
 export { default as GameQuestions } from "./GameQuestions";
 export { default as GameTestCases } from "./GameTestCases";
 export { default as GameOutput } from "./GameOutput";
+export { default as GameSubmitButton } from "./GameSubmitButton";
+export { default as GameRunButton } from "./GameRunButton";

@@ -9,9 +9,9 @@ import {
   GameQuestions,
   GameTestCases,
   GameOutput,
+  GameSubmitButton,
+  GameRunButton,
 } from "../../components";
-
-const API_URL = "https://api.codex.jaagrav.in";
 
 const GamePage = () => {
   const [userCode, setUserCode] = useState("");
@@ -23,6 +23,8 @@ const GamePage = () => {
   const [userOutput, setUserOutput] = useState("");
   const [loadingRun, setLoadingRun] = useState(false);
   const [loadingSubmit, setLoadingSubmit] = useState(false);
+
+  const API_URL = "https://api.codex.jaagrav.in";
 
   const tests = [
     {
@@ -117,20 +119,14 @@ const GamePage = () => {
                 setUserCode(value + "\n" + testCases.join("\n"));
               }}
             />
-            <button
-              className="run-btn"
-              onClick={() => handleCompile("Run")}
-              disabled={loadingRun}
-            >
-              {loadingRun ? "Compiling..." : "Run"}
-            </button>
-            <button
-              className="sub-btn"
-              onClick={() => handleCompile("Submit")}
-              disabled={loadingSubmit}
-            >
-              {loadingSubmit ? "Compiling..." : "Submit"}
-            </button>
+            <GameRunButton
+              handleCompile={handleCompile}
+              loadingSubmit={loadingRun}
+            />
+            <GameSubmitButton
+              handleCompile={handleCompile}
+              loadingSubmit={loadingSubmit}
+            />
           </div>
           <div className="right-container">
             <GameQuestions />
