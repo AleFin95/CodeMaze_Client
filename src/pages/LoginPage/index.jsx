@@ -9,7 +9,7 @@ import { Video } from '../../components';
 
 
 const LoginPage = () => {
-  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [showSignUp, setShowSignUp] = useState(false);
   const [showLogIn, setShowLogIn] = useState(true);
@@ -25,13 +25,13 @@ const LoginPage = () => {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          email: email,
+          username: username,
           password: password
         })
       };
 
       const response = await fetch(
-        'https:',
+        'https://codemaze-api.onrender.com/users/login',
         options
       );
 
@@ -83,13 +83,13 @@ const LoginPage = () => {
         <div className='login'>
           <h2>Log In</h2>
           <form className='loginForm' onSubmit={handleSubmit}>
-            <input
+          <input
               type='text'
+              value={username}
               required
-              onChange={(e) => setEmail(e.target.value)}
-              value={email}
-              placeholder='email'
+              placeholder='username'
               autoComplete='off'
+              onChange={(e) => setUsername(e.target.value)}
             />
             <input
               type='password'

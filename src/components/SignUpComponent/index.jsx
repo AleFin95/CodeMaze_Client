@@ -3,7 +3,6 @@ import Swal from 'sweetalert2';
 
 const SignUpComponent = ({ handleSignUpClick }) => {
   const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isRegistrationSuccessful, setRegistrationSuccessful] = useState(false);
 
@@ -17,13 +16,12 @@ const SignUpComponent = ({ handleSignUpClick }) => {
         },
         body: JSON.stringify({
           username: username,
-          email: email,
           password: password
         })
       };
 
       const response = await fetch(
-        'https://',
+        'https://https://codemaze-api.onrender.com/users/register',
         options
       );
 
@@ -76,14 +74,6 @@ const SignUpComponent = ({ handleSignUpClick }) => {
               placeholder='username'
               autoComplete='off'
               onChange={(e) => setUsername(e.target.value)}
-            />
-            <input
-              type='text'
-              value={email}
-              required
-              placeholder='email'
-              autoComplete='off'
-              onChange={(e) => setEmail(e.target.value)}
             />
             <input
               type='password'
