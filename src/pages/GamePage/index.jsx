@@ -2,9 +2,9 @@ import { useState } from "react";
 import { Editor } from "@monaco-editor/react";
 import axios from "axios";
 import spinner from "./assets/ring-resize.svg";
-import Navbar from "./Navbar";
 import "./index.css";
 import { Video } from "../../components";
+import { GameNavbar } from "../../components";
 
 const API_URL = "https://api.codex.jaagrav.in";
 
@@ -25,6 +25,7 @@ const GamePage = () => {
     setUserOutput("");
   };
 
+  console.log(userCode);
   const handleCompile = () => {
     setLoading(true);
     setUserOutput("");
@@ -52,14 +53,12 @@ const GamePage = () => {
         setLoading(false);
       });
   };
-  console.log(userInput);
-  console.log(userCode);
 
   return (
     <>
       <Video />
       <div className="App">
-        <Navbar
+        <GameNavbar
           userLang={userLang}
           setUserLang={setUserLang}
           userTheme={userTheme}
@@ -92,6 +91,7 @@ const GamePage = () => {
             <h4>Question:</h4>
             <div className="input-box">
               <textarea
+                readOnly
                 id="code-inp"
                 onChange={(e) => setUserInput(e.target.value)}
               >
@@ -112,13 +112,11 @@ const GamePage = () => {
             </div>
             <h4>Test Case:</h4>
             <div className="input-box">
-              <pre id="code-inp" style={{ border: "1px solid" }}>
-                {`
-print(twoSum([2, 7, 11, 15], 9))
-print(twoSum([21, 7, 11, 1], 8))
-print(twoSum([21, 9, 1, 12], 10))
-    `}
-              </pre>
+              <div id="code-inp" style={{ border: "1px solid" }}>
+                <code>print(twoSum([2, 7, 11, 15], 9))</code>
+                <code>print(twoSum([21, 7, 11, 1], 8))</code>
+                <code>print(twoSum([21, 9, 1, 12], 10))</code>
+              </div>
             </div>
             <h4>Output:</h4>
             {loading ? (

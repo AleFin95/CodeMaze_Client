@@ -1,8 +1,7 @@
 import Select from "react-select";
-import "./Navbar.css";
-import "./index";
+import "./index.css";
 
-const Navbar = ({
+const GameNavbar = ({
   userLang,
   setUserLang,
   userTheme,
@@ -68,4 +67,4 @@ const Navbar = ({
   );
 };
 
-export default Navbar;
+export default GameNavbar;

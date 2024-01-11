@@ -1,28 +1,34 @@
 .App {
-  max-height: 100vh;
-  width: 100vw;
+  height: 60vh;
+  width: 97vw;
+  margin: 0 auto;
+  border-radius: 25px;
   background-color: #474747;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  text-align: left;
 }
 
 .main {
   display: flex;
-  height: calc(100vh - 50px);
+  height: 77vh;
 }
 
 .left-container {
   position: relative;
   flex: 60%;
-  height: calc(100vh - 50px);
+  border-bottom-left-radius: 10px;
 }
 
 .right-container {
   flex: 40%;
-  height: calc(100vh - 50px);
   display: flex;
   flex-direction: column;
   background-color: #242424;
   border-left: 3px solid #1f65e6;
   padding: 5px;
+  border-bottom-right-radius: 10px;
 }
 
 .input-box {
@@ -68,6 +74,7 @@
   border-radius: 4px;
   transition: 0.3s;
   cursor: pointer;
+  padding: 10px;
 }
 
 .output-box pre {
@@ -86,7 +93,7 @@ h4 {
   resize: none;
   background-color: #242424;
   color: whitesmoke;
-  padding: 5px;
+  padding: 10px;
 }
 
 #code-inp:focus {
@@ -107,6 +114,7 @@ h4 {
   transition: 0.3s;
   cursor: pointer;
   z-index: 10;
+  padding: 10px;
 }
 
 .run-btn:active {
