@@ -2,49 +2,62 @@ import React from 'react'
 import { Video } from '../../components';
 import io from "socket.io-client"
 import { useEffect, useState } from 'react';
+import TestPage2 from '../TestPage2';
 
 const socket = io.connect("http://localhost:5000")
 
 const TestPage = () => {
 
-    const [room, setRoom] = useState("");
+    const [username, setUsername] = useState("");
+    const [homePageVisibility, setHomePageVisibility] = useState(true);
     const [message, setMessage] =  useState("");
-    const [messageReceived, setMessageReceived] = useState("");
+    const [room, setRoom] = useState()
 
     const joinRoom = () => {
-        if (room !== "") {
-            socket.emit("join_room", {room})
-        }
+        socket.emit("join_room", {username}, (data) => {
+            setRoom(data.room)
+            setHomePageVisibility(false)
+        })
     }
 
-    const sendMessage = () => {
-        socket.emit("send_message", {message, room})
+    const sendMessage = (username) => {
+        let current_room = localStorage.getItem("current_room")
+        console.log(current_room)
+        socket.emit("send_message", {message, current_room, username})
     };
 
     useEffect(() => {
-        socket.on("receive_message", (data) => {
-            setMessageReceived(data.message)
-        })
-    }, [socket])
+        const handleReceiveData = (data) => {
+            console.log(data.room);
+            setRoom(data.room)
+            localStorage.setItem("current_room", data.room)
+        };
+        
+        socket.on('receiveData', handleReceiveData);
+    
+        return () => {
+          // Clean up the event listener when the component is unmounted
+          socket.off('receiveData', handleReceiveData);
+        };
+      }, [socket]);
+ 
+      socket.on("message", data => {
+        console.log(data.name + data.message)
+      })
 
   return (
-    <>
+    <div>
         <Video/>
-        <div>TestPage</div>
+            { homePageVisibility && (<>
+                <input placeholder='Username...' onChange={ e => {
+                    setUsername(e.target.value)
+                }}/>
+                    <button onClick={joinRoom}>Join Room</button>
+            </>)
+            }
+        <TestPage2 sendMessage={sendMessage} socket={socket} message={message} setMessage={setMessage} room={room} username={username}/>
 
-        <input placeholder='Room Number...' onChange={e => {
-            setRoom(e.target.value)
-        }}></input>
-        <button onClick={joinRoom}>Join Room</button>
-
-        <input placeholder='Username...' onChange={e => {
-            setMessage(e.target.value)
-        }}/>
-        <button onClick={sendMessage}>Send Message</button>
-
-        <h1>Message : </h1>
-        {messageReceived}
-    </>
+    </div>
   )
 }
 
