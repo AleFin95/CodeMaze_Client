@@ -49,4 +49,13 @@ describe('Login Component', () => {
     fireEvent.click(screen.getByText('Sign up'));
     expect(screen.getByRole('heading', { level: 2 }).textContent).toEqual('Oops...');
   });
-});
+
+
+  it('renders video as a background', async () => {
+    // Check if the Video component is rendered
+    const videoElement = document.getElementById('video-background');
+    expect(videoElement).toBeInTheDocument();
+})
+    
+})
+

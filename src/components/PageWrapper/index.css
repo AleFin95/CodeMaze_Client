@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Anton&family=Carrois+Gothic&family=Manrope&family=Nunito+Sans:opsz,wght@6..12,300&family=Rubik+Glitch&display=swap');
 
-body {
+/*body {
     margin: 0;
 }
 
@@ -19,5 +19,41 @@ nav h1 {
     font-size: 30px;
     font-family: 'Anton', sans-serif;
 }
+*/
+body {margin: 0;}
 
+header {
+    background-color: #0a3e315c;
+     padding: 1em;
+    box-shadow: 0 4px 6px rgba(18, 68, 42, 0.883);
+    margin: 0;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    max-width: 1200px;
+}
+
+nav h1 {
+    font-size: 30px;
+    color: #d7e259
+}
+
+
+.logout {
+    background-color: #dc3545; 
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.logout:hover {
+    background-color: #7ec82392; /* Darker red color on hover */
+}
 
