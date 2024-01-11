@@ -12,10 +12,6 @@ const GameNavbar = ({
   const languages = [
     { value: "py", label: "Python" },
     { value: "js", label: "JavaScript" },
-    { value: "cpp", label: "C++" },
-    { value: "c", label: "C" },
-    { value: "go", label: "GoLang" },
-    { value: "cs", label: "C#" },
   ];
 
   const themes = [
