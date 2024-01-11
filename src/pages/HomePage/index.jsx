@@ -9,7 +9,7 @@ import { Video } from '../../components';
 export const HomePage = () => {
 
   const styles = {
-    backgroundColor: "yellow",
+    backgroundImage: `url(${myImage})`,
     marginTop: "1.5em",
     padding: "20px",
     borderRadius: "30px",
@@ -17,20 +17,17 @@ export const HomePage = () => {
     marginLeft: "400px",
     marginBottom: "0em",
     boxShadow: "5px 5px 10px rgba(0, 0, 0, 0.5)",
-    
     display: "flex",
     justifyContent: "flex-start",
     backgrounSize: "cover",
-    /*background-position:  center center ;*/
-    transition: "transform 0.5s ease-out",
+    backgroundPosition:  "center center",
   };
-
 
   return (
     <>
     <Video/>
     <section id="page">
-      <section id="top" style={styles}>
+      <section data-testid="top" id="top" style={styles} >
         <div className="message">
           <h1>Level Up your coding game</h1>
           <ul role="list" className="fa-ul">
@@ -45,9 +42,6 @@ export const HomePage = () => {
           <button className="button1"> <Link id="link1" to='/game'>1 Vs 1</Link></button>
           <button className="button2"><Link id="link2" to='/game'>Solo mode</Link></button>
         </div>
-      </section>
-      <section>
-        <h2>fdgdf </h2>
       </section>
     </section> 
     </>
