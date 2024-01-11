@@ -14,15 +14,24 @@ const TestPage = () => {
 
     const [username, setUsername] = useState("");
     const [homePageVisibility, setHomePageVisibility] = useState(true);
+    const [test2visibility, settest2visibility] = useState(false);
     const [message, setMessage] =  useState("");
     const [room, setRoom] = useState()
 
     const joinRoom = () => {
+        socket.connect()
         socket.emit("join_room", {username}, (data) => {
             setHomePageVisibility(false)
+            settest2visibility(true)
         })
     }
 
+    const leaveRoom = () => {
+        socket.disconnect()
+        setHomePageVisibility(true)
+        settest2visibility(false)
+    }
+    
     const sendMessage = (username) => {
         socket.emit("send_message", {message, room, username, user_rooms})
     };
@@ -57,7 +66,17 @@ const TestPage = () => {
                     <button onClick={joinRoom}>Join Room</button>
             </>)
             }
-        <TestPage2 sendMessage={sendMessage} socket={socket} message={message} setMessage={setMessage} room={room} username={username}/>
+            { test2visibility && (
+                <TestPage2 
+                    sendMessage={sendMessage}
+                    leaveRoom={leaveRoom}
+                    socket={socket} 
+                    message={message} 
+                    setMessage={setMessage} 
+                    room={room} 
+                    username={username}
+                />
+            )}
 
     </div>
   )
