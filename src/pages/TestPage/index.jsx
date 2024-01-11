@@ -6,6 +6,10 @@ import TestPage2 from '../TestPage2';
 
 const socket = io.connect("http://localhost:5000")
 
+let user_rooms = {
+    
+}
+
 const TestPage = () => {
 
     const [username, setUsername] = useState("");
@@ -15,22 +19,20 @@ const TestPage = () => {
 
     const joinRoom = () => {
         socket.emit("join_room", {username}, (data) => {
-            setRoom(data.room)
             setHomePageVisibility(false)
         })
     }
 
     const sendMessage = (username) => {
-        let current_room = localStorage.getItem("current_room")
-        console.log(current_room)
-        socket.emit("send_message", {message, current_room, username})
+        socket.emit("send_message", {message, room, username, user_rooms})
     };
 
     useEffect(() => {
         const handleReceiveData = (data) => {
-            console.log(data.room);
+            console.log(data);
             setRoom(data.room)
-            localStorage.setItem("current_room", data.room)
+            user_rooms[data.name] = data.room
+            console.log(user_rooms)
         };
         
         socket.on('receiveData', handleReceiveData);
