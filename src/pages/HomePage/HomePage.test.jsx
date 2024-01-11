@@ -1,8 +1,8 @@
 import React from 'react';
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
-import { screen, render, cleanup, fireEvent, waitFor} from '@testing-library/react';
+import { screen, render, cleanup, fireEvent, waitFor, getByTestId} from '@testing-library/react';
 
-import { MemoryRouter } from 'react-router-dom';
+import { BrowserRouter, MemoryRouter } from 'react-router-dom';
 
 import matchers from '@testing-library/jest-dom/matchers';
 expect.extend(matchers);
@@ -37,16 +37,29 @@ describe('HomePage Component',() => {
     })
 
     it('Contains a list'), () => {
-      const p = screen.getByRole('li');
+      const p = screen.getByRole('list');
       expect(p).toBeInTheDocument();
     }
 
     it('h2 displays Start your coding journey now!'), () => {
-      const p = screen.getByTest('Start your coding journey now!');
+      const p = screen.getByText('Start your coding journey now!');
       expect(p).toBeInTheDocument();
     }
 
+    it('display list with two childs' ), () => {
+      const list =  screen.getByRole('list-item')
+      expect(list).toBeInTheDocument();
+      
+      expect(list.childNodes.length).toBe(2)
+      /*expect(message.childNodes[0].textContent).toBe("")*/
+    }
+    
+    it('only displays ', () => {
+      const h2s = screen.queryAllByRole('heading')
 
+    expect(h2s.length).not.toBeGreaterThan(0)
+    })
+    
 }
 )
 
