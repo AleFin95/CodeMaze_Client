@@ -1,6 +1,6 @@
 .App {
   height: 60vh;
-  width: 97vw;
+  width: 98vw;
   margin: 0 auto;
   border-radius: 25px;
   background-color: #474747;
@@ -94,6 +94,15 @@ h4 {
   background-color: #242424;
   color: whitesmoke;
   padding: 10px;
+  font-family: monospace;
+  font-size: 1rem;
+  border: 1px solid;
+}
+
+#code-inp ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
 }
 
 #code-inp:focus {
@@ -103,7 +112,7 @@ h4 {
 .run-btn {
   position: absolute;
   bottom: 10px;
-  right: 18px;
+  right: 130px;
   width: auto;
   height: auto;
   font-size: 22px;
@@ -119,4 +128,25 @@ h4 {
 
 .run-btn:active {
   background-color: #6e9427;
+}
+
+.sub-btn {
+  position: absolute;
+  bottom: 10px;
+  right: 18px;
+  width: auto;
+  height: auto;
+  font-size: 22px;
+  font-weight: bold;
+  background-color: yellow;
+  border: none;
+  border-radius: 4px;
+  transition: 0.3s;
+  cursor: pointer;
+  z-index: 10;
+  padding: 10px;
+}
+
+.sub-btn:active {
+  background-color: #ffd700;
 }

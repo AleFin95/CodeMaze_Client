@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Editor } from "@monaco-editor/react";
 import axios from "axios";
 import spinner from "./assets/ring-resize.svg";
@@ -16,11 +16,38 @@ const API_URL = "https://api.codex.jaagrav.in";
 const GamePage = () => {
   const [userCode, setUserCode] = useState("");
   const [userLang, setUserLang] = useState("py");
+  const [testCases, setTestCases] = useState([]);
   const [userTheme, setUserTheme] = useState("vs-dark");
   const [fontSize, setFontSize] = useState(20);
   const [userInput, setUserInput] = useState("");
   const [userOutput, setUserOutput] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [loadingRun, setLoadingRun] = useState(false);
+  const [loadingSubmit, setLoadingSubmit] = useState(false);
+
+  const tests = [
+    {
+      py: [
+        "print(twoSum([2, 7, 11, 15], 9))",
+        "print(twoSum([21, 7, 11, 1], 8))",
+        "print(twoSum([21, 9, 1, 12], 10))",
+      ],
+    },
+    {
+      js: [
+        "console.log(twoSum([2, 7, 11, 15], 9))",
+        "console.log(twoSum([7, 12, 1, 19], 8))",
+        "console.log(twoSum([21, 9, 1, 12], 10))",
+      ],
+    },
+  ];
+
+  useEffect(() => {
+    if (userLang === "py") {
+      setTestCases(tests[0].py);
+    } else {
+      setTestCases(tests[1].js);
+    }
+  }, [userLang]);
 
   const options = {
     fontSize: fontSize,
@@ -30,9 +57,12 @@ const GamePage = () => {
     setUserOutput("");
   };
 
-  const handleCompile = () => {
-    setLoading(true);
-    setUserOutput("");
+  const handleCompile = (action) => {
+    if (action === "Run") {
+      setLoadingRun(true);
+    } else if (action === "Submit") {
+      setLoadingSubmit(true);
+    }
 
     axios
       .post(`${API_URL}`, {
@@ -48,13 +78,17 @@ const GamePage = () => {
         console.log(JSON.stringify(res.data));
       })
       .catch((error) => {
-        console.error("Compilation error:", error);
+        console.error(`${action} error:`, error);
         setUserOutput(
-          "Error occurred during compilation. Please check your code."
+          `Error occurred during ${action.toLowerCase()}. Please check your code.`
         );
       })
       .finally(() => {
-        setLoading(false);
+        if (action === "Run") {
+          setLoadingRun(false);
+        } else if (action === "Submit") {
+          setLoadingSubmit(false);
+        }
       });
   };
 
@@ -80,24 +114,31 @@ const GamePage = () => {
               defaultLanguage="python"
               defaultValue="# Enter your code here"
               onChange={(value) => {
-                setUserCode(value);
+                setUserCode(value + "\n" + testCases.join("\n"));
               }}
             />
             <button
               className="run-btn"
-              onClick={handleCompile}
-              disabled={loading}
+              onClick={() => handleCompile("Run")}
+              disabled={loadingRun}
             >
-              {loading ? "Compiling..." : "Run"}
+              {loadingRun ? "Compiling..." : "Run"}
+            </button>
+            <button
+              className="sub-btn"
+              onClick={() => handleCompile("Submit")}
+              disabled={loadingSubmit}
+            >
+              {loadingSubmit ? "Compiling..." : "Submit"}
             </button>
           </div>
           <div className="right-container">
             <GameQuestions />
-            <GameTestCase />
+            <GameTestCase testCases={testCases} />
             <GameOutput
               spinner={spinner}
               userOutput={userOutput}
-              loading={loading}
+              loading={loadingRun || loadingSubmit}
               clearOutput={clearOutput}
             />
           </div>
