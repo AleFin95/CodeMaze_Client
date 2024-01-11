@@ -5,6 +5,9 @@
     background-image: url("https://wallpapercave.com/wp/wp4469691.jpg");
 }
 */
+#page{
+    color: white;
+}
 
 #middle {
     display: flex;
@@ -88,19 +91,18 @@
 }
 
 #top {
+    margin-top: 1.5em;
     padding: 20px;
     border-radius: 30px;
     margin-right: 400px;
     margin-left: 400px;
     margin-bottom: 0em;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
-    
-    
-    background-image: url("https://wallpapercave.com/wp/wp7664856.png");
+    background-image: url("../../assets/bg.jpg");
     display: flex;
     justify-content: flex-start;
     background-size: cover;
-    background-position:  center center;
+    /*background-position:  center center ;*/
     transition: transform 0.5s ease-out;
 }
 
@@ -127,7 +129,7 @@
 
 .message li i {
     font-size: 40px;
-    color: #3498db;
+    color: #d7e259;
     animation: arrowBounce 2s infinite;
 }
 
