@@ -14,12 +14,17 @@ const PageWrapper = () => {
     navigate("/");
   };
   const linkStyle = ({ isActive }) => ({
-    color: isActive ? "rgb(243, 235, 235)" : "rgb(243, 235, 235)",
+    color: isActive ? "#7ec823" : "#d7e259",
     textDecoration: "none",
     padding: "10px 15px",
-    fontSize: "22px",
+    fontSize: "22px", 
+    fontFamily: "'Manrope', sans-serif", 
     fontWeight: isActive ? "bold" : "normal",
-  });
+    borderBottom: isActive ? "5px solid #7ec82392" : "2px solid transparent",
+    borderRadius: "8px", 
+    transition: "color 0.3s ease, background-color 0.3s ease", 
+    cursor: "pointer",
+  })
 
   const isLoggedIn = !!localStorage.getItem("token");
   //const isAdmin = localStorage.getItem("isAdmin") === "true";
