@@ -1,11 +1,22 @@
-/*body {
+body {
+
   text-align: center;
   font-weight: 300;
   position: relative;
   overflow: auto;
   overflow-x: hidden;
 }
-*/
+
+p{
+  font-family: Courier New,monospace;
+  color: #64ffda;
+  animation: fade-from-left .5s forwards;
+  animation-duration: 1.25s;
+  letter-spacing: -.75px;
+  animation-delay: .1s;
+  font-size: 1.5rem;
+}
+
 .video {
   position: fixed;
   top: 0;
