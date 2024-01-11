@@ -88,9 +88,35 @@
     margin-top: 1em;
 }
 
-#top {
-
-  
+#top {/*
+    background-color: rgb(255, 255, 0);
+    margin-top: 1.5em;
+    padding: 20px;
+    border-radius: 30px;
+    margin-right: 400px;
+    margin-left: 400px;
+    margin-bottom: 0em;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: flex-start;
+    background-size: cover;
+    transition: transform 0.5s ease-out;
+    background-position:  center center ;
+    /*transition: "transform 0.5s ease-out",*/
+    /*
+    backgroundColor: "rgb(255, 255, 0)",
+    marginTop: "1.5em",
+    padding: "20px",
+    borderRadius: "30px",
+    marginRight: "400px",
+    marginLeft: "400px",
+    marginBottom: "0em",
+    boxShadow: "5px 5px 10px rgba(0, 0, 0, 0.5)",
+    
+    display: "flex",
+    justifyContent: "flex-start",
+    backgrounSize: "cover",
+    background-position:  "center center" ,*/
 }
 
 .message {   
