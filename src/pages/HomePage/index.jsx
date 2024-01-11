@@ -47,7 +47,7 @@ export const HomePage = () => {
         </div>
       </section>
       <section>
-        <h2> </h2>
+        <h2>fdgdf </h2>
       </section>
     </section> 
     </>
