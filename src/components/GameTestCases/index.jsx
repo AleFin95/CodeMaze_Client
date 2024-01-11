@@ -1,4 +1,4 @@
-const GameTestCase = ({ testCases }) => {
+const GameTestCases = ({ testCases }) => {
   return (
     <>
       <h4>Test Cases:</h4>
@@ -15,4 +15,4 @@ const GameTestCase = ({ testCases }) => {
   );
 };
 
-export default GameTestCase;
+export default GameTestCases;

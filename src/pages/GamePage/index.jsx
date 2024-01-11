@@ -7,7 +7,7 @@ import {
   Video,
   GameNavbar,
   GameQuestions,
-  GameTestCase,
+  GameTestCases,
   GameOutput,
 } from "../../components";
 
@@ -134,7 +134,7 @@ const GamePage = () => {
           </div>
           <div className="right-container">
             <GameQuestions />
-            <GameTestCase testCases={testCases} />
+            <GameTestCases testCases={testCases} />
             <GameOutput
               spinner={spinner}
               userOutput={userOutput}
