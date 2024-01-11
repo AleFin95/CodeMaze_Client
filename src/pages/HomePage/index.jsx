@@ -28,7 +28,7 @@ export const HomePage = () => {
 
   return (
     <>
-    <Video/>
+  <Video/>
     <section id="page">
       <section id="top" style={styles}>
         <div className="message">
