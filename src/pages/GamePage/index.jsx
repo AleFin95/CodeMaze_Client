@@ -13,8 +13,6 @@ import {
   GameRunButton,
 } from "../../components";
 
-const API_URL = "https://api.codex.jaagrav.in";
-
 const GamePage = () => {
   const [userCode, setUserCode] = useState("");
   const [userLang, setUserLang] = useState("py");
@@ -25,6 +23,8 @@ const GamePage = () => {
   const [userOutput, setUserOutput] = useState("");
   const [loadingRun, setLoadingRun] = useState(false);
   const [loadingSubmit, setLoadingSubmit] = useState(false);
+
+  const API_URL = "https://api.codex.jaagrav.in";
 
   const tests = [
     {
@@ -121,7 +121,7 @@ const GamePage = () => {
             />
             <GameRunButton
               handleCompile={handleCompile}
-              loadingSubmit={loadingRun}
+              loadingRun={loadingRun}
             />
             <GameSubmitButton
               handleCompile={handleCompile}
