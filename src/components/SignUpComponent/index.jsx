@@ -65,7 +65,7 @@ const SignUpComponent = ({ handleSignUpClick }) => {
     <>
       {!isRegistrationSuccessful && (
         <div className='login'>
-          <h2>Sign Up</h2>
+          <h2>Register Here ! </h2>
           <form className='loginForm' onSubmit={handleSubmit}>
             <input
               type='text'

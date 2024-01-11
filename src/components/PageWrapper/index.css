@@ -25,9 +25,14 @@ body {margin: 0;}
 header {
     background-color: #0a3e315c;
      padding: 1em;
-    box-shadow: 0 4px 6px rgba(18, 68, 42, 0.883);
-    margin: 0;
+    box-shadow: 0 4px 6px rgba(29, 101, 64, 0.883);
+    margin: 5px;
 }
+
+body.logged-in header {
+    background-color: #3005506f; 
+    box-shadow: 0 2px 4px rgba(99, 101, 29, 0.883);
+  }
 
 nav {
     display: flex;

@@ -20,12 +20,19 @@
     outline: none;
     font-size: 24px;
     border: none;
+
+  }
+  
+  form p {
+
+    justify-content: center; /* Center vertically */
+    text-align: center;
   }
   
   .login h2 {
     font-size: 24px;
     text-align: center;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
   }
   
   .login label {
@@ -44,24 +51,36 @@
     padding: 6px 12px;
     font-size: 20px;
     font-weight: 300;
-    color: #29082d;
+    color: #f2f24b;
+    border: 1px solid #f2f24ba2;
   }
-  
+  input{
+    margin-bottom: 20px;
+    
+  }
   .login input[type='submit'] {
-    background: #f0f35eb8;
+    background: #f2f24b;
+    color: #2f0550;
     width: 100%;
+    color: #1f1a3f;
+    font-size: 20px;
+    font-weight: 600;
 
   }
-  
+
+  .login input[type='submit']:hover {
+    background-color: #2f0550; 
+    color: #4bf275;
+  }
+
   .login ::placeholder {
     color: #ffffff;
+    
   }
 
   input:hover {
-    
-    border: 2px solid #d9ff00; 
     background-color: #2f0550; 
-    color: #333; 
+    color: #4bf275; 
     cursor: pointer; 
   }
   
@@ -70,7 +89,7 @@
     text-align: center;
     font-size: 3em;
     color: #d7e259;
-    margin-top : 30px;
+    margin-top : 50px;
     -webkit-text-stroke: 0px #c0a3c2;
     font: weight 600px;
   }
@@ -80,13 +99,14 @@
     display: flex;
     flex-flow: column;
   }
-  
+
+
   .login-button  {
     width: 100%;
     background-color: #ffffff;
-    color: #080710;
+    color: #1f1a3f;
     font-size: 20px;
-    font-weight: 300;
+    font-weight: 600;
     border-radius: 5px;
     cursor: pointer;
     margin-top: 20px;

@@ -14,13 +14,13 @@ const PageWrapper = () => {
     navigate("/");
   };
   const linkStyle = ({ isActive }) => ({
-    color: isActive ? "#7ec823" : "#d7e259",
+    color: isActive ? "#4bf275" : "#d7e259",
     textDecoration: "none",
     padding: "10px 15px",
     fontSize: "22px", 
     fontFamily: "'Manrope', sans-serif", 
     fontWeight: isActive ? "bold" : "normal",
-    borderBottom: isActive ? "5px solid #7ec82392" : "2px solid transparent",
+    borderBottom: isActive ? "5px solid #4bf275" : "2px solid transparent",
     borderRadius: "8px", 
     transition: "color 0.3s ease, background-color 0.3s ease", 
     cursor: "pointer",
@@ -28,7 +28,9 @@ const PageWrapper = () => {
 
   const isLoggedIn = !!localStorage.getItem("token");
   //const isAdmin = localStorage.getItem("isAdmin") === "true";
- 
+
+  document.body.classList.toggle("logged-in", isLoggedIn);
+
   return (
     <header style={{ marginBottom: "20px" }}>
      <nav>

@@ -81,7 +81,6 @@ const LoginPage = () => {
     {showLogIn && (
       <>
         <div className='login'>
-          <h2>Log In</h2>
           <form className='loginForm' onSubmit={handleSubmit}>
           <input
               type='text'
