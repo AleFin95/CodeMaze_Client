@@ -2,7 +2,7 @@ import React from 'react';
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import { screen, render, cleanup, fireEvent, waitFor, getByTestId} from '@testing-library/react';
 
-import { MemoryRouter } from 'react-router-dom';
+import { BrowserRouter, MemoryRouter } from 'react-router-dom';
 
 import matchers from '@testing-library/jest-dom/matchers';
 expect.extend(matchers);
@@ -47,24 +47,19 @@ describe('HomePage Component',() => {
     }
 
     it('display list with two childs' ), () => {
-      const list =  screen.getByRole('list')
+      const list =  screen.getByRole('list-item')
       expect(list).toBeInTheDocument();
       
-      expect(list.cHildNodes.length).toBe(1)
+      expect(list.childNodes.length).toBe(2)
       /*expect(message.childNodes[0].textContent).toBe("")*/
     }
     
-    it('only displays 2 headings', () => {
-      const h1s = screen.queryAllByRole('heading' ,{
-        level: 2
-      })
+    it('only displays ', () => {
+      const h2s = screen.queryAllByRole('heading')
 
-    expect(h1s.length).not.toBeGreaterThan(1)
+    expect(h2s.length).not.toBeGreaterThan(0)
     })
     
- 
-
-  
 }
 )
 
