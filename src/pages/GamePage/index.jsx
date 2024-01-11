@@ -3,8 +3,13 @@ import { Editor } from "@monaco-editor/react";
 import axios from "axios";
 import spinner from "./assets/ring-resize.svg";
 import "./index.css";
-import { Video } from "../../components";
-import { GameNavbar } from "../../components";
+import {
+  Video,
+  GameNavbar,
+  GameQuestions,
+  GameTestCase,
+  GameOutput,
+} from "../../components";
 
 const API_URL = "https://api.codex.jaagrav.in";
 
@@ -25,7 +30,6 @@ const GamePage = () => {
     setUserOutput("");
   };
 
-  console.log(userCode);
   const handleCompile = () => {
     setLoading(true);
     setUserOutput("");
@@ -88,54 +92,14 @@ const GamePage = () => {
             </button>
           </div>
           <div className="right-container">
-            <h4>Question:</h4>
-            <div className="input-box">
-              <textarea
-                readOnly
-                id="code-inp"
-                onChange={(e) => setUserInput(e.target.value)}
-              >
-                Given an array of integers nums and an integer target, return
-                indices of the two numbers such that they add up to target. You
-                may assume that each input would have exactly one solution, and
-                you may not use the same element twice. You can return the
-                answer in any order. Example 1: Input: nums = [2,7,11,15],
-                target = 9 Output: [0,1] Explanation: Because nums[0] + nums[1]
-                == 9, we return [0, 1]. There are n children standing in a line.
-                Each child is assigned a rating value given in the integer array
-                ratings. You are giving candies to these children subjected to
-                the following requirements: Each child must have at least one
-                candy. Children with a higher rating get more candies than their
-                neighbors. Return the minimum number of candies you need to have
-                to distribute the candies to the children.
-              </textarea>
-            </div>
-            <h4>Test Case:</h4>
-            <div className="input-box">
-              <div id="code-inp" style={{ border: "1px solid" }}>
-                <code>print(twoSum([2, 7, 11, 15], 9))</code>
-                <code>print(twoSum([21, 7, 11, 1], 8))</code>
-                <code>print(twoSum([21, 9, 1, 12], 10))</code>
-              </div>
-            </div>
-            <h4>Output:</h4>
-            {loading ? (
-              <div className="spinner-box">
-                <img src={spinner} alt="Loading..." />
-              </div>
-            ) : (
-              <div className="output-box">
-                <pre>{userOutput}</pre>
-                <button
-                  onClick={() => {
-                    clearOutput();
-                  }}
-                  className="clear-btn"
-                >
-                  Clear
-                </button>
-              </div>
-            )}
+            <GameQuestions />
+            <GameTestCase />
+            <GameOutput
+              spinner={spinner}
+              userOutput={userOutput}
+              loading={loading}
+              clearOutput={clearOutput}
+            />
           </div>
         </div>
       </div>
