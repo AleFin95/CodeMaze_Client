@@ -35,9 +35,7 @@
     margin-bottom: 2em;
 }
 
-#middle button {
 
-}
 
     
 
@@ -91,19 +89,8 @@
 }
 
 #top {
-    margin-top: 1.5em;
-    padding: 20px;
-    border-radius: 30px;
-    margin-right: 400px;
-    margin-left: 400px;
-    margin-bottom: 0em;
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
-    background-image: url("../../assets/bg.jpg");
-    display: flex;
-    justify-content: flex-start;
-    background-size: cover;
-    /*background-position:  center center ;*/
-    transition: transform 0.5s ease-out;
+
+  
 }
 
 .message {   
