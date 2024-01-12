@@ -41,3 +41,13 @@
   background-color: #474747 !important;
   border-color: #afec3f !important;
 }
+
+.leave {
+  font-weight: bold;
+  color: white;
+  background-color: red;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  padding: 10px;
+}

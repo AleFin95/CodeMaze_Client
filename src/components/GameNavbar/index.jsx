@@ -59,6 +59,7 @@ const GameNavbar = ({
         step="2"
         onChange={(e) => setFontSize(e.target.value)}
       />
+      <button className="leave">Leave Room</button>
     </div>
   );
 };
