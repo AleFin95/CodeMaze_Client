@@ -12,7 +12,7 @@ import HomePage from '.';
 describe('HomePage Component',() => {
   beforeEach(() => {
     render(
-         <MemoryRouter> <HomePage /></MemoryRouter>
+        <MemoryRouter><HomePage /> </MemoryRouter>
            
     )
     });
@@ -60,7 +60,7 @@ afterEach(() => {
       /*const p = screen.getByText('Start your coding journey ow!');
       expect(p).toBeInTheDocument();*/
       const display = screen.getByRole('heading', { level: 1})
-      expect(display.textContent).toBe('Level Up your coding game')
+      expect(display.textContent).toBe('Start your coding journey now!')
     })
 
     it('only displays 2 headers ', () => {
@@ -68,9 +68,9 @@ afterEach(() => {
       expect(h2s.length).toBeLessThan(3)
     })
 
-    it('background color should be green', () => {
+    it('top section has Lemon, serif font family', () => {
       const section = screen.getByTestId('top')
-      expect(section).toHaveStyle('backgroundImage: `url(${myImage})`');
+      expect(section).toHaveStyle("fontFamily: 'Lemon', serif");
     })
 
 });
