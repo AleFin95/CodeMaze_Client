@@ -79,30 +79,56 @@ export const HomePage = () => {
 
 
   const styles = {
-    backgroundImage: `url(${myImage})`,
+    fontFamily:" 'Lemon', serif",
     marginTop: "1.5em",
-    padding: "20px",
+    padding: "10px",
     borderRadius: "30px",
     marginRight: "400px",
     marginLeft: "400px",
     marginBottom: "0em",
-    boxShadow: "5px 5px 10px rgba(0, 0, 0, 0.5)",
     display: "flex",
-    justifyContent: "flex-start",
-    backgrounSize: "cover",
-    backgroundPosition:  "center center",
+    flexDirection: "column",
+    justifyContent: "center",
   };
+
+  const h2Styles = {
+    fontSize: "40px",
+    fontFamily: "'Lemon', serif",
+    marginBottom: "1em",
+    marginTop: "1em",
+ 
+  };
+
+  const button = {
+   backgroundColor: "#7df59b",
+    border: "solid 5px #1e943b",
+    outline: "none",
+    cursor: "pointer",
+    padding: "30px",
+    fontSize: "24px",
+    textTransform: "uppercase",
+    fontFamily: "'Lemon', serif",
+    borderRadius: "40px",
+    boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)", /* Adding a subtle shadow for depth ,
+    /*transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out; */ 
+  }
+
+  const list = {
+    fontSize: "40px",
+    color: "#4bf275",
+    animation: "arrowBounce 2s infinite",
+  }
 
   return (
     <>
   <Video/>
     <section id="page">
       <section data-testid="top" id="top" style={styles} >
+        <h1 style={h2Styles}>Start your coding journey now!</h1>
         <div className="message">
-          <h1>Level Up your coding game</h1>
-          <ul role="list" className="fa-ul">
-            <li> <i className="fa fa-arrow-circle-right circle fa-2x" aria-hidden="true"></i>Play with your friends! </li>
-            <li> <i className="fa fa-arrow-circle-right fa-2x" aria-hidden="true"></i>Multiple programming languages to choose from! </li>
+          <ul className="fa-ul">
+            <li data-testid="list1"> <i style={list} data-testid="icon1" className="fa fa-arrow-circle-right circle fa-2x" aria-hidden="true"></i>Play with your friends! </li>
+            <li data-testid="list2"> <i style={list} data-testid="icon2" className="fa fa-arrow-circle-right fa-2x" aria-hidden="true"></i>Multiple programming languages to choose from!</li>
           </ul>
         </div>
       </section>
@@ -112,7 +138,7 @@ export const HomePage = () => {
           <button className="button1" onClick={joinRoom}>1 Vs 1</button>
           <button className="button2" onClick={soloRoom}>Solo mode</button>
         </div>
-      </section>
+      </section> 
     </section> 
     </>
   )
