@@ -31,14 +31,16 @@ const LoginPage = () => {
       };
 
       const response = await fetch(
-        'https://codemaze-api.onrender.com/users/login',
+        'http://localhost:5000/users/login',
         options
       );
 
       if (response.status === 200) {
-        const { token } = await response.json();
-        localStorage.setItem('token', token);
-        setToken(token);
+        const { access_token, username } = await response.json();
+        localStorage.setItem('token', access_token);
+        setToken(access_token);
+        localStorage.setItem("username", username)
+        setUsername(username)
 
         const Toast = Swal.mixin({
           toast: true,

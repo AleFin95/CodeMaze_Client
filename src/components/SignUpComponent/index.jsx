@@ -21,7 +21,7 @@ const SignUpComponent = ({ handleSignUpClick }) => {
       };
 
       const response = await fetch(
-        'https://codemaze-api.onrender.com/users/register',
+        'http://localhost:5000/users/register',
         options
       );
 
