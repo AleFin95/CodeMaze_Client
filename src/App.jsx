@@ -1,15 +1,13 @@
-import React from 'react'
-import './assets/App.css';
-import { Routes, Route } from 'react-router-dom';
-import { PageWrapper } from './components'
-import * as Pages from './pages'
-import ProtectedRoute from './routes';
-
-import { SignUpComponent } from './components';
-import { AuthProvider } from './contexts';
+import React from "react";
+import "./assets/App.css";
+import { Routes, Route } from "react-router-dom";
+import { PageWrapper } from "./components";
+import * as Pages from "./pages";
+import ProtectedRoute from "./routes";
+import { SignUpComponent } from "./components";
+import { AuthProvider } from "./contexts";
 
 function App() {
-
   return (
     <>
       <AuthProvider>
@@ -25,11 +23,11 @@ function App() {
         <Route path="/test" element={<Pages.TestPage/>}/>
         <Route path="/test2" element={<Pages.TestPage2/>}/>
         <Route path="/profile" element={<Pages.ProfilePage />} />
+        <Route path="/test3" element={<Pages.TestPage3 />} />
       </Routes>
       </AuthProvider>
     </>
-    
-  )
+  );
 }
 
-export default App
+export default App;
