@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { Editor } from "@monaco-editor/react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
+import { useAuth } from "../../contexts";
+
 import spinner from "./assets/ring-resize.svg";
 import "./index.css";
 import {
@@ -14,7 +16,10 @@ import {
   GameRunButton,
 } from "../../components";
 
+
+
 const GamePage = () => {
+  const { socket } = useAuth()
   const [userCode, setUserCode] = useState("");
   const [userLang, setUserLang] = useState("py");
   const [testCases, setTestCases] = useState([]);
@@ -24,9 +29,34 @@ const GamePage = () => {
   const [userOutput, setUserOutput] = useState("");
   const [loadingRun, setLoadingRun] = useState(false);
   const [loadingSubmit, setLoadingSubmit] = useState(false);
+  const [room, setRoom] = useState("")
+  const [username, setUsername] = useState("");
 
   const { state } = useLocation();
   console.log("state: ", state)
+
+  useEffect(() => {
+    setRoom(state.room)
+    setUsername(state.username)
+    socket.connect()
+  }, [])
+
+  useEffect(() => {
+    socket.on("receivemoredata", data => {
+      console.log(data)
+    })
+  }, [socket])
+
+
+  // socket.emit("send_user_rooms", {user_rooms, room, username})
+  
+  // socket.on('sendback_user_rooms', data => {
+  //   user_rooms = data.user_rooms
+  //   console.log(user_rooms)
+  // });
+
+
+
 
 
   const API_URL = "https://api.codex.jaagrav.in";

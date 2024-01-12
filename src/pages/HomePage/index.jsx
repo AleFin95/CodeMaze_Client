@@ -24,8 +24,6 @@ export const HomePage = () => {
   useEffect(() => {
     const user = localStorage.getItem("username");
     setUsername(user);
-		console.log(socket)
-		socket.connect()
   }, []);
 
 	const joinRoom = (e) => {
@@ -38,11 +36,12 @@ export const HomePage = () => {
 		const handleReceiveData = (data) => {
 				console.log(data);
 				setRoom(data.room)
-				user_rooms[data.name] = data.room
+				// user_rooms[data.name] = data.room
 				navigateTo('/game', {
 						state: {
 								room: data.room,
-								username: data.name
+								username: data.name,
+								user_rooms: user_rooms
 							}
 					}
 				);
