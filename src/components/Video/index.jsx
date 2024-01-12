@@ -1,7 +1,7 @@
-import React from 'react';
-import '../../assets/App.css';
+import React from "react";
+import "../../assets/App.css";
 
-const Video= () => {
+const Video = () => {
   return (
     <div className="video">
       <video autoPlay loop muted id="video-background">
