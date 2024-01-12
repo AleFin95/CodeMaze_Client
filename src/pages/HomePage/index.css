@@ -21,7 +21,7 @@
      
 }
    
-.button1, .button2 {
+/*.button1, .button2 {
    /* background-image: url('../../assets/esta.png');
      background-color: transparent;
     height: 2%;
@@ -29,7 +29,7 @@
     background-size: cover;
     background-position:  center center;
     color: #080710;*/
-    background-color: #7df59b;
+  /*  background-color: #7df59b;
     border: solid 5px #1e943b;
     outline: none;
     cursor: pointer;
@@ -40,8 +40,8 @@
   
     border-radius: 40px; 
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Adding a subtle shadow for depth */
-    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out; 
-}
+    /*transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out; 
+}*/
 
 .button1:hover {
     transform: scale(1.05); /* Enlarge the button slightly on hover */
@@ -87,11 +87,11 @@
  
 }  
 
-.message li i {
+/*.message li i {
     font-size: 40px;
     color: #4bf275;;
     animation: arrowBounce 2s infinite;
-}
+}*/
 
 #link1,#link2 {
     text-decoration: none;
