@@ -9,7 +9,7 @@ import { Video } from '../../components';
 export const HomePage = () => {
 
   const styles = {
-    backgroundImage: `url(${myImage})`,
+    /*backgroundImage: `url(${myImage})`,*/
     marginTop: "1.5em",
     padding: "10px",
     borderRadius: "30px",
