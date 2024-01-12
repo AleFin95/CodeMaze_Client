@@ -63,11 +63,13 @@
 .button1:hover {
     transform: scale(1.05); /* Enlarge the button slightly on hover */
     box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.2); /* Adjusting shadow on hover for depth */
+    background-color: #7ec82392;;
 }
 
 .button2:hover {
     transform: scale(1.05); /* Enlarge the button slightly on hover */
     box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.2); /* Adjusting shadow on hover for depth */
+    background-color: #7ec82392;;
 }
 
 .button1:active  {
@@ -121,11 +123,10 @@
 
 .message {   
     border-radius: 40px;
-    padding-bottom: 90px;  
-    margin-left: 1em;
+    padding-bottom: 20px; 
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     gap:0em;
     margin-top: 2em;
     font-family: 'Lemon', serif;
@@ -162,6 +163,7 @@
       transform: translateX(20px);
     }
 }
+
 .message li {
     display: flex;
     gap: 2em;
@@ -173,6 +175,8 @@
 
 .message h1 {
     font-size: 30px;
+    margin-top: 0;
+
 }
 
 .message p {
