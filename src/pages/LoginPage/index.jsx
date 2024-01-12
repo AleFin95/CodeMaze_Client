@@ -36,11 +36,10 @@ const LoginPage = () => {
       );
 
       if (response.status === 200) {
-        const { access_token, username } = await response.json();
+        const { access_token } = await response.json();
         localStorage.setItem('token', access_token);
         setToken(access_token);
         localStorage.setItem("username", username)
-        setUsername(username)
 
         const Toast = Swal.mixin({
           toast: true,

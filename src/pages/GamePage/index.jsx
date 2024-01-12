@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Editor } from "@monaco-editor/react";
+import { useLocation } from "react-router-dom";
 import axios from "axios";
 import spinner from "./assets/ring-resize.svg";
 import "./index.css";
@@ -23,6 +24,10 @@ const GamePage = () => {
   const [userOutput, setUserOutput] = useState("");
   const [loadingRun, setLoadingRun] = useState(false);
   const [loadingSubmit, setLoadingSubmit] = useState(false);
+
+  const { state } = useLocation();
+  console.log("state: ", state)
+
 
   const API_URL = "https://api.codex.jaagrav.in";
 
