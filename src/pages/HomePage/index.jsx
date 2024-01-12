@@ -30,10 +30,7 @@ export const HomePage = () => {
   };
 
   const button = {
-
-  }
-
-  /* backgroundColor: "#7df59b",
+   backgroundColor: "#7df59b",
     border: "solid 5px #1e943b",
     outline: "none",
     cursor: "pointer",
@@ -42,8 +39,15 @@ export const HomePage = () => {
     textTransform: "uppercase",
     fontFamily: "'Lemon', serif",
     borderRadius: "40px",
-    boxShadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Adding a subtle shadow for depth */
+    boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)", /* Adding a subtle shadow for depth ,
     /*transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out; */ 
+  }
+
+  const list = {
+    fontSize: "40px",
+    color: "#4bf275",
+    animation: "arrowBounce 2s infinite",
+  }
 
   return (
     <>
@@ -52,15 +56,14 @@ export const HomePage = () => {
       <section data-testid="top" id="top" style={styles} >
         <h1 style={h2Styles}>Start your coding journey now!</h1>
         <div className="message">
-          <ul role="list" className="fa-ul">
-            <li> <i className="fa fa-arrow-circle-right circle fa-2x" aria-hidden="true"></i>Play with your friends! </li>
-            <li> <i className="fa fa-arrow-circle-right fa-2x" aria-hidden="true"></i>Multiple programming languages to choose from! </li>
+          <ul className="fa-ul">
+            <li data-testid="list1"> <i style={list} data-testid="icon1" className="fa fa-arrow-circle-right circle fa-2x" aria-hidden="true"></i>Play with your friends! </li>
+            <li data-testid="list2"> <i style={list} data-testid="icon2" className="fa fa-arrow-circle-right fa-2x" aria-hidden="true"></i>Multiple programming languages to choose from!</li>
           </ul>
         </div><div className="buttons">
-          <Link id="link1" to='/game'><button className="button1"> 1 Vs 1</button></Link>
-          <Link id="link2" to='/game'><button className="button2">Solo mode</button></Link>
+          <Link id="link1" to='/game'><button data-testid="button1" style={button} className="button1">1 Vs 1</button></Link>
+          <Link id="link2" to='/game'><button data-testid="button2" style={button} className="button2">Solo mode</button></Link>
         </div>
-        
       </section> 
     </section> 
     </>
