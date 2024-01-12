@@ -1,6 +1,7 @@
 .navbar {
   display: flex;
-  align-items: center;
+  align-items: baseline;
+  justify-content: space-evenly;
   padding-left: 20px;
   height: 50px;
   text-align: center;
@@ -8,6 +9,13 @@
   background-color: #474747;
   gap: 20px;
   border-radius: 10px;
+}
+
+.navbar h1 {
+  margin: 0;
+  padding: 0;
+  font-size: 2rem;
+  letter-spacing: normal;
 }
 
 #no {
@@ -33,4 +41,14 @@
 .css-yk16xz-control {
   background-color: #474747 !important;
   border-color: #afec3f !important;
+}
+
+.leave {
+  font-weight: bold;
+  color: white;
+  background-color: red;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  padding: 10px;
 }

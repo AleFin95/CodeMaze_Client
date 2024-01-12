@@ -31,7 +31,7 @@ const LoginPage = () => {
       };
 
       const response = await fetch(
-        'https://codemaze-api.onrender.com/users/login',
+        'https://codemaze-api.onrender.com/auth/login',
         options
       );
 
