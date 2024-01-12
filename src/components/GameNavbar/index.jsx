@@ -1,5 +1,6 @@
 import Select from "react-select";
 import "./index.css";
+import { Link } from "react-router-dom";
 
 const GameNavbar = ({
   userLang,
@@ -59,6 +60,9 @@ const GameNavbar = ({
         step="2"
         onChange={(e) => setFontSize(e.target.value)}
       />
+      <Link to="/">
+        <button className="leave">Leave Room</button>
+      </Link>
     </div>
   );
 };
