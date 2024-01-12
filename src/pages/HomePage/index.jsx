@@ -17,6 +17,7 @@ export const HomePage = () => {
 	const { socket } = useAuth()
 	const [room, setRoom] = useState()
 	const [username, setUsername] = useState("");
+	const [isSolo, setIsSolo] = useState();
 	const navigateTo = useNavigate();
 
 	
@@ -32,19 +33,29 @@ export const HomePage = () => {
 		socket.emit("join_room", {username})
 	}
 
+	const soloRoom = () => {
+		setIsSolo(true)
+		soloRoom2();
+	}
+
+	const soloRoom2 = () => {
+		navigateTo('/game', {
+			state: {
+					room: "room",
+					username: username,
+					isSolo: true
+				}
+		}
+	);
+	}
+
 	useEffect(() => {
 		const handleReceiveData = (data) => {
 				console.log(data);
 				setRoom(data.room)
 				// user_rooms[data.name] = data.room
-				navigateTo('/game', {
-						state: {
-								room: data.room,
-								username: data.name,
-								user_rooms: user_rooms
-							}
-					}
-				);
+				setIsSolo(false)
+				battleRoom(data)
 		};
 		
 		socket.on('receiveData', handleReceiveData);
@@ -53,6 +64,19 @@ export const HomePage = () => {
 			socket.off('receiveData', handleReceiveData);
 		};
 	}, [socket]);
+
+	const battleRoom = (data) => {
+		navigateTo('/game', {
+			state: {
+					room: data.room,
+					username: data.name,
+					user_rooms: user_rooms,
+					isSolo: false
+				}
+		}
+	);
+	}
+
 
   const styles = {
     backgroundImage: `url(${myImage})`,
@@ -86,7 +110,7 @@ export const HomePage = () => {
         <h2>Start your coding journey now!</h2>
         <div className="buttons">
           <button className="button1" onClick={joinRoom}>1 Vs 1</button>
-          <button className="button2"><Link id="link2" to='/game'>Solo mode</Link></button>
+          <button className="button2" onClick={soloRoom}>Solo mode</button>
         </div>
       </section>
     </section> 
