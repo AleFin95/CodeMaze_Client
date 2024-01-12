@@ -130,13 +130,9 @@ export const HomePage = () => {
             <li data-testid="list1"> <i style={list} data-testid="icon1" className="fa fa-arrow-circle-right circle fa-2x" aria-hidden="true"></i>Play with your friends! </li>
             <li data-testid="list2"> <i style={list} data-testid="icon2" className="fa fa-arrow-circle-right fa-2x" aria-hidden="true"></i>Multiple programming languages to choose from!</li>
           </ul>
-        </div>
-      </section>
-      <section id="middle">
-        <h2>Start your coding journey now!</h2>
-        <div className="buttons">
-          <button className="button1" onClick={joinRoom}>1 Vs 1</button>
-          <button className="button2" onClick={soloRoom}>Solo mode</button>
+        </div><div className="buttons">
+          <Link id="link1" to='/game'><button data-testid="button1" style={button} className="button1" onClick={joinRoom}>1 Vs 1</button></Link>
+          <button data-testid="button2" style={button} className="button2" onClick={soloRoom}>Solo mode</button>
         </div>
       </section> 
     </section> 
