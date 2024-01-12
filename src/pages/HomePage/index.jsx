@@ -57,8 +57,8 @@ export const HomePage = () => {
             <li> <i className="fa fa-arrow-circle-right fa-2x" aria-hidden="true"></i>Multiple programming languages to choose from! </li>
           </ul>
         </div><div className="buttons">
-          <button className="button1"> <Link id="link1" to='/game'>1 Vs 1</Link></button>
-          <button className="button2"><Link id="link2" to='/game'>Solo mode</Link></button>
+          <Link id="link1" to='/game'><button className="button1"> 1 Vs 1</button></Link>
+          <Link id="link2" to='/game'><button className="button2">Solo mode</button></Link>
         </div>
         
       </section> 
