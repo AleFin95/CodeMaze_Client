@@ -56,7 +56,7 @@ const LoginPage = () => {
           icon: 'success',
           title: 'You have successfully logged in'
         });
-        navigateTo('/');
+        navigateTo('/profile');
       }
     } catch (error) {
       Swal.fire({
