@@ -22,7 +22,7 @@ h1 {
   color: #4bf275;
   animation: fade-from-left .5s forwards;
   animation-duration: 1.25s;
-  letter-spacing: -.75px;
+  letter-spacing: 11px;
   animation-delay: .1s;
   margin-bottom: 50px;
 }

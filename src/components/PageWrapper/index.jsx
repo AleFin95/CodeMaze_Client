@@ -17,8 +17,8 @@ const PageWrapper = () => {
     color: isActive ? "#4bf275" : "#d7e259",
     textDecoration: "none",
     padding: "10px 15px",
-    fontSize: "22px", 
-    fontFamily: "'Manrope', sans-serif", 
+    fontSize: "30px", 
+    fontFamily: "Courier New",
     fontWeight: isActive ? "bold" : "normal",
     borderBottom: isActive ? "5px solid #4bf275" : "2px solid transparent",
     borderRadius: "8px", 
@@ -35,6 +35,7 @@ const PageWrapper = () => {
     <header style={{ marginBottom: "20px" }}>
      <nav>
      <h1>CODEMAZE</h1>
+     <div className="onlyNavs">
         {!isLoggedIn && (
             <NavLink to="/" style={linkStyle}>
                 Home
@@ -60,6 +61,7 @@ const PageWrapper = () => {
                 Login/Register
             </NavLink>
         )}
+        </div>
       </nav>
     </header>
   );

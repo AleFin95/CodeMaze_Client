@@ -76,7 +76,7 @@ const LoginPage = () => {
     <Video/>
     <div className='loginPage'>
     <div className='loginHeader'>
-      <h1>Codemaze</h1>
+      <h1>CODEMAZE</h1>
     </div>
     {showLogIn && (
       <>

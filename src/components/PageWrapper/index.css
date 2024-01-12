@@ -24,9 +24,10 @@ body {margin: 0;}
 
 header {
     background-color: #0a3e315c;
-     padding: 1em;
+    padding: 0.5em;
     box-shadow: 0 4px 6px rgba(29, 101, 64, 0.883);
     margin: 5px;
+
 }
 
 body.logged-in header {
@@ -38,14 +39,17 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 0 auto;
-    max-width: 1200px;
+    margin: 0 20px;
+    max-width: 100%;
 }
 
-nav h1 {
-    font-size: 30px;
-    color: #d7e259
+header h1 {
+    font-size: 50px;
+    color: #4bf275;
+    margin-right: 100px;
+    letter-spacing: 13px;
 }
+
 
 
 .logout {
@@ -62,3 +66,10 @@ nav h1 {
     background-color: #7ec82392; /* Darker red color on hover */
 }
 
+.onlyNavs {
+    width: 100%;
+    display: flex;
+    justify-content:space-between;
+    margin-left: 300px; 
+    
+  }
