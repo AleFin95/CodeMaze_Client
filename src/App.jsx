@@ -19,11 +19,12 @@ function App() {
       <Routes>
         <Route path="/" element={< Pages.HomePage/>}/>
         <Route path="/login" element={< Pages.LoginPage/>}/>
-        <Route path='/signup' element={<SignUpComponent />} />      
+        <Route path='/signup' element={<SignUpComponent />} />  
         <Route path="/game" element={< Pages.GamePage/>}/>
         <Route path="/ranking" element={< Pages.RankingPage/>}/>     
         <Route path="/test" element={<Pages.TestPage/>}/>
         <Route path="/test2" element={<Pages.TestPage2/>}/>
+        <Route path="/profile" element={<Pages.ProfilePage />} />
       </Routes>
       </AuthProvider>
     </>
