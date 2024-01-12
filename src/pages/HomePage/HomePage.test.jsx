@@ -12,25 +12,39 @@ import HomePage from '.';
 describe('HomePage Component',() => {
   beforeEach(() => {
     render(
-         <MemoryRouter> <HomePage /></MemoryRouter>
+        <MemoryRouter><HomePage /> </MemoryRouter>
            
     )
     });
     
-afterEach(() => {
-  cleanup()
-});
+    afterEach(() => {
+      cleanup()
+    });
   
     it('Contains 2 buttons', () => {
-        /*const label1 = document.querySelector('.button1')
-        expect(label1.innerHTML).toBeTruthy()
-        const label2 = document.querySelector('.button2')
-        expect(label2.innerHTML).toBeTruthy()*/
+        /*const button1 = document.querySelector('.button1')
+        expect(button1.innerHTML).toBeTruthy()
+        const button2 = document.querySelector('.button2')
+        expect(button2.innerHTML).toBeTruthy()*/
+        const buttons = screen.getAllByRole('button')
+        expect(buttons.length).toBeLessThan(3)
+    })
+
+    it('Contains a button with text 1 Vs 1 and background color #7df59b ',()=> {
+      const button = screen.getByTestId('button1')
+      expect(button).toHaveStyle( "backgroundColor: #7df59b");
+      expect(button.textContent).toBe('1 Vs 1');
+    })
+
+    it('Contains a button with text Solo mode and background color #7df59b',()=> {
+      const button = screen.getByTestId('button2');
+      expect(button).toHaveStyle( "backgroundColor: #7df59b");
+      expect(button.textContent).toBe('Solo mode');
     })
    
     it('User is forwarded to games page once button with text 1 Vs 1 is clicked', async() => {
-        const button1 = screen.getByText('1 Vs 1')
-        fireEvent.click(button1);
+      const button1 = screen.getByText('1 Vs 1')
+      fireEvent.click(button1);
          waitFor(() => {
           expect(window.location.pathname).toBe('/game');
     })
@@ -42,7 +56,7 @@ afterEach(() => {
       waitFor(() => {
       expect(window.location.pathname).toBe('/game');
     })
-  })
+    })
 
     it('Contains a list', () => {
       const p = screen.getByRole('list');
@@ -53,24 +67,44 @@ afterEach(() => {
       const list = screen.getByRole('list')
       expect(list).toBeInTheDocument();
       expect(list.childNodes.length).toBe(2)
-      /*expect(message.childNodes[0].textContent).toBe("")*/
     })
 
-    it('h2 displays Start your coding journey now!', () => {
+    it('Display first list with Play with your friends! text', () => {
+      const p = screen.getByTestId('list1');
+      expect(p.textContent).toBe(' Play with your friends! ');
+    })
+
+    it('Display second list with Multiple programming languages to choose from! text', () => {
+      const p = screen.getByTestId('list2');
+      expect(p.textContent).toBe(' Multiple programming languages to choose from!');
+    })
+
+    it('h1 displays Start your coding journey now!', () => {
       /*const p = screen.getByText('Start your coding journey ow!');
       expect(p).toBeInTheDocument();*/
       const display = screen.getByRole('heading', { level: 1})
-      expect(display.textContent).toBe('Level Up your coding game')
+      expect(display.textContent).toBe('Start your coding journey now!')
     })
 
-    it('only displays 2 headers ', () => {
+    it('only displays 1 header ', () => {
       const h2s = screen.queryAllByRole('heading')
-      expect(h2s.length).toBeLessThan(3)
+      expect(h2s.length).not.toBeGreaterThan(1)
     })
 
-    it('background color should be green', () => {
+    it('top section has Lemon, serif font family', () => {
       const section = screen.getByTestId('top')
-      expect(section).toHaveStyle('backgroundImage: `url(${myImage})`');
+      expect(section).toHaveStyle("fontFamily: 'Lemon', serif");
+    })
+
+    it('Contains 2 icons with animation', () => {
+      const icon1 = screen.getByTestId('icon1')
+      const icon2 = screen.getByTestId('icon2')
+
+      expect(icon1).toHaveStyle("animation: arrowBounce 2s infinite"); 
+      expect(icon2).toHaveStyle("animation: arrowBounce 2s infinite"); 
+       
+      expect(icon1).toBeTruthy()
+      expect(icon2).toBeTruthy()
     })
 
 });
