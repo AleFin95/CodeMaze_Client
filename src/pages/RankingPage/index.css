@@ -26,6 +26,7 @@ thead {
   font-weight: bold;
 }
 
+
 tbody {
   display: block;
 }
@@ -34,8 +35,6 @@ tr {
   justify-content:space-between;
   align-items: center;
   padding: 10px;
-  padding-left: 40px;
-  padding-right: 40px;
   border-bottom: 1px solid #cdec5184; /* Border color between rows */
   transition: background-color 0.3s ease;
  
@@ -51,14 +50,16 @@ td {
 }
 
 .leaderHeader{
-  text-align: center;
-  padding-top: 15px;
-  font-size: 40px;
-  margin-top: 20px;
-  color: #d7e259;
-  font: weight 600px;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
+.leaderHeader h1 {
+  margin-top: 70px;
+  font-size: 4rem;
+}
 
 .leaderPage{
   justify-content: center;
@@ -74,3 +75,19 @@ a {
 .text-center {
   color:  #2c3e50;
 }
+
+th{
+  font-family: Courier New,monospace;
+  color: #062d24;
+  animation: fade-from-left .5s forwards;
+  animation-duration: 1.25s;
+  letter-spacing: -.75px;
+  animation-delay: .1s;
+  font-size: 1.5rem;
+  padding: 20px;
+  margin-left: 150px;
+
+
+}
+
+
