@@ -16,6 +16,11 @@
    /* padding:20px;*/
     border-radius: 30px;
     gap:1em;
+    background-image: url("../../assets/bg.jpg");
+    background-position: cover;
+    background-size: cover;
+    margin-left:550px ;
+    margin-right:550px ;
 }
 
 .buttons {
@@ -23,6 +28,7 @@
     flex-direction: row;
     justify-content: center;
     gap: 1em;
+    margin-bottom: 2em;
      
 }
  
@@ -62,14 +68,14 @@
 
 .button1:hover {
     transform: scale(1.05); /* Enlarge the button slightly on hover */
-    box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.2); /* Adjusting shadow on hover for depth */
-    background-color: #7ec82392;;
+   /* box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.2); /* Adjusting shadow on hover for depth */
+    background-color: #79d10e92;
 }
 
 .button2:hover {
     transform: scale(1.05); /* Enlarge the button slightly on hover */
-    box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.2); /* Adjusting shadow on hover for depth */
-    background-color: #7ec82392;;
+    /*box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.2); /* Adjusting shadow on hover for depth */
+    background-color:  #7acc1592;
 }
 
 .button1:active  {
