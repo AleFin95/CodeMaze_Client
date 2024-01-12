@@ -22,6 +22,7 @@ function App() {
           <Route path="/ranking" element={<Pages.RankingPage />} />
           <Route path="/test" element={<Pages.TestPage />} />
           <Route path="/test2" element={<Pages.TestPage2 />} />
+          <Route path="/test3" element={<Pages.TestPage3 />} />
         </Routes>
       </AuthProvider>
     </>
