@@ -63,8 +63,6 @@ afterEach(() => {
       expect(display.textContent).toBe('Level Up your coding game')
     })
 
-   
-    
     it('only displays 2 headers ', () => {
       const h2s = screen.queryAllByRole('heading')
       expect(h2s.length).toBeLessThan(3)

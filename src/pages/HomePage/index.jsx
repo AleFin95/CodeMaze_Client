@@ -9,16 +9,16 @@ import { Video } from '../../components';
 export const HomePage = () => {
 
   const styles = {
-    backgroundImage: `url(${myImage})`,
+    /*backgroundImage: `url(${myImage})`,*/
     marginTop: "1.5em",
-    padding: "20px",
+    padding: "10px",
     borderRadius: "30px",
     marginRight: "400px",
     marginLeft: "400px",
     marginBottom: "0em",
     boxShadow: "5px 5px 10px rgba(0, 0, 0, 0.5)",
     display: "flex",
-    justifyContent: "flex-start",
+    justifyContent: "center",
     backgrounSize: "cover",
     backgroundPosition:  "center center",
   };
