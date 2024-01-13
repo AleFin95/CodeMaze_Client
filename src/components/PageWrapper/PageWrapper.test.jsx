@@ -9,14 +9,15 @@ import { BrowserRouter, MemoryRouter } from 'react-router-dom';
 import matchers from '@testing-library/jest-dom/matchers';
 expect.extend(matchers);
 import PageWrapper from '.';
+import { AuthProvider } from '../../contexts';
 
 describe('Page Wrapper Component',() => {
     render(
-
+    <AuthProvider>
         <BrowserRouter>
             <PageWrapper />
         </BrowserRouter>
-       
+    </AuthProvider> 
     )
     it('displays a PageWrapper with 4 children', () => {
         const nav = screen.getByTestId('div')
