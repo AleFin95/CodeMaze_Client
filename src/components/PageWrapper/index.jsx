@@ -35,7 +35,7 @@ const PageWrapper = () => {
     <header style={{ marginBottom: "20px" }}>
      <nav>
      <h1>CODEMAZE</h1>
-     <div className="onlyNavs">
+     <div data-testid="div" className="onlyNavs">
         {!isLoggedIn && (
             <NavLink to="/" style={linkStyle}>
                 Home
