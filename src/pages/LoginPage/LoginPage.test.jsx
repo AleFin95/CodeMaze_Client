@@ -39,18 +39,17 @@ describe('Login Component', () => {
   
     fireEvent.click(screen.getByText('Log in'));
   
-    // Add your assertions based on the actual behavior after form submission
+
   });
 
   it('toggles SignUpComponent correctly', async () => {
-    expect(screen.getByText('Sign up')).toBeInTheDocument();  // Note the lowercase "u"
+    expect(screen.getByText('Sign up')).toBeInTheDocument();  
     fireEvent.click(screen.getByText('Sign up'));
-    // Add your assertions based on the actual behavior after clicking the "Sign up" button
+
   });
 
 
   it('renders video as a background', async () => {
-    // Check if the Video component is rendered
     const videoElement = document.getElementById('video-background');
     expect(videoElement).toBeInTheDocument();
 })
