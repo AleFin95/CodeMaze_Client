@@ -6,11 +6,15 @@ const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(getToken);
+  const [selectedAvatar, setSelectedAvatar] = useState(null);
 
+  const setAvatar = (avatar) => {
+    setSelectedAvatar(avatar);
+  };
 
   return (
     <AuthContext.Provider
-      value={{ token, setToken}}
+      value={{ token, setToken, selectedAvatar, setSelectedAvatar}}
     >
       {children}
     </AuthContext.Provider>

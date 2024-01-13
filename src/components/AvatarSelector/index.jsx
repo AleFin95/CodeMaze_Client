@@ -1,6 +1,9 @@
 import React from 'react';
+import { useAuth } from '../../contexts';
 
-const AvatarSelector = ({ avatars, onSelectAvatar, selectedAvatar }) => {
+const AvatarSelector = ({ avatars, onSelectAvatar }) => {
+  const { selectedAvatar } = useAuth();
+
   return (
     <div className="avatar-selector">
       {avatars.map((avatar, index) => (
