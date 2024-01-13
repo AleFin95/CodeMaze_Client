@@ -12,8 +12,7 @@ import HomePage from '.';
 describe('HomePage Component',() => {
   beforeEach(() => {
     render(
-        <MemoryRouter><HomePage /> </MemoryRouter>
-           
+        <BrowserRouter><HomePage /> </BrowserRouter>
     )
     });
     
