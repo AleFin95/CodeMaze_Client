@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import './index.css';
+import { useAuth } from '../../contexts'
 import {AvatarSelector, AvatarModal} from '../../components';
 
 const ProfilePage = () => {
-  const [selectedAvatar, setSelectedAvatar] = useState(null);
+  const { selectedAvatar, setSelectedAvatar } = useAuth();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const avatars = [
     "https://api.dicebear.com/7.x/bottts-neutral/svg?seed=Pepper&radius=45&backgroundType=solid,gradientLinear",

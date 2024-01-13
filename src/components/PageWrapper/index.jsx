@@ -1,9 +1,11 @@
 import React from "react";
 import "./index.css"
 import { NavLink, useNavigate } from "react-router-dom";
+import { useAuth }  from '../../contexts'
+import AvatarSelector from "../AvatarSelector";
 
 const PageWrapper = () => {
-
+    const { selectedAvatar } = useAuth();
   const navigate = useNavigate();
 
   
@@ -47,15 +49,23 @@ const PageWrapper = () => {
             <NavLink to="/game" style={linkStyle}>
                 Game
             </NavLink>
-        {isLoggedIn && (
-            <NavLink to="/profile" style={linkStyle}>
-                Profile
-            </NavLink>
-        )}
         {isLoggedIn ? (
+            <>
             <NavLink to="/" onClick={handleLogout} style={linkStyle}>
-                Logout
+                Logout 
             </NavLink>
+            {selectedAvatar && (
+                <NavLink to="/profile">
+                <img
+                  src={selectedAvatar}
+                  alt="Selected Avatar"
+                  className="avatar selected"
+                  style={{ marginLeft: "-30px", marginRight:"20px", borderRadius: "50%", width: "60px", height: "60px" }}
+                />
+                </NavLink>
+              )}
+
+            </>
         ) : (
             <NavLink to="/login" style={linkStyle}>
                 Login/Register
