@@ -8,5 +8,6 @@ export { default as GameOutput } from "./GameOutput";
 export { default as GameSubmitButton } from "./GameSubmitButton";
 export { default as GameRunButton } from "./GameRunButton";
 export { default as FeedbackPopUp } from "./FeedbackPopUp";
+export { default as MatchingPlayers } from "./MatchingPlayers";
 export { default as AvatarSelector } from "./AvatarSelector";
 export { default as AvatarModal } from "./AvatarModal";
