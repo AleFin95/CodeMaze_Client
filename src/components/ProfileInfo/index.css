@@ -1,0 +1,35 @@
+/* ProfileInfo.css */
+.profile-info-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-top: 20px; /* Add margin to separate from user info */
+  }
+  
+  .achievements-section,
+  .rank-section,
+  .sessions-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    border-radius: 10px;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    margin-top: 10px;
+  }
+  
+  .profile-info-container:hover .achievements-section,
+  .profile-info-container:hover .rank-section,
+  .profile-info-container:hover .sessions-section {
+    opacity: 1;
+  }
+  
+  /* New CSS for centering */
+  .centered-boxes {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  

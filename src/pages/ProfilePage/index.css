@@ -1,45 +1,67 @@
-
 .profile-container {
     max-width: 600px;
     margin: 50px auto;
     padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.avatar-section {
-    text-align: center;
-}
-
-.avatar {
+    border: 1px solid #4bf275;
+    border-radius: 70px;
+    box-shadow: 0 0 10px #4bf275;
+    display: flex;
+  }
+  
+  .avatar-section {
+    position: relative;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .avatar {
     width: 150px;
     height: 150px;
     border-radius: 50%;
     object-fit: cover;
-    margin-bottom: 10px;
-}
-
-.edit-avatar-btn {
-    background-color: #3498db;
-    color: #fff;
+  }
+  
+  .edit-avatar-btn {
+    background-color: #1f1b32;
+    color: #ebee83;
     padding: 8px 12px;
-    border: none;
-    border-radius: 5px;
+    border-radius: 15px;
     cursor: pointer;
-}
-
-.user-info {
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    border: 0;
+    transform: translateX(-50%);
+  }
+  
+  .avatar-section:hover .edit-avatar-btn {
+    opacity: 1;
+  }
+  
+  .user-info {
     text-align: center;
-}
+    margin-bottom: 20px;
+  }
+  
+  .profile-info-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-align: center;
+  }
+  
 
-.stats {
-    margin-top: 20px;
-}
+  
+  .profile-info-container:hover .achievements-section,
+  .profile-info-container:hover .rank-section,
+  .profile-info-container:hover .sessions-section {
+    opacity: 1;
+  }
+  
 
-.achievements-section,
-.recent-activity,
-.settings-section {
-    /* Customize styling for each section as needed */
-    margin-top: 20px;
-}
+  .achievements-section,
+  .rank-section,
+  .sessions-section {
+    margin: 0 10px; /* Adjust the margin as needed */
+  }
