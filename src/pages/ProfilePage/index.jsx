@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import './index.css';
 import { useAuth } from '../../contexts'
-import {AvatarSelector, AvatarModal} from '../../components';
+import { AvatarModal, ProfileInfo} from '../../components';
 
 const ProfilePage = () => {
-  const { selectedAvatar, setSelectedAvatar } = useAuth();
+  const { selectedAvatar, setAvatar } = useAuth();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const avatars = [
     "https://api.dicebear.com/7.x/bottts-neutral/svg?seed=Pepper&radius=45&backgroundType=solid,gradientLinear",
@@ -24,7 +24,7 @@ const ProfilePage = () => {
 
   const handleAvatarSelection = (avatar) => {
     console.log('Selected avatar:', avatar);
-    setSelectedAvatar(avatar);
+    setAvatar(avatar);
     setIsModalOpen(false);
   };
 
@@ -52,6 +52,7 @@ const ProfilePage = () => {
 />
 
       <div className="user-info">
+        <ProfileInfo/>
         <h2>John Doe</h2>
         <p>@john_doe</p>
         <div className="stats">

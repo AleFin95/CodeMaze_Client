@@ -10,7 +10,7 @@ const PageWrapper = () => {
 
   
   const handleLogout = () => {
-    localStorage.removeItem("token");
+    localStorage.removeItem("access_token");
     localStorage.removeItem("username");
     //localStorage.removeItem("isAdmin");
     navigate("/");
@@ -28,7 +28,7 @@ const PageWrapper = () => {
     cursor: "pointer",
   })
 
-  const isLoggedIn = !!localStorage.getItem("token");
+  const isLoggedIn = !!localStorage.getItem("access_token");
   //const isAdmin = localStorage.getItem("isAdmin") === "true";
 
   document.body.classList.toggle("logged-in", isLoggedIn);

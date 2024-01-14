@@ -14,7 +14,7 @@ const LoginPage = () => {
   const [showSignUp, setShowSignUp] = useState(false);
   const [showLogIn, setShowLogIn] = useState(true);
   const navigateTo = useNavigate();
-  const { setToken } = useAuth();
+  const { updateAccessToken, setAvatar } = useAuth();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -29,6 +29,11 @@ const LoginPage = () => {
           password: password
         })
       };
+      const accessToken = localStorage.getItem('access_token');
+      if (accessToken) {
+        options.headers['Authorization'] = `Bearer ${accessToken}`;
+}
+console.log('Token before fetch:', localStorage.getItem('access_token'));
 
       const response = await fetch(
         'https://codemaze-api.onrender.com/auth/login',
@@ -36,10 +41,11 @@ const LoginPage = () => {
       );
 
       if (response.status === 200) {
-        const { token } = await response.json();
-        localStorage.setItem('token', token);
-        setToken(token);
+        const { access_token } = await response.json();
+        localStorage.setItem('access_token', access_token);
+        updateAccessToken(access_token);
 
+        console.log('Token after fetch:', localStorage.getItem('access_token'));
         const Toast = Swal.mixin({
           toast: true,
           position: 'top-end',
