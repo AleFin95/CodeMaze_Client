@@ -39,11 +39,11 @@ const PageWrapper = () => {
      <h1>CODEMAZE</h1>
      <div data-testid="div" className="onlyNavs">
         {!isLoggedIn && (
-            <NavLink to="/" style={linkStyle}>
+            <NavLink  to="/"  style={linkStyle}>
                 Home
             </NavLink>
         )}
-            <NavLink to="/ranking" style={linkStyle}>
+            <NavLink to="/ranking"   style={linkStyle}>
                 Ranking
             </NavLink>
             <NavLink to="/game" style={linkStyle}>
