@@ -2,7 +2,7 @@ import React from 'react'
 import './index.css'
 import { Link } from "react-router-dom";
 import myImage from '../../assets/bg.jpg'; // Adjust the path based on your directory structure
-
+import { useState, useEffect } from "react";
 
 import { Video } from '../../components';
 
@@ -49,6 +49,15 @@ const HomePage = () => {
     animation: "arrowBounce 2s infinite",
   }
 
+  
+  const handle1 = () => {
+     localStorage.setItem("mode", true);
+  }
+  const handle2 = () => {
+    localStorage.setItem("mode", false);
+ }
+  
+
   return (
     <>
   <Video/>
@@ -62,8 +71,8 @@ const HomePage = () => {
           </ul>
         </div>
         <div className="buttons">
-          <Link data-testid="l1" id="link1" to='/game'><button data-testid="button1" style={button} className="button1">1 Vs 1</button></Link>
-          <Link data-testid="l2" id="link2" to='/game'><button data-testid="button2" style={button} className="button2">Solo mode</button></Link>
+          <Link data-testid="l1" id="link1" to='/game' onClick={handle1} ><button data-testid="button1" style={button} className="button1">1 Vs 1</button></Link>
+          <Link data-testid="l2" id="link2" to='/game' onClick={handle2}><button data-testid="button2" style={button} className="button2">Solo mode</button></Link>
         </div>
       </section> 
     </section> 
