@@ -35,7 +35,7 @@ const MatchingPlayers = () => {
   return (
     <>
     <section id="matching">
-        <h1>Matching you to other player</h1>
+        <h1>Matching you with another player...</h1>
         <div className='dd' ></div>
    </section> 
    </>
