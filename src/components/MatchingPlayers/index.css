@@ -1,28 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Lemon&display=swap');
-
-
-body {
-   
-    
+#link {
+    color: rgb(211, 224, 224);
+    background-color: brown;
+    margin: 0;
 }
 
-.dd {
-    font-size: 40px;
-    background-image: url('../../assets/gif.gif');
-    background-size: cover; /* Adjust to your needs */
-    background-position: center; /* Center the background image */
-    width: 353px;
-    height: 300px;
-}
-
-#matching {   
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items:center ;
-    margin-top: 20em;
-}
-
-h1 {
-    font-size: 40px
+#link:hover {
+    background-color:rgb(143, 58, 58) ;
 }

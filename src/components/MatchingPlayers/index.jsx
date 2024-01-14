@@ -1,43 +1,46 @@
 import React from 'react'
 import myImage from '../../assets/gif.gif';
+import { Link } from "react-router-dom";
 import './index.css'
 
 const MatchingPlayers = () => {
 
-    const imagee = {
+    const div = {
         backgroundImage: `url(${myImage})`,
-        backgroundSize: "cover",
-        backgroundPosition:  "center center",
-        marginTop: "100px",
-        marginLeft: "900px",
-        marginRight: "900px",
-        textAlign: "center",
-       
-        paddingLeft: "220px",
-    paddingRight: "220px",
-    paddingTop: "220px",
-    paddingBottom: "0",
-        
-        backgroundColor: "yellow",
-       
-        
-        /*marginTop: "10em",
-        alignItems: "center",
-        paddingLeft: "90px",
-        paddingRight: "90px",
-        paddingTop: "90px",
-        paddingBottom: "0",
-    
-        marginBottom: "3em",*/
-      
-        
-      }
-  return (
+        backgroundSize: "cover", /* Adjust to your needs */
+        backgroundPosition: "center", /* Center the background image */
+        width: "353px",
+        height: "300px",
+        marginBottom: "0",    
+    }
+
+    const sectionmatching = {   
+        display: "flex",
+        justifyContent: "center",
+        flexDirection: "column",
+        alignItems: "center" ,
+        marginTop: "15em",
+    }
+
+    const h1 = {
+        fontSize: "30px", 
+    }
+
+    const linkStyle = {
+        fontFamily: "Courier New,monospace",
+        fontSize: "25px",
+        textDecoration: "none", 
+        padding: "20px",
+        borderRadius: "8px"
+    }
+
+    return (
     <>
-    <section id="matching">
-        <h1>Matching you with another player...</h1>
-        <div className='dd' ></div>
-   </section> 
+    <section data-testid="section1" id="matching" style={sectionmatching}>
+        <h1 data-testid="h1" style={h1}>Matching you with another player...</h1>
+        <div data-testid="div" className='dd' style={div} ></div>
+        <Link data-testid="button" id="link" to="/" style={linkStyle}>Cancel</Link>
+    </section> 
    </>
     )
 }

@@ -16,7 +16,7 @@ const PageWrapper = () => {
     navigate("/");
   };
   const linkStyle = ({ isActive }) => ({
-    color: isActive ? "#4bf275" : "#d7e259",
+    color: isActive ? "#4bf275" : "rgb(215, 226, 89)",
     textDecoration: "none",
     padding: "10px 15px",
     fontSize: "30px", 
@@ -46,9 +46,6 @@ const PageWrapper = () => {
             <NavLink to="/ranking"   style={linkStyle}>
                 Ranking
             </NavLink>
-            <NavLink to="/game" style={linkStyle}>
-                Game
-            </NavLink>
         {isLoggedIn ? (
             <>
             <NavLink to="/" onClick={handleLogout} style={linkStyle}>
@@ -57,6 +54,7 @@ const PageWrapper = () => {
             {selectedAvatar && (
                 <NavLink to="/profile">
                 <img
+
                   src={selectedAvatar}
                   alt="Selected Avatar"
                   className="avatar selected"

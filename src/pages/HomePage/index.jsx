@@ -6,7 +6,7 @@ import myImage from '../../assets/bg.jpg'; // Adjust the path based on your dire
 
 import { Video } from '../../components';
 
-export const HomePage = () => {
+const HomePage = () => {
 
   const styles = {
     fontFamily:" 'Lemon', serif",
