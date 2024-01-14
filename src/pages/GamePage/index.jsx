@@ -24,10 +24,12 @@ const GamePage = () => {
   const [userOutput, setUserOutput] = useState("");
   const [loadingRun, setLoadingRun] = useState(false);
   const [loadingSubmit, setLoadingSubmit] = useState(false);
-  const [loading] = useState(true);
+  const [loading, setLoading] = useState(false);
+
 
   const API_URL = "https://api.codex.jaagrav.in";
-
+ 
+ 
   const tests = [
     {
       py: [
@@ -94,13 +96,23 @@ const GamePage = () => {
           setLoadingSubmit(false);
         }
       });
-  };
+  }; 
+  
+  useEffect(() => {
+    // This effect will run on every render
+    // and trigger a state update, causing an infinite loop
+      if(localStorage.getItem("mode") === "true"){
+    setLoading(true)
+  }
+  }, [loading]);
+
+  
 
   return (
    <>
    <Video />
-     {loading ? <MatchingPlayers/> :
-      <div className="App">
+     { loading ? <MatchingPlayers/> :
+     <div className="App">
         <GameNavbar
           userLang={userLang}
           setUserLang={setUserLang}
