@@ -9,6 +9,7 @@ const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [accessToken, setAccessToken] = useState(getAccessToken);
   const [selectedAvatar, setSelectedAvatar] = useState(getSelectedAvatar);
+  const [socket, setSocket] = useState(io.connect('http://localhost:5000'));
 
   const updateAccessToken = (newAccessToken) => {
     setAccessToken(newAccessToken);
@@ -29,8 +30,6 @@ export const AuthProvider = ({ children }) => {
     setSelectedAvatar(getSelectedAvatar());
   }, [accessToken]);
   
-  const [token, setToken] = useState(getToken);
-  const [socket, setSocket] = useState(io.connect('http://localhost:5000'));
 
   useEffect(() => {
     // Optionally, perform actions or set state based on the initial socket connection
