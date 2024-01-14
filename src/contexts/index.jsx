@@ -1,11 +1,34 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import io from "socket.io-client"
 
-const getToken = () => localStorage.getItem('token');
+const getAccessToken = () => localStorage.getItem('access_token');
+const getSelectedAvatar = () => localStorage.getItem('selectedAvatar');
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
+  const [accessToken, setAccessToken] = useState(getAccessToken);
+  const [selectedAvatar, setSelectedAvatar] = useState(getSelectedAvatar);
+
+  const updateAccessToken = (newAccessToken) => {
+    setAccessToken(newAccessToken);
+    localStorage.setItem('access_token', newAccessToken);
+  };
+
+  const setAvatar = (avatar) => {
+    setSelectedAvatar(avatar);
+    localStorage.setItem('selectedAvatar', avatar);
+  };
+
+  useEffect(() => {
+    setSelectedAvatar(getSelectedAvatar())
+  }, [selectedAvatar]);
+
+  // ensures that if you log in with a different user, the avatar will be updated
+  useEffect(() => {
+    setSelectedAvatar(getSelectedAvatar());
+  }, [accessToken]);
+  
   const [token, setToken] = useState(getToken);
   const [socket, setSocket] = useState(io.connect('http://localhost:5000'));
 
@@ -20,7 +43,7 @@ export const AuthProvider = ({ children }) => {
   }, [socket]);
   
   return (
-    <AuthContext.Provider value={{ token, setToken, socket}}>
+    <AuthContext.Provider value={{ accessToken, updateAccessToken, selectedAvatar, setAvatar  , socket}}>
       {children}
     </AuthContext.Provider>
   );

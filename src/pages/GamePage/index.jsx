@@ -14,6 +14,7 @@ import {
   GameOutput,
   GameSubmitButton,
   GameRunButton,
+  MatchingPlayers,
 } from "../../components";
 
 
@@ -58,6 +59,7 @@ const GamePage = () => {
 
 
 
+  const [loading] = useState(true);
 
   const API_URL = "https://api.codex.jaagrav.in";
 
@@ -130,8 +132,9 @@ const GamePage = () => {
   };
 
   return (
-    <>
-      <Video />
+   <>
+   <Video />
+     {loading ? <MatchingPlayers/> :
       <div className="App">
         <GameNavbar
           userLang={userLang}
@@ -175,6 +178,7 @@ const GamePage = () => {
           </div>
         </div>
       </div>
+}
     </>
   );
 };

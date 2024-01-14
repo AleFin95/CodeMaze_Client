@@ -71,5 +71,5 @@ header h1 {
     display: flex;
     justify-content:space-between;
     margin-left: 300px; 
-    
+    align-items: center;
   }

@@ -17,9 +17,7 @@ describe('HomePage Component',() => {
     )
     });
     
-    afterEach(() => {
-      cleanup()
-    });
+   
   
     it('Contains 2 buttons', () => {
         /*const button1 = document.querySelector('.button1')
@@ -45,15 +43,18 @@ describe('HomePage Component',() => {
     it('User is forwarded to games page once button with text 1 Vs 1 is clicked', async() => {
       const button1 = screen.getByText('1 Vs 1')
       fireEvent.click(button1);
-         waitFor(() => {
-          expect(window.location.pathname).toBe('/game');
-    })
+    
+      // Wait for any asynchronous behavior, if applicable
+      await waitFor(() => {
+        expect(window.location.pathname).toBe('/game');
+      });
+  
     })
 
     it('User is forwarded to games page once button with text Solo mode is clicked', async() => {
       const button2 = screen.getByText('Solo mode')
       fireEvent.click(button2);
-      waitFor(() => {
+      await waitFor(() => {
       expect(window.location.pathname).toBe('/game');
     })
     })
@@ -106,5 +107,8 @@ describe('HomePage Component',() => {
       expect(icon1).toBeTruthy()
       expect(icon2).toBeTruthy()
     })
-
+    
+    afterEach(() => {
+      cleanup()
+    });
 });

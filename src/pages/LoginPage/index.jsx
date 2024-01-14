@@ -14,7 +14,7 @@ const LoginPage = () => {
   const [showSignUp, setShowSignUp] = useState(false);
   const [showLogIn, setShowLogIn] = useState(true);
   const navigateTo = useNavigate();
-  const { setToken } = useAuth();
+  const { updateAccessToken, setAvatar } = useAuth();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -29,6 +29,11 @@ const LoginPage = () => {
           password: password
         })
       };
+      const accessToken = localStorage.getItem('access_token');
+      if (accessToken) {
+        options.headers['Authorization'] = `Bearer ${accessToken}`;
+}
+console.log('Token before fetch:', localStorage.getItem('access_token'));
 
       const response = await fetch(
         'http://localhost:5000/users/login',
@@ -41,6 +46,7 @@ const LoginPage = () => {
         setToken(access_token);
         localStorage.setItem("username", username)
 
+        console.log('Token after fetch:', localStorage.getItem('access_token'));
         const Toast = Swal.mixin({
           toast: true,
           position: 'top-end',
@@ -57,7 +63,7 @@ const LoginPage = () => {
           icon: 'success',
           title: 'You have successfully logged in'
         });
-        navigateTo('/');
+        navigateTo('/profile');
       }
     } catch (error) {
       Swal.fire({
