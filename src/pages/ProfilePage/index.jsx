@@ -53,24 +53,8 @@ const ProfilePage = () => {
 
       <div className="user-info">
         <ProfileInfo/>
-        <h2>John Doe</h2>
-        <p>@john_doe</p>
-        <div className="stats">
-          <p>XP: 500</p>
-          <p>Level: 5</p>
-          <p>Problems Solved: 50</p>
         </div>
       </div>
-      <div className="achievements-section">
-        {/* Include badges or achievements here */}
-      </div>
-      <div className="recent-activity">
-        {/* Include recent activity details here */}
-      </div>
-      <div className="settings-section">
-        {/* Include settings and edit profile options here */}
-      </div>
-    </div>
     </>
   );
 };
