@@ -1,20 +1,22 @@
 import React from "react";
 import "./index.css"
 import { NavLink, useNavigate } from "react-router-dom";
+import { useAuth }  from '../../contexts'
+import AvatarSelector from "../AvatarSelector";
 
 const PageWrapper = () => {
-
+    const { selectedAvatar } = useAuth();
   const navigate = useNavigate();
 
   
   const handleLogout = () => {
-    localStorage.removeItem("token");
+    localStorage.removeItem("access_token");
     localStorage.removeItem("username");
     //localStorage.removeItem("isAdmin");
     navigate("/");
   };
   const linkStyle = ({ isActive }) => ({
-    color: isActive ? "#4bf275" : "#d7e259",
+    color: isActive ? "#4bf275" : "rgb(215, 226, 89)",
     textDecoration: "none",
     padding: "10px 15px",
     fontSize: "30px", 
@@ -26,7 +28,7 @@ const PageWrapper = () => {
     cursor: "pointer",
   })
 
-  const isLoggedIn = !!localStorage.getItem("token");
+  const isLoggedIn = !!localStorage.getItem("access_token");
   //const isAdmin = localStorage.getItem("isAdmin") === "true";
 
   document.body.classList.toggle("logged-in", isLoggedIn);
@@ -35,27 +37,33 @@ const PageWrapper = () => {
     <header style={{ marginBottom: "20px" }}>
      <nav>
      <h1>CODEMAZE</h1>
-     <div className="onlyNavs">
+     <div data-testid="div" className="onlyNavs">
         {!isLoggedIn && (
-            <NavLink to="/" style={linkStyle}>
+            <NavLink  to="/"  style={linkStyle}>
                 Home
             </NavLink>
         )}
-            <NavLink to="/ranking" style={linkStyle}>
+            <NavLink to="/ranking"   style={linkStyle}>
                 Ranking
             </NavLink>
-            <NavLink to="/game" style={linkStyle}>
-                Game
-            </NavLink>
-        {isLoggedIn && (
-            <NavLink to="/profile" style={linkStyle}>
-                Profile
-            </NavLink>
-        )}
         {isLoggedIn ? (
+            <>
             <NavLink to="/" onClick={handleLogout} style={linkStyle}>
-                Logout
+                Logout 
             </NavLink>
+            {selectedAvatar && (
+                <NavLink to="/profile">
+                <img
+
+                  src={selectedAvatar}
+                  alt="Selected Avatar"
+                  className="avatar selected"
+                  style={{ marginLeft: "-30px", marginRight:"20px", borderRadius: "50%", width: "60px", height: "60px" }}
+                />
+                </NavLink>
+              )}
+
+            </>
         ) : (
             <NavLink to="/login" style={linkStyle}>
                 Login/Register

@@ -17,9 +17,11 @@ describe('HomePage Component',() => {
     )
 
     it('h1 displays Leaderboard'), () => {
-      const p = screen.getByTest('Leaderboard');
+      const p = screen.getByText('Leaderboard');
       expect(p).toBeInTheDocument();
     }
+
+
 }
 )
 

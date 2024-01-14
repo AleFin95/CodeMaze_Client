@@ -7,7 +7,7 @@ body {
   overflow-x: hidden;
 }
 
-p{
+p {
   font-family: Courier New,monospace;
   color: #64ffda;
   animation: fade-from-left .5s forwards;
@@ -26,6 +26,18 @@ h1 {
   animation-delay: .1s;
   margin-bottom: 50px;
 }
+
+h2 {
+  font-family: Courier New,monospace;
+  color: #4bf275;
+  animation: fade-from-left .5s forwards;
+  animation-duration: 1.25s;
+  letter-spacing: 11px;
+  animation-delay: .1s;
+  margin-bottom: 50px;
+}
+
+
 .video {
   position: fixed;
   top: 0;
