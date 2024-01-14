@@ -12,6 +12,7 @@ import PageWrapper from '.';
 import { AuthProvider } from '../../contexts';
 
 describe('Page Wrapper Component',() => {
+    beforeEach(() => {
     render(
     <AuthProvider>
         <BrowserRouter>
@@ -19,15 +20,34 @@ describe('Page Wrapper Component',() => {
         </BrowserRouter>
     </AuthProvider> 
     )
-    it('displays a PageWrapper with 4 children', () => {
+    });
+    it('displays a nav with 3 children', () => {
         const nav = screen.getByTestId('div')
 
         expect(nav).toBeInTheDocument()
-        expect(nav.childNodes.length).toBe(4)
+        expect(nav.childNodes.length).toBe(3)
     })
-    /*
+
+    it('it renders Home, Ranking and Game links', () => {
+        expect(screen.getByText('Home')).toBeInTheDocument();
+        expect(screen.getByText('Ranking')).toBeInTheDocument();
+        expect(screen.getByText('Login/Register')).toBeInTheDocument();
+    })
+
     it('User is forwarded to Home page when Home link is clicked', async() => {
-        const link1 = screen.getByRole('link', {name: 'Ranking' ,hidden: 'true'})
+        const link1 = screen.getByText('Home')
+        expect(link1).toBeInTheDocument()
+        fireEvent.click(link1);
+      
+        // Wait for any asynchronous behavior, if applicable
+        await waitFor(() => {
+          expect(window.location.pathname).toBe('/');
+        });
+    })
+
+    it('User is forwarded to Ranking page when Ranking link is clicked', async() => {
+        const link1 = screen.getByText('Ranking')
+        expect(link1).toBeInTheDocument()
         fireEvent.click(link1);
       
         // Wait for any asynchronous behavior, if applicable
@@ -35,6 +55,43 @@ describe('Page Wrapper Component',() => {
           expect(window.location.pathname).toBe('/ranking');
         });
     })
+    
+    it('User is forwarded to Login page when Login link is clicked', async() => {
+        const link1 = screen.getByText('Login/Register')
+        expect(link1).toBeInTheDocument()
+        fireEvent.click(link1);
+      
+        // Wait for any asynchronous behavior, if applicable
+        await waitFor(() => {
+          expect(window.location.pathname).toBe('/login');
+        });
+    })
+    /*
+    it('User is forwarded to Profile page when Avatar is clicked', async() => {
+      const link1 = screen.getByRole('img')
+      expect(link1).toBeInTheDocument()
+      fireEvent.click(link1);
+    
+      // Wait for any asynchronous behavior, if applicable
+      await waitFor(() => {
+        expect(window.location.pathname).toBe('/profile');
+      });
+  
+  })*/
+  //check wether links have different color when not active
+
+  /*it('Nav links color changes when link is clicked', () => {
+    const loginLink = screen.getByText('Login/Register')
+    fireEvent.click(loginLink);
+  
+    // Wait for any asynchronous behavior, if applicable
+  
+    expect(loginLink).toHaveStyle("color: #4bf275");
+    
+  })*/
+
+  
+
     /*
     it( 'dsds', async() => {
          const rankingLink = screen.getByText((content, element) => {
@@ -57,4 +114,5 @@ describe('Page Wrapper Component',() => {
 
 afterEach(() => {
     cleanup()
-  })})
+  })
+})
