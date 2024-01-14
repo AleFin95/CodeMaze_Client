@@ -16,9 +16,7 @@ describe('HomePage Component',() => {
     )
     });
     
-    afterEach(() => {
-      cleanup()
-    });
+   
   
     it('Contains 2 buttons', () => {
         /*const button1 = document.querySelector('.button1')
@@ -108,5 +106,8 @@ describe('HomePage Component',() => {
       expect(icon1).toBeTruthy()
       expect(icon2).toBeTruthy()
     })
-
+    
+    afterEach(() => {
+      cleanup()
+    });
 });
