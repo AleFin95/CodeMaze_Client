@@ -44,21 +44,39 @@ const ProfileInfo = () => {
 
   return (
     <div>
-      <h1>Your Profile </h1>
-      <p>Username: {profileInfo.username}</p>
+    <h1>Your Profile</h1>
+    <p>Username: {profileInfo.username}</p>
+    <div className="achievements-section">
       <p>XP: {profileInfo.xp}</p>
-      <div class="achievements-section">Recent Activity </div>
       <p>Wins: {profileInfo.wins}</p>
       <p>Losses: {profileInfo.losses}</p>
-      <h2>Rank:</h2>
-      <ul>
-        {profileInfo.rank.map((rankItem) => (
-          <li key={rankItem.id}>{rankItem.name}</li>
-        ))}
-      </ul>
-      
     </div>
-  );
+    <h2>Rank:</h2>
+    <div>
+      {profileInfo.rank.map((rankItem) => (
+        <p key={rankItem.id}>
+          {rankItem.name} (Min XP: {rankItem.min_xp}, Max XP: {rankItem.max_xp})
+        </p>
+      ))}
+    </div>
+    <div>
+    <h2>Sessions:</h2>
+    {profileInfo.sessions.length === 0 ? (
+        <p>Your gaming chair feels neglected. No epic gaming tales to share—yet!</p>
+      ) : (
+    <div>
+      {profileInfo.sessions.map((sessionItem) => (
+        <p key={sessionItem.id}>
+          {/* Display session details */}
+          <p>Session ID: {sessionItem.id}</p>
+          {/* Add other session details as needed */}
+        </p>
+      ))}
+      </div> 
+     )}
+    </div>
+  </div>
+);
 };
 
 export default ProfileInfo;
