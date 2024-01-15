@@ -12,3 +12,5 @@ export { default as MatchingPlayers } from "./MatchingPlayers";
 export { default as AvatarSelector } from "./AvatarSelector";
 export { default as AvatarModal } from "./AvatarModal";
 export { default as ProfileInfo } from "./ProfileInfo";
+export { default as ProgressBar} from "./ProgressBar";
+
