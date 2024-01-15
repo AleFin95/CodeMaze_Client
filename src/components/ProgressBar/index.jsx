@@ -43,7 +43,7 @@ const ProgressBar = ({
         <div className="silver-light" style={{ width: "25%" }}></div>
         <div className="gold-light" style={{ width: "25%" }}></div>
         <div className="platinum-light" style={{ width: "25%" }}></div>
-        <div className="main" style={{ width: `${progress}%` }}></div>
+        <div className="mainbar" style={{ width: `${progress}%` }}></div>
       </div>
       <p style={{ textAlign: "center", marginTop: "5px", fontSize: "14px" }}>
         {currentXP} XP
