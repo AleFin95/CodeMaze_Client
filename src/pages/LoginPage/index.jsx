@@ -36,7 +36,7 @@ const LoginPage = () => {
 console.log('Token before fetch:', localStorage.getItem('access_token'));
 
       const response = await fetch(
-        'http://localhost:5000/users/login',
+        'https://codemaze-api.onrender.com/auth/login',
         options
       );
 
