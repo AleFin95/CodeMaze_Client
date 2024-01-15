@@ -1,49 +1,38 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
 import './index.css';
 import { Video } from '../../components';
 import { Leaderboard } from "flywheel-leaderboard";
 
 const RankingPage = () => {
-  const data = 
-  [
-    {
-      name: 'Alessia',
-      username: '@alefin',
-      users: 40,
-      XP: 5,
-    },
-    {
-      name: 'Emma',
-      username: '@emmaemma',
-      users: 105000,
-      XP: 4,
-    },
-    {
-      name: 'Khider',
-      username: '@akhiderkhider',
-      users: 50000,
-      XP: 40,
+  const [data, setData] = useState([]);
 
-    },
-    {
-      name: 'Sara',
-      username: '@sarasara',
-      users: 40000,
-      XP:30,
-    },
-    {
-      name: 'Jarvis',
-      username: '@0JAJAJA',
-      users: 40000,
-      XP:30,
-    },
-    {
-      name: 'Ashraf',
-      username: '@0ASHSHSH',
-      users: 40000,
-      XP:30,
-    }
-  ]
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const access_token = localStorage.getItem('access_token');
+        const options = {
+          method: 'GET',
+          headers: {
+            Authorization: `Bearer ${access_token}`,
+          },
+        };
+
+        const response = await fetch('https://codemaze-api.onrender.com/users/leaderboard', options);
+
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+
+        const leaderboardData = await response.json();
+        setData(leaderboardData);
+      } catch (error) {
+        console.error('Error fetching leaderboard data:', error.message);
+      }
+    };
+
+    fetchData();
+  }, []);
+  
   return (
     <>
     <Video/>
@@ -51,15 +40,15 @@ const RankingPage = () => {
     <div className='leaderHeader'>
     <h1>LeaderBoard</h1>
     </div>
-    <Leaderboard 
-      className='leaderboard' 
-      scoringMetric="users" //the property you wanna rank your data by (required)
-      id="name" //the property you wanna id each item in your data by (required)
-      cell2="username" 
-      cell3="users" 
-      cell5="XP" 
-      items={data} //the data you wanna use for your board. e.g. db response. (required)
-      > 
+    <Leaderboard
+          className='leaderboard'
+          id="id"
+          cell2="username"
+          cell3="xp"
+          cell4="wins" 
+          cell5="losses"
+          items={data}
+        >
     </Leaderboard>
     </div>
     </>
