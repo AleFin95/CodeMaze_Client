@@ -57,7 +57,9 @@ const GamePage = () => {
   
   useEffect(() => {
     state.isSolo ? setLoading(false) : setLoading(true)
-    socket.on("receiveRooms", handleReceiveRooms)
+    socket.on("receiveRooms", data => {
+      console.log("data :", data)
+    })
   }, [])
   
   useEffect(() => {
@@ -74,9 +76,9 @@ const GamePage = () => {
 
     console.log("test3")
 
-    return () => {
-      socket.off("receiveRooms", handleReceiveRooms);
-    };
+    // return () => {
+    //   socket.off("receiveRooms", handleReceiveRooms);
+    // };
   }, [state.room, state.username, handleReceiveRooms]);
 
   
@@ -176,14 +178,6 @@ const GamePage = () => {
         }
       });
   }; 
-  
-  useEffect(() => {
-    // This effect will run on every render
-    // and trigger a state update, causing an infinite loop
-      if(localStorage.getItem("mode") === "true"){
-    setLoading(true)
-  }
-  }, [loading]);
 
   const isLoggedIn = localStorage.getItem("access_token");
 
@@ -205,6 +199,7 @@ const GamePage = () => {
           setUserTheme={setUserTheme}
           fontSize={fontSize}
           setFontSize={setFontSize}
+          socket={socket}
         />
         <div className="main">
           <div className="left-container">
