@@ -47,7 +47,7 @@ const RankingPage = () => {
           cell3="xp"
           cell4="wins" 
           cell5="losses"
-          items={data}
+          items={data.map((item, index) => ({ ...item, key: index.toString() }))}
         >
     </Leaderboard>
     </div>
