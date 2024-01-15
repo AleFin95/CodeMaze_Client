@@ -39,22 +39,10 @@ const ProgressBar = ({
   return (
     <div className="progress-bar-container">
       <div className="progress-bar">
-        <div
-          className="bronze-light"
-          style={{ width: `${Math.min(progress - 0, 25)}%` }}
-        ></div>
-        <div
-          className="silver-light"
-          style={{ width: `${Math.min(progress - 25, 25)}%` }}
-        ></div>
-        <div
-          className="gold-light"
-          style={{ width: `${Math.min(progress - 50, 25)}%` }}
-        ></div>
-        <div
-          className="platinum-light"
-          style={{ width: `${Math.min(progress - 75, 25)}%` }}
-        ></div>
+        <div className="bronze-light" style={{ width: "25%" }}></div>
+        <div className="silver-light" style={{ width: "25%" }}></div>
+        <div className="gold-light" style={{ width: "25%" }}></div>
+        <div className="platinum-light" style={{ width: "25%" }}></div>
         <div className="main" style={{ width: `${progress}%` }}></div>
       </div>
       <p style={{ textAlign: "center", marginTop: "5px", fontSize: "14px" }}>
