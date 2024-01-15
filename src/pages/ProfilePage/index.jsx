@@ -92,15 +92,17 @@ const ProfilePage = () => {
       <div className="user-info">
       <h1>Username: </h1>
       <p>{profileInfo.username}</p>
-      {profileInfo.rank.length > 0 && (
-        <h2>Rank: </h2>
-      )}
-      {profileInfo.rank.map((rankItem) => (
-        <div key={rankItem.id}>
-          <p>{rankItem.name}</p>
-          <p>Min XP: {rankItem.min_xp}, Max XP: {rankItem.max_xp}</p>
-        </div>
-      ))}
+      {profileInfo.rank.map((rankItem) => {
+
+      const remainingXP = rankItem.max_xp - profileInfo.xp;
+     return (
+    <div key={rankItem.id}>
+      <p>{rankItem.name}</p>
+      <p>Remaining XP to {rankItem.name}: {remainingXP > 0 ? remainingXP : 'Reached'}</p>
+      <p>Min XP: {rankItem.min_xp}, Max XP: {rankItem.max_xp}</p>
+    </div>
+  );
+})}
       </div>
       </div>
       <div className='button-section'>
