@@ -42,7 +42,7 @@ console.log('Token before fetch:', localStorage.getItem('access_token'));
 
       if (response.status === 200) {
         const { access_token } = await response.json();
-        localStorage.setItem('token', access_token);
+        localStorage.setItem('access_token', access_token);
         localStorage.setItem("username", username)
 
         console.log('Token after fetch:', localStorage.getItem('access_token'));
