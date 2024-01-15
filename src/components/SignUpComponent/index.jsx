@@ -21,13 +21,13 @@ const SignUpComponent = ({ handleSignUpClick }) => {
       };
 
       const response = await fetch(
-        'https://codemaze-api.onrender.com/users/register',
+        'https://codemaze-api.onrender.com/auth/register',
         options
       );
 
       const data = await response.json();
 
-      if (response.status === 201) {
+      if (response.status === 201 || response.status === 200 ) {
         setRegistrationSuccessful(true);
         handleSignUpClick();
         const Toast = Swal.mixin({
@@ -65,7 +65,7 @@ const SignUpComponent = ({ handleSignUpClick }) => {
     <>
       {!isRegistrationSuccessful && (
         <div className='login'>
-          <h2>Register Here ! </h2>
+          <h2>Register Here !</h2>
           <form className='loginForm' onSubmit={handleSubmit}>
             <input
               type='text'

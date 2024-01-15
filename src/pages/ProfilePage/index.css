@@ -1,0 +1,74 @@
+
+.profilepage{
+ margin: 0;
+ padding-top: 20px;  
+ padding-left: 60px;
+}
+
+.profile-container {
+    max-width: 600px;
+    margin-top:150px;
+    margin-bottom: 0px;
+    display: flex;
+    flex-direction: row; 
+    justify-content: space-between; 
+    align-items: center;
+    position: relative;
+  }
+
+  .box {
+    object-fit: cover;
+    width: 80%; 
+    height: 80%; 
+    position: relative;
+    margin-top: 30px;
+    margin-left: 10px;
+    z-index: -1;
+  }
+
+
+    .avatar-section {
+        display: flex;
+        align-items: center;
+        padding-left: 20px;
+      }
+
+  
+  .avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  .button-section{
+    display: flex;
+    align-items: flex-start;
+    margin-left: 40px;
+  }
+  .edit-avatar-btn {
+    background-color: #1f1b32;
+    color: #ebee83;
+    padding: 8px 12px;
+    border-radius: 15px;
+    cursor: pointer;
+    margin-left: 10px; 
+  }
+  
+  .avatar-section:hover .edit-avatar-btn {
+    opacity: 1;
+  }
+  
+  .user-info {
+    text-align: right; 
+  }
+
+  .user-info h1 {
+    margin-bottom: 10px; /* Add some spacing */
+  }
+  
+  .user-info h2 {
+    margin: 0; /* Remove default margin for h2 */
+  }
+  
+  
