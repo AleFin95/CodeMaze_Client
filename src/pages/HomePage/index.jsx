@@ -18,6 +18,7 @@ export const HomePage = () => {
 	const [room, setRoom] = useState()
 	const [username, setUsername] = useState("");
 	const [isSolo, setIsSolo] = useState();
+  const [roomData, setRoomData] = useState();
 	const navigateTo = useNavigate();
 
 	
@@ -43,7 +44,8 @@ export const HomePage = () => {
 			state: {
 					room: "room",
 					username: username,
-					isSolo: true
+					isSolo: true,
+          roomData: "roomData"
 				}
 		}
 	);
@@ -51,7 +53,9 @@ export const HomePage = () => {
 
 	useEffect(() => {
 		const handleReceiveData = (data) => {
-				console.log(data);
+				console.log("data :", data);
+        setRoomData(data)
+        console.log("roomData homepage : ", roomData)
 				setRoom(data.room)
 				// user_rooms[data.name] = data.room
 				setIsSolo(false)
@@ -71,6 +75,7 @@ export const HomePage = () => {
 					room: data.room,
 					username: data.name,
 					user_rooms: user_rooms,
+          roomData: data,
 					isSolo: false
 				}
 		}
