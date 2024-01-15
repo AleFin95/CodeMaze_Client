@@ -1,0 +1,39 @@
+#first {
+    display: flex;
+    flex-direction: column;
+    gap:2em;
+    margin-bottom: 15em;
+}
+
+
+
+#main {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 15em;
+   
+    margin-top: 15em;
+}
+
+#main div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin:1em;
+}
+
+#main img {
+    height: 300px;
+    width:200px ;
+}
+
+#theBottom {
+    margin-top: 0;
+    height: 100px;
+}
+
+.title h1 {
+    font-size: 40px;
+}
