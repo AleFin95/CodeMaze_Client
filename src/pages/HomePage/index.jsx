@@ -119,6 +119,15 @@ export const HomePage = () => {
     animation: "arrowBounce 2s infinite",
   }
 
+  
+  const handle1 = () => {
+     localStorage.setItem("mode", true);
+  }
+  const handle2 = () => {
+    localStorage.setItem("mode", false);
+ }
+  
+
   return (
     <>
   <Video/>
