@@ -20,7 +20,7 @@ import { Link } from "react-router-dom";
 
 const GamePage = () => {
   const { state } = useLocation();
-  const { socket } = useAuth()
+  const { socket } = useAuth();
   const [userCode, setUserCode] = useState("");
   const [userLang, setUserLang] = useState("py");
   const [testCases, setTestCases] = useState([]);
@@ -30,57 +30,53 @@ const GamePage = () => {
   const [userOutput, setUserOutput] = useState("");
   const [loadingRun, setLoadingRun] = useState(false);
   const [loadingSubmit, setLoadingSubmit] = useState(false);
-  const [room, setRoom] = useState("")
+  const [room, setRoom] = useState("");
   const [username, setUsername] = useState("");
   const [currentRoom, setCurrentRoom] = useState("");
   const [loading, setLoading] = useState(true);
 
-  console.log("state: ", state)
+  console.log("state: ", state);
 
   const handleReceiveRooms = useCallback(
     (data) => {
       const roomsData = data;
       console.log("roomsData: ", roomsData);
-  
+
       const roomUsers = roomsData[state.room]?.users;
       const roomData = roomUsers ? roomUsers.length : 0;
-  
+
       console.log("roomUsers: ", roomUsers);
-      
+
       if (roomData === 2 && loading) {
         console.log("Setting loading to false");
         setLoading(false);
       }
-    }, 
+    },
     [state.room, loading]
   );
-  
+
   useEffect(() => {
-    state.isSolo ? setLoading(false) : setLoading(true)
-    socket.on("receiveRooms", handleReceiveRooms)
-  }, [])
-  
+    state.isSolo ? setLoading(false) : setLoading(true);
+    socket.on("receiveRooms", handleReceiveRooms);
+  }, []);
+
   useEffect(() => {
     setRoom(state.room);
     console.log("room ", state.room);
     setUsername(state.username);
 
-    console.log("test")
+    console.log("test");
 
-
-    socket.on("receiveRooms", data => {
-      console.log("test2")
+    socket.on("receiveRooms", (data) => {
+      console.log("test2");
     });
 
-    console.log("test3")
+    console.log("test3");
 
     return () => {
       socket.off("receiveRooms", handleReceiveRooms);
     };
   }, [state.room, state.username, handleReceiveRooms]);
-
-  
-  
 
   // useEffect(() => {
   //   setRoom(state.room)
@@ -104,11 +100,8 @@ const GamePage = () => {
 
   // }, [])
 
-
-
   const API_URL = "https://api.codex.jaagrav.in";
- 
- 
+
   const tests = [
     {
       py: [
@@ -175,74 +168,76 @@ const GamePage = () => {
           setLoadingSubmit(false);
         }
       });
-  }; 
-  
+  };
+
   useEffect(() => {
     // This effect will run on every render
     // and trigger a state update, causing an infinite loop
-      if(localStorage.getItem("mode") === "true"){
-    setLoading(true)
-  }
-  }, [loading]);
+    if (localStorage.getItem("mode") === "true") {
+      setLoading(true);
+    }
+  }, []);
 
   const isLoggedIn = localStorage.getItem("access_token");
 
   return (
-   <>
-   <Video />
-   { isLoggedIn === null ? (
-   <div className="message22">
-    <h1>Login to Access Game</h1>
-    <Link to="/login"><button id="loginBtn">Login</button></Link>
-   {/* Additional content for non-logged-in users */}
- </div>) : (
-     loading  ? <MatchingPlayers/> :(
-     <div className="App">
-        <GameNavbar
-          userLang={userLang}
-          setUserLang={setUserLang}
-          userTheme={userTheme}
-          setUserTheme={setUserTheme}
-          fontSize={fontSize}
-          setFontSize={setFontSize}
-        />
-        <div className="main">
-          <div className="left-container">
-            <Editor
-              options={options}
-              width="auto"
-              theme={userTheme}
-              language={userLang}
-              defaultLanguage="python"
-              defaultValue="# Enter your code here"
-              onChange={(value) => {
-                setUserCode(value + "\n" + testCases.join("\n"));
-              }}
-            />
-            <GameRunButton
-              handleCompile={handleCompile}
-              loadingRun={loadingRun}
-            />
-            <GameSubmitButton
-              handleCompile={handleCompile}
-              loadingSubmit={loadingSubmit}
-            />
-          </div>
-          <div className="right-container">
-            <GameQuestions />
-            <GameTestCases testCases={testCases} />
-            <GameOutput
-              spinner={spinner}
-              userOutput={userOutput}
-              loading={loadingRun || loadingSubmit}
-              clearOutput={clearOutput}
-            />
+    <>
+      <Video />
+      {isLoggedIn === null ? (
+        <div className="message22">
+          <h1>Login to Access Game</h1>
+          <Link to="/login">
+            <button id="loginBtn">Login</button>
+          </Link>
+          {/* Additional content for non-logged-in users */}
+        </div>
+      ) : loading ? (
+        <MatchingPlayers />
+      ) : (
+        <div className="App">
+          <GameNavbar
+            userLang={userLang}
+            setUserLang={setUserLang}
+            userTheme={userTheme}
+            setUserTheme={setUserTheme}
+            fontSize={fontSize}
+            setFontSize={setFontSize}
+          />
+          <div className="main">
+            <div className="left-container">
+              <Editor
+                options={options}
+                width="auto"
+                theme={userTheme}
+                language={userLang}
+                defaultLanguage="python"
+                defaultValue="# Enter your code here"
+                onChange={(value) => {
+                  setUserCode(value + "\n" + testCases.join("\n"));
+                }}
+              />
+              <GameRunButton
+                handleCompile={handleCompile}
+                loadingRun={loadingRun}
+              />
+              <GameSubmitButton
+                handleCompile={handleCompile}
+                loadingSubmit={loadingSubmit}
+              />
+            </div>
+            <div className="right-container">
+              <GameQuestions />
+              <GameTestCases testCases={testCases} />
+              <GameOutput
+                spinner={spinner}
+                userOutput={userOutput}
+                loading={loadingRun || loadingSubmit}
+                clearOutput={clearOutput}
+              />
+            </div>
           </div>
         </div>
-      </div>
-      )) } 
-    
-
+      )}
     </>
   );
 };

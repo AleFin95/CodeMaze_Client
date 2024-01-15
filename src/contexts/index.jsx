@@ -1,35 +1,34 @@
-import React, { createContext, useContext, useEffect, useState } from 'react';
-import io from "socket.io-client"
+import React, { createContext, useContext, useEffect, useState } from "react";
+import io from "socket.io-client";
 
-const getAccessToken = () => localStorage.getItem('access_token');
-const getSelectedAvatar = () => localStorage.getItem('selectedAvatar');
+const getAccessToken = () => localStorage.getItem("access_token");
+const getSelectedAvatar = () => localStorage.getItem("selectedAvatar");
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [accessToken, setAccessToken] = useState(getAccessToken);
   const [selectedAvatar, setSelectedAvatar] = useState(getSelectedAvatar);
-  const [socket, setSocket] = useState(io.connect('http://localhost:5000'));
+  const [socket, setSocket] = useState(io.connect("http://localhost:3000"));
 
   const updateAccessToken = (newAccessToken) => {
     setAccessToken(newAccessToken);
-    localStorage.setItem('access_token', newAccessToken);
+    localStorage.setItem("access_token", newAccessToken);
   };
 
   const setAvatar = (avatar) => {
     setSelectedAvatar(avatar);
-    localStorage.setItem('selectedAvatar', avatar);
+    localStorage.setItem("selectedAvatar", avatar);
   };
 
   useEffect(() => {
-    setSelectedAvatar(getSelectedAvatar())
+    setSelectedAvatar(getSelectedAvatar());
   }, [selectedAvatar]);
 
   // ensures that if you log in with a different user, the avatar will be updated
   useEffect(() => {
     setSelectedAvatar(getSelectedAvatar());
   }, [accessToken]);
-  
 
   useEffect(() => {
     // Optionally, perform actions or set state based on the initial socket connection
@@ -40,9 +39,17 @@ export const AuthProvider = ({ children }) => {
       socket.disconnect();
     };
   }, [socket]);
-  
+
   return (
-    <AuthContext.Provider value={{ accessToken, updateAccessToken, selectedAvatar, setAvatar  , socket}}>
+    <AuthContext.Provider
+      value={{
+        accessToken,
+        updateAccessToken,
+        selectedAvatar,
+        setAvatar,
+        socket,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );
