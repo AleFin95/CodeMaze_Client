@@ -13,6 +13,7 @@ import {
   GameRunButton,
   MatchingPlayers,
 } from "../../components";
+import { Link } from "react-router-dom";
 
 const GamePage = () => {
   const [userCode, setUserCode] = useState("");
@@ -106,12 +107,18 @@ const GamePage = () => {
   }
   }, [loading]);
 
-  
+  const isLoggedIn = localStorage.getItem("access_token");
 
   return (
    <>
    <Video />
-     { loading ? <MatchingPlayers/> :
+   { isLoggedIn === null ? (
+   <div className="message22">
+    <h1>Login to Access Game</h1>
+    <Link to="/login"><button id="loginBtn">Login</button></Link>
+   {/* Additional content for non-logged-in users */}
+ </div>) : (
+     loading  ? <MatchingPlayers/> :(
      <div className="App">
         <GameNavbar
           userLang={userLang}
@@ -155,7 +162,9 @@ const GamePage = () => {
           </div>
         </div>
       </div>
-}
+      )) } 
+    
+
     </>
   );
 };
