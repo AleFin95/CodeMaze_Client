@@ -42,7 +42,6 @@ const RankingPage = () => {
     </div>
     <Leaderboard
           className='leaderboard'
-          id="id"
           cell2="username"
           cell3="xp"
           cell4="wins" 
