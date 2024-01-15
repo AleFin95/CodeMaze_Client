@@ -13,6 +13,7 @@ import {
   GameRunButton,
   MatchingPlayers,
 } from "../../components";
+import { Link } from "react-router-dom";
 
 const GamePage = () => {
   const [userCode, setUserCode] = useState("");
@@ -24,10 +25,12 @@ const GamePage = () => {
   const [userOutput, setUserOutput] = useState("");
   const [loadingRun, setLoadingRun] = useState(false);
   const [loadingSubmit, setLoadingSubmit] = useState(false);
-  const [loading] = useState(true);
+  const [loading, setLoading] = useState(false);
+
 
   const API_URL = "https://api.codex.jaagrav.in";
-
+ 
+ 
   const tests = [
     {
       py: [
@@ -94,13 +97,29 @@ const GamePage = () => {
           setLoadingSubmit(false);
         }
       });
-  };
+  }; 
+  
+  useEffect(() => {
+    // This effect will run on every render
+    // and trigger a state update, causing an infinite loop
+      if(localStorage.getItem("mode") === "true"){
+    setLoading(true)
+  }
+  }, [loading]);
+
+  const isLoggedIn = localStorage.getItem("access_token");
 
   return (
    <>
    <Video />
-     {loading ? <MatchingPlayers/> :
-      <div className="App">
+   { isLoggedIn === null ? (
+   <div className="message22">
+    <h1>Login to Access Game</h1>
+    <Link to="/login"><button id="loginBtn">Login</button></Link>
+   {/* Additional content for non-logged-in users */}
+ </div>) : (
+     loading  ? <MatchingPlayers/> :(
+     <div className="App">
         <GameNavbar
           userLang={userLang}
           setUserLang={setUserLang}
@@ -143,7 +162,9 @@ const GamePage = () => {
           </div>
         </div>
       </div>
-}
+      )) } 
+    
+
     </>
   );
 };

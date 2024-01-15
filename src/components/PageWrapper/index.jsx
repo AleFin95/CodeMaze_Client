@@ -5,7 +5,7 @@ import { useAuth }  from '../../contexts'
 import AvatarSelector from "../AvatarSelector";
 
 const PageWrapper = () => {
-    const { selectedAvatar } = useAuth();
+  const { selectedAvatar } = useAuth();
   const navigate = useNavigate();
 
   
@@ -38,11 +38,11 @@ const PageWrapper = () => {
      <nav>
      <h1>CODEMAZE</h1>
      <div data-testid="div" className="onlyNavs">
-        {!isLoggedIn && (
+        
             <NavLink  to="/"  style={linkStyle}>
                 Home
             </NavLink>
-        )}
+       
             <NavLink to="/ranking"   style={linkStyle}>
                 Ranking
             </NavLink>

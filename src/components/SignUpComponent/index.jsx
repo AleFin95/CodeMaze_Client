@@ -27,7 +27,7 @@ const SignUpComponent = ({ handleSignUpClick }) => {
 
       const data = await response.json();
 
-      if (response.status === 201 || response.status === 200 ) {
+      if (response.status === 201 ) {
         setRegistrationSuccessful(true);
         handleSignUpClick();
         const Toast = Swal.mixin({
