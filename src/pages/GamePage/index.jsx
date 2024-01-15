@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Editor } from "@monaco-editor/react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
@@ -20,6 +20,7 @@ import {
 
 
 const GamePage = () => {
+  const { state } = useLocation();
   const { socket } = useAuth()
   const [userCode, setUserCode] = useState("");
   const [userLang, setUserLang] = useState("py");
@@ -32,34 +33,79 @@ const GamePage = () => {
   const [loadingSubmit, setLoadingSubmit] = useState(false);
   const [room, setRoom] = useState("")
   const [username, setUsername] = useState("");
+  const [currentRoom, setCurrentRoom] = useState("");
+  const [loading, setLoading] = useState(true);
 
-  const { state } = useLocation();
   console.log("state: ", state)
 
-  useEffect(() => {
-    setRoom(state.room)
-    setUsername(state.username)
-    socket.connect()
-  }, [])
-
-  useEffect(() => {
-    socket.on("receivemoredata", data => {
-      console.log(data)
-    })
-  }, [socket])
-
-
-  // socket.emit("send_user_rooms", {user_rooms, room, username})
+  const handleReceiveRooms = useCallback(
+    (data) => {
+      const roomsData = data;
+      console.log("roomsData: ", roomsData);
   
-  // socket.on('sendback_user_rooms', data => {
-  //   user_rooms = data.user_rooms
-  //   console.log(user_rooms)
-  // });
+      const roomUsers = roomsData[state.room]?.users;
+      const roomData = roomUsers ? roomUsers.length : 0;
+  
+      console.log("roomUsers: ", roomUsers);
+      
+      if (roomData === 2 && loading) {
+        console.log("Setting loading to false");
+        setLoading(false);
+      }
+    }, 
+    [state.room, loading]
+  );
+  
+  useEffect(() => {
+    state.isSolo ? setLoading(false) : setLoading(true)
+    socket.on("receiveRooms", handleReceiveRooms)
+  }, [])
+  
+  useEffect(() => {
+    setRoom(state.room);
+    console.log("room ", state.room);
+    setUsername(state.username);
+
+    console.log("test")
 
 
+    socket.on("receiveRooms", data => {
+      console.log("test2")
+    });
+
+    console.log("test3")
+
+    return () => {
+      socket.off("receiveRooms", handleReceiveRooms);
+    };
+  }, [state.room, state.username, handleReceiveRooms]);
+
+  
+  
+
+  // useEffect(() => {
+  //   setRoom(state.room)
+  //   console.log("room ", state.room)
+  //   setUsername(state.username)
+  //   // socket.connect()
+
+  //   // socket.on("receivemoredata", data => {
+  //   //   console.log("user_rooms: ", data)
+  //   // })
+
+  //   socket.on("receiveRooms", data => {
+  //     const roomsData = data;
+  //     console.log("roomsData: ", roomsData)
+  //     const roomData = roomsData[state.room]["users"].length
+  //     if(roomData === 2){
+  //       console.log("loading :", loading)
+  //       setLoading(false)
+  //     }
+  //   })
+
+  // }, [])
 
 
-  const [loading] = useState(true);
 
   const API_URL = "https://api.codex.jaagrav.in";
 
