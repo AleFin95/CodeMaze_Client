@@ -17,7 +17,7 @@ const GameNavbar = ({
   ];
 
   const leaveRoom = () => {
-    socket.on("leave_room")
+    socket.disconnect()
   }
 
   const themes = [
