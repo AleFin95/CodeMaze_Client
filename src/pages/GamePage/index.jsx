@@ -167,7 +167,14 @@ const GamePage = () => {
     setUserOutput("");
   };
 
+  const [ buttonDisabled, setButtonDisabled ] = useState(false) //jarv
+
   const handleCompile = (action) => {
+
+    socket.emit("button_press", { action: 'Submit' }) //jarv
+    setButtonDisabled(true) //jarv
+
+
     if (action === "Run") {
       setLoadingRun(true);
     } else if (action === "Submit") {
@@ -200,7 +207,29 @@ const GamePage = () => {
           setLoadingSubmit(false);
         }
       });
+
+      setTimeout(() => {
+        setButtonDisabled(false) //jarv
+        socket.emit("button_enable", { action: "Submit" }) //jarv
+      }, 3000)
   }; 
+
+  useEffect(() => {
+    const buttonPressedListener = () => {
+      setButtonDisabled(true)
+    };
+    const buttonEnabledListener = () => {
+      setButtonDisabled(false)
+    };
+
+    socket.on("button_pressed", buttonPressedListener)
+    socket.on('button_enabled', buttonEnabledListener)
+
+    return () => {
+      socket.off('button_pressed', buttonPressedListener);
+      socket.off('button_enabled', buttonEnabledListener);
+    };
+  },[])
 
   const isLoggedIn = localStorage.getItem("access_token");
 
@@ -241,10 +270,11 @@ const GamePage = () => {
               handleCompile={handleCompile}
               loadingRun={loadingRun}
             />
-            <GameSubmitButton
-              handleCompile={handleCompile}
-              loadingSubmit={loadingSubmit}
-            />
+              <GameSubmitButton
+                handleCompile={handleCompile}
+                loadingSubmit={loadingSubmit}
+                disabled={buttonDisabled}
+              />
           </div>
           <div className="right-container">
             <GameQuestions />
