@@ -1,19 +1,37 @@
+
+.profilepage{
+ margin: 0;
+ padding-top: 20px;  
+ padding-left: 60px;
+}
+
 .profile-container {
     max-width: 600px;
-    margin: 50px auto;
+    margin-top:150px;
     padding: 20px;
-    border: 1px solid #4bf275;
-    border-radius: 70px;
-    box-shadow: 0 0 10px #4bf275;
     display: flex;
-  }
-  
-  .avatar-section {
-    position: relative;
-    margin-bottom: 20px;
-    display: flex;
+    flex-direction: row; 
+    justify-content: space-between; 
     align-items: center;
+    position: relative;
   }
+
+  .box {
+    object-fit: cover;
+    width: 80%; 
+    height: 80%; 
+    position: relative;
+    margin-top: 30px;
+    margin-left: 10px;
+    z-index: -1;
+  }
+
+
+    .avatar-section {
+        display: flex;
+        align-items: center;
+      }
+
   
   .avatar {
     width: 150px;
@@ -21,18 +39,19 @@
     border-radius: 50%;
     object-fit: cover;
   }
-  
+
+  .button-section{
+    display: flex;
+    align-items: flex-start;
+    margin-left: 40px;
+  }
   .edit-avatar-btn {
     background-color: #1f1b32;
     color: #ebee83;
     padding: 8px 12px;
     border-radius: 15px;
     cursor: pointer;
-    position: absolute;
-    bottom: -20px;
-    left: 50%;
-    border: 0;
-    transform: translateX(-50%);
+    margin-left: 10px; 
   }
   
   .avatar-section:hover .edit-avatar-btn {
@@ -40,28 +59,15 @@
   }
   
   .user-info {
-    text-align: center;
-    margin-bottom: 20px;
+    text-align: right; 
   }
-  
-  .profile-info-container {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    text-align: center;
-  }
-  
 
-  
-  .profile-info-container:hover .achievements-section,
-  .profile-info-container:hover .rank-section,
-  .profile-info-container:hover .sessions-section {
-    opacity: 1;
+  .user-info h1 {
+    margin-bottom: 10px; /* Add some spacing */
   }
   
-
-  .achievements-section,
-  .rank-section,
-  .sessions-section {
-    margin: 0 10px; /* Adjust the margin as needed */
+  .user-info h2 {
+    margin: 0; /* Remove default margin for h2 */
   }
+  
+  

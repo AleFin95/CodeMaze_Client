@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './index.css';
 import { useAuth } from '../../contexts'
 import { AvatarModal, ProfileInfo} from '../../components';
+import profileImage from './assets/game.png';
 
 const ProfilePage = () => {
   const { selectedAvatar, setAvatar } = useAuth();
@@ -70,14 +71,15 @@ const ProfilePage = () => {
 
   return (
     <>
+    <div className="profilepage" style={{ margin: "50px", height: '100vh', backgroundImage: `url(${profileImage})`, backgroundRepeat: 'no-repeat',backgroundSize: 'cover'  }}>
+    <div>
+    
     <div className="profile-container">
+    
       <div className="avatar-section">
         {selectedAvatar && (
           <img src={selectedAvatar} alt="Selected Avatar" className="avatar" />
         )}
-        <button className="edit-avatar-btn" onClick={handleEditAvatarClick}>
-          Edit Avatar
-        </button>
       </div>
 
       <AvatarModal
@@ -88,17 +90,29 @@ const ProfilePage = () => {
       />
 
       <div className="user-info">
-        <h1>Your Profile</h1>
-        <h2>Your Username: {profileInfo.username}</h2>
+        <h1>Username: {profileInfo.username}</h1>
+        <h2>Rank: {profileInfo.rank}</h2>
+        {profileInfo.rank.map((rankItem) => (
+  <p key={rankItem.id}>
+    {rankItem.name} (Min XP: {rankItem.min_xp}, Max XP: {rankItem.max_xp})
+  </p>
+        ))}
       </div>
+      </div>
+      <div className='button-section'>
+      <button className="edit-avatar-btn" onClick={handleEditAvatarClick}>
+       Edit Avatar
+     </button>
+     </div>
       </div>
       <ProfileInfo
         xp={profileInfo.xp}
         wins={profileInfo.wins}
         losses={profileInfo.losses}
-        rank={profileInfo.rank}
         sessions={profileInfo.sessions}
       />
+      </div>
+
    </>
   );
 };
