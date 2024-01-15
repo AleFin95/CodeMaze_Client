@@ -2,7 +2,7 @@
   
   .profile-info-container {
     margin-left:60px;
-    margin-top: 150px;
+    margin-top: 40px;
     display: flex;
     flex-direction: row;
     text-align: center;
@@ -15,7 +15,8 @@
 
   .achievements-section {
     display: flex;
-    flex-direction: column;
+    flex-direction:column;
+    text-align: end;
     padding: 10px;
     border-radius: 10px;
     opacity: 1;

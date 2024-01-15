@@ -8,7 +8,7 @@
 .profile-container {
     max-width: 600px;
     margin-top:150px;
-    padding: 20px;
+    margin-bottom: 0px;
     display: flex;
     flex-direction: row; 
     justify-content: space-between; 
@@ -30,6 +30,7 @@
     .avatar-section {
         display: flex;
         align-items: center;
+        padding-left: 20px;
       }
 
   

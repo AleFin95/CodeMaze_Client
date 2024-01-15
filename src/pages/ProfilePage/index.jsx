@@ -90,13 +90,17 @@ const ProfilePage = () => {
       />
 
       <div className="user-info">
-        <h1>Username: {profileInfo.username}</h1>
-        <h2>Rank: {profileInfo.rank}</h2>
-        {profileInfo.rank.map((rankItem) => (
-  <p key={rankItem.id}>
-    {rankItem.name} (Min XP: {rankItem.min_xp}, Max XP: {rankItem.max_xp})
-  </p>
-        ))}
+      <h1>Username: </h1>
+      <p>{profileInfo.username}</p>
+      {profileInfo.rank.length > 0 && (
+        <h2>Rank: </h2>
+      )}
+      {profileInfo.rank.map((rankItem) => (
+        <div key={rankItem.id}>
+          <p>{rankItem.name}</p>
+          <p>Min XP: {rankItem.min_xp}, Max XP: {rankItem.max_xp}</p>
+        </div>
+      ))}
       </div>
       </div>
       <div className='button-section'>
