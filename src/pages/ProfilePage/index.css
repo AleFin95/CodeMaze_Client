@@ -1,45 +1,73 @@
 
+.profilepage{
+ margin: 0;
+ padding-top: 20px;  
+ padding-left: 60px;
+}
+
 .profile-container {
     max-width: 600px;
-    margin: 50px auto;
+    margin-top:150px;
     padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
+    display: flex;
+    flex-direction: row; 
+    justify-content: space-between; 
+    align-items: center;
+    position: relative;
+  }
 
-.avatar-section {
-    text-align: center;
-}
+  .box {
+    object-fit: cover;
+    width: 80%; 
+    height: 80%; 
+    position: relative;
+    margin-top: 30px;
+    margin-left: 10px;
+    z-index: -1;
+  }
 
-.avatar {
+
+    .avatar-section {
+        display: flex;
+        align-items: center;
+      }
+
+  
+  .avatar {
     width: 150px;
     height: 150px;
     border-radius: 50%;
     object-fit: cover;
-    margin-bottom: 10px;
-}
+  }
 
-.edit-avatar-btn {
-    background-color: #3498db;
-    color: #fff;
+  .button-section{
+    display: flex;
+    align-items: flex-start;
+    margin-left: 40px;
+  }
+  .edit-avatar-btn {
+    background-color: #1f1b32;
+    color: #ebee83;
     padding: 8px 12px;
-    border: none;
-    border-radius: 5px;
+    border-radius: 15px;
     cursor: pointer;
-}
+    margin-left: 10px; 
+  }
+  
+  .avatar-section:hover .edit-avatar-btn {
+    opacity: 1;
+  }
+  
+  .user-info {
+    text-align: right; 
+  }
 
-.user-info {
-    text-align: center;
-}
-
-.stats {
-    margin-top: 20px;
-}
-
-.achievements-section,
-.recent-activity,
-.settings-section {
-    /* Customize styling for each section as needed */
-    margin-top: 20px;
-}
+  .user-info h1 {
+    margin-bottom: 10px; /* Add some spacing */
+  }
+  
+  .user-info h2 {
+    margin: 0; /* Remove default margin for h2 */
+  }
+  
+  
