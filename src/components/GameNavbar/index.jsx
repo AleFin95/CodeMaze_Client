@@ -9,11 +9,16 @@ const GameNavbar = ({
   setUserTheme,
   fontSize,
   setFontSize,
+  socket
 }) => {
   const languages = [
     { value: "py", label: "Python" },
     { value: "js", label: "JavaScript" },
   ];
+
+  const leaveRoom = () => {
+    socket.disconnect()
+  }
 
   const themes = [
     { value: "vs-dark", label: "Dark" },
@@ -61,7 +66,7 @@ const GameNavbar = ({
         onChange={(e) => setFontSize(e.target.value)}
       />
       <Link to="/">
-        <button className="leave">Leave Room</button>
+        <button className="leave" onClick={leaveRoom}>Leave Room</button>
       </Link>
     </div>
   );
