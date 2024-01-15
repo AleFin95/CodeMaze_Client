@@ -46,6 +46,7 @@ const GamePage = () => {
       const roomData = roomUsers ? roomUsers.length : 0;
 
       console.log("roomUsers: ", roomUsers);
+      console.log("roomData: ", roomData);
 
       if (roomData === 2 && loading) {
         console.log("Setting loading to false");
@@ -55,9 +56,29 @@ const GamePage = () => {
     [state.room, loading]
   );
 
+  const handleReceiveRooms2 = (data) => {
+    const roomsData = data;
+    console.log("roomsData: ", roomsData);
+
+    const roomUsers = roomsData[state.room]?.users;
+    const roomData = roomUsers ? roomUsers.length : 0;
+
+    console.log("roomUsers: ", roomUsers);
+
+    if (roomData === 2 && loading) {
+      console.log("Setting loading to false");
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
+    let r = state.roomData;
     state.isSolo ? setLoading(false) : setLoading(true);
-    socket.on("receiveRooms", handleReceiveRooms);
+    // socket.on("receiveRooms", handleReceiveRooms)
+    // handleReceiveRooms2(state.roomData)
+
+    socket.emit("sendRooms", { r });
+    socket.on("receiveRooms2", handleReceiveRooms2);
   }, []);
 
   useEffect(() => {
@@ -67,16 +88,20 @@ const GamePage = () => {
 
     console.log("test");
 
-    socket.on("receiveRooms", (data) => {
-      console.log("test2");
-    });
-
     console.log("test3");
 
-    return () => {
-      socket.off("receiveRooms", handleReceiveRooms);
-    };
+    // return () => {
+    //   socket.off("receiveRooms", handleReceiveRooms);
+    // };
   }, [state.room, state.username, handleReceiveRooms]);
+
+  // useEffect(() => {
+  // 	socket.emit("join_room", {username})
+
+  // 	return () => {
+  // 		socket.off('receiveData', handleReceiveData);
+  // 	};
+  // }, [socket]);
 
   // useEffect(() => {
   //   setRoom(state.room)
@@ -170,14 +195,6 @@ const GamePage = () => {
       });
   };
 
-  useEffect(() => {
-    // This effect will run on every render
-    // and trigger a state update, causing an infinite loop
-    if (localStorage.getItem("mode") === "true") {
-      setLoading(true);
-    }
-  }, []);
-
   const isLoggedIn = localStorage.getItem("access_token");
 
   return (
@@ -202,6 +219,7 @@ const GamePage = () => {
             setUserTheme={setUserTheme}
             fontSize={fontSize}
             setFontSize={setFontSize}
+            socket={socket}
           />
           <div className="main">
             <div className="left-container">

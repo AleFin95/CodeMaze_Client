@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './index.css';
 import { useAuth } from '../../contexts'
-import { AvatarModal, ProfileInfo} from '../../components';
+import { AvatarModal, ProfileInfo, ProgressBar} from '../../components';
 import profileImage from './assets/game.png';
 
 const ProfilePage = () => {
@@ -92,15 +92,27 @@ const ProfilePage = () => {
       <div className="user-info">
       <h1>Username: </h1>
       <p>{profileInfo.username}</p>
-      {profileInfo.rank.length > 0 && (
-        <h2>Rank: </h2>
-      )}
-      {profileInfo.rank.map((rankItem) => (
-        <div key={rankItem.id}>
-          <p>{rankItem.name}</p>
-          <p>Min XP: {rankItem.min_xp}, Max XP: {rankItem.max_xp}</p>
-        </div>
-      ))}
+      {profileInfo.rank.map((rankItem) => {
+
+      const remainingXP = rankItem.max_xp - profileInfo.xp;
+      return (
+    <div key={rankItem.id}>
+      <p>{rankItem.name}</p>
+       <ProgressBar 
+                  currentXP={profileInfo.xp}
+                  minXPBronze={0}
+                  maxXPBronze={250}
+                  minXPSilver={251}
+                  maxXPSilver={500}
+                  minXPGold={501}
+                  maxXPGold={750}
+                  minXPlatinum={751}
+                  maxXPlatinum={1000}
+                />
+      <p>Remaining XP to {rankItem.name}: {remainingXP > 0 ? remainingXP : 'Reached'}</p>
+    </div>
+  );
+})}
       </div>
       </div>
       <div className='button-section'>

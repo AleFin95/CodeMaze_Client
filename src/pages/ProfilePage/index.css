@@ -53,6 +53,7 @@
     border-radius: 15px;
     cursor: pointer;
     margin-left: 10px; 
+    border: #1f1b32;
   }
   
   .avatar-section:hover .edit-avatar-btn {
