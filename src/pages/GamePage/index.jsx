@@ -75,8 +75,6 @@ const GamePage = () => {
     let r = state.roomData
     state.isSolo ? setLoading(false) : setLoading(true)
     // socket.on("receiveRooms", handleReceiveRooms)
-    // handleReceiveRooms2(state.roomData)
-
     socket.emit("sendRooms", {r})
     socket.on("receiveRooms2", handleReceiveRooms2)
   }, [])
@@ -86,53 +84,12 @@ const GamePage = () => {
     console.log("room ", state.room);
     setUsername(state.username);
 
-    console.log("test")
-
-    console.log("test3")
-
     // return () => {
     //   socket.off("receiveRooms", handleReceiveRooms);
     // };
   }, [state.room, state.username, handleReceiveRooms]);
 
-
-  // useEffect(() => {
-	// 	socket.emit("join_room", {username})
-
-	// 	return () => {
-	// 		socket.off('receiveData', handleReceiveData);
-	// 	};
-	// }, [socket]);
-
-  
-  
-
-  // useEffect(() => {
-  //   setRoom(state.room)
-  //   console.log("room ", state.room)
-  //   setUsername(state.username)
-  //   // socket.connect()
-
-  //   // socket.on("receivemoredata", data => {
-  //   //   console.log("user_rooms: ", data)
-  //   // })
-
-  //   socket.on("receiveRooms", data => {
-  //     const roomsData = data;
-  //     console.log("roomsData: ", roomsData)
-  //     const roomData = roomsData[state.room]["users"].length
-  //     if(roomData === 2){
-  //       console.log("loading :", loading)
-  //       setLoading(false)
-  //     }
-  //   })
-
-  // }, [])
-
-
-
   const API_URL = "https://api.codex.jaagrav.in";
- 
  
   const tests = [
     {
@@ -247,7 +204,12 @@ const GamePage = () => {
             />
           </div>
           <div className="right-container">
-            <GameQuestions />
+            <GameQuestions
+              socket={socket}
+              room={state.room} 
+              roomData={state.roomData} 
+              name={state.username}
+            />
             <GameTestCases testCases={testCases} />
             <GameOutput
               spinner={spinner}
