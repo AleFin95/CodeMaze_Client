@@ -20,11 +20,20 @@ const PageWrapper = () => {
     padding: "10px 15px",
     fontSize: "30px",
     fontFamily: "Courier New",
-    fontWeight: isActive ? "bold" : "bold",
-    borderBottom: isActive ? "5px solid #4bf275" : "5px solid #4bf275",
+    fontWeight: isActive ? "regular" : "regular",
+    borderBottom: isActive ? "3px solid #4bf275" : " transparent",
     borderRadius: "8px",
     transition: "color 0.3s ease, background-color 0.3s ease",
     cursor: "pointer",
+  });
+
+  const h1Style = ({ isActive }) => ({
+    color: isActive ? "#4bf275" : "rgb(215, 226, 89)",
+    textDecoration: "underline",
+    textDecorationColor: isActive ? "#4bf275" : " transparent",
+    textDecorationThickness: "2px", // Set the thickness of the underline
+    borderRadius: "8px",
+    paddingBottom: "5px",
   });
 
   const isLoggedIn = !!localStorage.getItem("access_token");
@@ -35,12 +44,10 @@ const PageWrapper = () => {
   return (
     <header style={{ marginBottom: "20px" }}>
       <nav>
-        <h1>CODEMAZE</h1>
+        <NavLink to="/" style={h1Style}>
+          <h1>CODEMAZE</h1>
+        </NavLink>
         <div data-testid="div" className="onlyNavs">
-          <NavLink to="/" style={linkStyle}>
-            Home
-          </NavLink>
-
           <NavLink to="/ranking" style={linkStyle}>
             Ranking
           </NavLink>
