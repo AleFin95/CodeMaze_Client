@@ -72,12 +72,11 @@ const GamePage = () => {
   };
 
   useEffect(() => {
-    let r = state.roomData;
-    state.isSolo ? setLoading(false) : setLoading(true);
-    // socket.on("receiveRooms", handleReceiveRooms)
+    let r = state?.roomData || ""; // Use optional chaining and nullish coalescing
+    state?.isSolo ? setLoading(false) : setLoading(true);
     socket.emit("sendRooms", { r });
     socket.on("receiveRooms2", handleReceiveRooms2);
-  }, []);
+  }, [state, loading]);
 
   useEffect(() => {
     setRoom(state.room);

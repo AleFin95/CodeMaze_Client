@@ -1,62 +1,41 @@
-import React from "react";
-import {
-  describe,
-  it,
-  expect,
-  beforeEach,
-  afterEach,
-  mount,
-  mock,
-} from "vitest";
+import { describe, it, expect, beforeEach, afterEach } from "vitest";
 import { screen, render, cleanup } from "@testing-library/react";
 import { AuthProvider } from "../../contexts/index";
 import { BrowserRouter } from "react-router-dom";
-import GamePage from "../../pages/GamePage";
-import matchers from "@testing-library/jest-dom/matchers";
-expect.extend(matchers);
+import GameQuestions from "../../components/GameQuestions";
+import io from "socket.io-client";
 
-import GameTestCases from ".";
+describe("GameQuestions", () => {
+  let server;
+  let socket;
 
-describe("GameTestCases", () => {
   beforeEach(() => {
+    // Create a mock server and client socket
+    server = io();
+    socket = io(server);
+
+    // Use the client socket in your component (replace with actual logic)
     render(
       <AuthProvider>
         <BrowserRouter>
-          <GamePage>
-            <GameTestCases />
-          </GamePage>
+          <GameQuestions
+            socket={socket}
+            room="room"
+            roomData="roomData"
+            name="eco"
+          />
         </BrowserRouter>
       </AuthProvider>
     );
   });
 
   it("should find the heading", () => {
-    const heading = screen.getByRole("heading", { name: /Test Cases:/i });
-    console.log(heading);
+    const heading = screen.getByRole("heading", { name: /Question:/i });
     expect(heading).toBeInTheDocument();
   });
-
-  /* it("should find the heading", () => {
-    const heading = screen.getByRole("heading", { name: /Test Cases:/i });
-    expect(heading).toBeInTheDocument();
-  });
-
-  it("should find the test cases", () => {
-    const testCaseRegex = /print\(twoSum\(\[2, 7, 11, 15\], 9\)\)/i;
-    const testCase = screen.getByText(testCaseRegex);
-    expect(testCase).toBeInTheDocument();
-  }); 
-  
-  it("should find the heading", () => {
-    const heading = screen.getByRole("heading", {
-      name: /Login to Access Game/i,
-    });
-    expect(heading).toBeInTheDocument();
-  });
-  
-  */
 
   afterEach(() => {
     cleanup();
+    server.close();
   });
 });
