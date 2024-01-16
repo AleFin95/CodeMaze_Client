@@ -93,16 +93,7 @@ const ProfilePage = () => {
 
   return (
     <>
-      <div
-        className="profilepage"
-        style={{
-          margin: "50px",
-          height: "100vh",
-          backgroundImage: `url(${profileImage})`,
-          backgroundRepeat: "no-repeat",
-          backgroundSize: "cover",
-        }}
-      >
+      <div className="profilepage">
         <div>
           <div className="profile-container">
             <div className="avatar-section">
@@ -113,6 +104,13 @@ const ProfilePage = () => {
                   className="avatar"
                 />
               )}
+
+              <button
+                className="edit-avatar-btn"
+                onClick={handleEditAvatarClick}
+              >
+                Edit Avatar
+              </button>
             </div>
 
             <AvatarModal
@@ -149,11 +147,6 @@ const ProfilePage = () => {
                 );
               })}
             </div>
-          </div>
-          <div className="button-section">
-            <button className="edit-avatar-btn" onClick={handleEditAvatarClick}>
-              Edit Avatar
-            </button>
           </div>
         </div>
         <ProfileInfo

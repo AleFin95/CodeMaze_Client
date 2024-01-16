@@ -1,4 +1,12 @@
+#base{
+    display: flex;
+    justify-content: center;
+}
+
+
+
 #first {
+    position: fixed;
     display: flex;
     flex-direction: column;
     gap:2em;
@@ -6,15 +14,14 @@
 }
 
 
-
-#main {
+#main { 
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     gap: 15em;
    
-    margin-top: 15em;
+    margin-top: 7em;
 }
 
 #main div {
