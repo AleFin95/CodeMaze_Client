@@ -16,6 +16,18 @@ import GamePage from ".";
 import { MemoryRouter } from "react-router-dom";
 
 describe("GamePage", () => {
+  beforeEach(() => {
+    // Spy on useEffect
+    const useEffectSpy = spy();
+    global.mockEffect = useEffectSpy;
+  });
+
+  afterEach(() => {
+    // Clean up after each test
+    cleanup();
+    global.mockEffect = undefined;
+  });
+
   it("renders without crashing", async () => {
     // Mocking dependencies and context
     jest.mock("axios", () => ({
@@ -29,9 +41,6 @@ describe("GamePage", () => {
       getItem: jest.fn(),
     };
     global.localStorage = localStorageMock;
-
-    // Create a mock state object with the expected structure
-    const mockState = { roomData: {}, isSolo: true };
 
     // Mount the component with context values
     const wrapper = mount(
@@ -52,6 +61,7 @@ describe("GamePage", () => {
 
     // Assertions
     expect(wrapper.find(".App").exists()).toBe(true);
+    expect(global.mockEffect.called).toBe(true);
     // Add more assertions based on your component's behavior
   });
 
