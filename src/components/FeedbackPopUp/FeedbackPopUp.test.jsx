@@ -6,30 +6,23 @@ import { BrowserRouter } from "react-router-dom";
 import matchers from "@testing-library/jest-dom/matchers";
 expect.extend(matchers);
 
-import GameQuestions from ".";
+import FeedbackPopUp from ".";
 
-describe("GameQuestions", () => {
+describe("ProfileInfo", () => {
   beforeEach(() => {
     render(
       <AuthProvider>
         <BrowserRouter>
-          <GameQuestions />
+          <FeedbackPopUp />
         </BrowserRouter>
       </AuthProvider>
     );
   });
 
-  it("should find the heading", () => {
-    const heading = screen.getByRole("heading", { name: /Question:/i });
-    expect(heading).toBeInTheDocument();
+  it("should find the Feedback Pop up window in feedback", () => {
+    const xp = screen.getByText(/Feedback Pop up window/i);
+    expect(xp).toBeInTheDocument();
   });
-
-  /*it("should find the question text", () => {
-    const questionTextRegex =
-      /Given an array of integers nums and an integer target/i;
-    const question = screen.getByText(questionTextRegex);
-    expect(question).toBeInTheDocument();
-  }); */
 
   afterEach(() => {
     cleanup();
