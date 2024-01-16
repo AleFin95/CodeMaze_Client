@@ -8,12 +8,14 @@ import matchers from '@testing-library/jest-dom/matchers';
 expect.extend(matchers);
 
 import HomePage from '.';
+import { AuthProvider } from '../../contexts';
 
 describe('HomePage Component',() => {
   beforeEach(() => {
     render(
+      <AuthProvider>
         <BrowserRouter><HomePage /> </BrowserRouter>
-           
+      </AuthProvider>
     )
     });
     
