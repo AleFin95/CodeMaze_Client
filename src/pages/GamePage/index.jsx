@@ -32,8 +32,11 @@ const GamePage = () => {
   const [loadingSubmit, setLoadingSubmit] = useState(false);
   const [room, setRoom] = useState("")
   const [username, setUsername] = useState("");
-  const [currentRoom, setCurrentRoom] = useState("");
+  const [allRooms, setAllRooms] = useState();
   const [loading, setLoading] = useState(true);
+  const [initialQ, setIntialQ] = useState("");
+
+  const access_token=localStorage.getItem("access_token")
 
   console.log("state: ", state)
 
@@ -68,6 +71,8 @@ const GamePage = () => {
     if (roomData === 2 && loading) {
       console.log("Setting loading to false");
       setLoading(false);
+      setAllRooms(data)
+
     }
   }
   
@@ -77,6 +82,19 @@ const GamePage = () => {
     // socket.on("receiveRooms", handleReceiveRooms)
     socket.emit("sendRooms", {r})
     socket.on("receiveRooms2", handleReceiveRooms2)
+
+    axios
+      .get(`https://codemaze-api.onrender.com/problems/random`, {
+        headers: {
+          Authorization: `Bearer ${access_token}`
+        }
+      })
+      .then((res)=>{
+        setIntialQ(res.data.description)
+      })
+      .catch(error=> {
+          console.error("Error fetching data: ", error)
+      })
   }, [])
   
   useEffect(() => {
@@ -161,6 +179,7 @@ const GamePage = () => {
 
   const isLoggedIn = localStorage.getItem("access_token");
 
+
   return (
    <>
    <Video />
@@ -209,6 +228,8 @@ const GamePage = () => {
               room={state.room} 
               roomData={state.roomData} 
               name={state.username}
+              isSolo={state.isSolo}
+              initialQ={initialQ}
             />
             <GameTestCases testCases={testCases} />
             <GameOutput
