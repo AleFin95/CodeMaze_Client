@@ -1,4 +1,5 @@
 import React from "react";
+
 import "./index.css";
 
 const ProfileInfo = ({ xp, wins, losses, sessions }) => {
@@ -24,9 +25,7 @@ const ProfileInfo = ({ xp, wins, losses, sessions }) => {
               <div>
                 {sessions.map((sessionItem) => (
                   <p key={sessionItem.id}>
-                    {/* Display session details */}
                     <p>Session ID: {sessionItem.id}</p>
-                    {/* Add other session details as needed */}
                   </p>
                 ))}
               </div>

@@ -8,12 +8,6 @@ const PageWrapper = () => {
   const { selectedAvatar } = useAuth();
   const navigate = useNavigate();
 
-  const handleLogout = () => {
-    localStorage.removeItem("access_token");
-    localStorage.removeItem("username");
-    //localStorage.removeItem("isAdmin");
-    navigate("/");
-  };
   const linkStyle = ({ isActive }) => ({
     color: isActive ? "#4bf275" : "rgb(215, 226, 89)",
     textDecoration: "none",
@@ -52,9 +46,6 @@ const PageWrapper = () => {
           </NavLink>
           {isLoggedIn ? (
             <>
-              <NavLink to="/" onClick={handleLogout} style={linkStyle}>
-                Logout
-              </NavLink>
               {selectedAvatar && (
                 <NavLink to="/profile">
                   <img
