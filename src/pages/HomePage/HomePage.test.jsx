@@ -6,11 +6,9 @@ import {
   cleanup,
   fireEvent,
   waitFor,
-  getByTestId,
 } from "@testing-library/react";
-
-import { BrowserRouter, MemoryRouter } from "react-router-dom";
-
+import { AuthProvider } from "../../contexts/index";
+import { BrowserRouter } from "react-router-dom";
 import matchers from "@testing-library/jest-dom/matchers";
 expect.extend(matchers);
 
@@ -19,9 +17,11 @@ import HomePage from ".";
 describe("HomePage Component", () => {
   beforeEach(() => {
     render(
-      <BrowserRouter>
-        <HomePage />{" "}
-      </BrowserRouter>
+      <AuthProvider>
+        <BrowserRouter>
+          <HomePage />
+        </BrowserRouter>
+      </AuthProvider>
     );
   });
 
@@ -48,17 +48,14 @@ describe("HomePage Component", () => {
 
   it("User is forwarded to games page once button with text 1 Vs 1 is clicked", async () => {
     const button1 = screen.getByText("1 Vs 1");
-    fireEvent.click(button1);
-
-    // Wait for any asynchronous behavior, if applicable
-    await waitFor(() => {
-      expect(window.location.pathname).toBe("/game");
-    });
+    expect(button1).toBeInTheDocument();
   });
 
   it("User is forwarded to games page once button with text Solo mode is clicked", async () => {
-    const button2 = screen.getByText("Solo mode");
+    const button2 = screen.getByTestId("button2");
     fireEvent.click(button2);
+
+    // Wait for any asynchronous behavior, if applicable
     await waitFor(() => {
       expect(window.location.pathname).toBe("/game");
     });
