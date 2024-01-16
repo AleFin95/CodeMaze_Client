@@ -65,6 +65,7 @@
 .title h1 {
   font-size: 45px;
   color:white;  
+
 }
 
 .title p {
@@ -77,6 +78,7 @@
 .player1 h1, .player2 h1  {
   font-size: 45px;
   margin: 0;
+  padding-top: 10px;
   opacity: 0;
   color: white;
 }
