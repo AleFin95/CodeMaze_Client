@@ -1,19 +1,26 @@
-/* ProfileInfo.css */
-  
+
+  .profile-info{
+    height: 50%;
+    display: flex;
+    flex-direction: row;
+    text-align: right;
+    justify-content: right;
+
+  }
   .profile-info-container {
-    margin-left:60px;
-    margin-top: 40px;
+    margin-top: 50px;
+    width: 90%;
+    padding:0;
     display: flex;
     flex-direction: row;
     text-align: center;
-    justify-content:space-around;
+    justify-content:space-evenly;
     opacity: 1;
   }
   
 
-
-
   .achievements-section {
+    margin-left: 80px;
     display: flex;
     flex-direction:column;
     text-align: end;
@@ -21,9 +28,6 @@
     border-radius: 10px;
     opacity: 1;
     transition: opacity 0.3s ease-in-out;
-    margin-top: 10px;
-    margin-left: 100px;
-    margin-bottom: 20px; /* Add margin-bottom for space */
   }
   
   .sessions-section {
@@ -33,9 +37,8 @@
     border-radius: 10px;
     opacity: 1;
     transition: opacity 0.3s ease-in-out;
-    margin-top: 0px;
-    margin-bottom: 150px;
     margin-right: 100px;
+    margin-bottom: 0;
     line-height: 1.5;
   }
   
