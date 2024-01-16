@@ -3,7 +3,7 @@ import "./index.css";
 import { useAuth } from "../../contexts";
 import { NavLink, useNavigate } from "react-router-dom";
 import { AvatarModal, ProfileInfo, ProgressBar } from "../../components";
-import myImgBackground from "../../../public/backgrounds/game.png";
+import myImgBackground from "../../assets/game.png";
 
 const ProfilePage = () => {
   const { selectedAvatar, setAvatar } = useAuth();
