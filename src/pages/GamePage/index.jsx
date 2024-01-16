@@ -36,8 +36,9 @@ const GamePage = () => {
   const [allRooms, setAllRooms] = useState();
   const [loading, setLoading] = useState(true);
   const [initialQ, setIntialQ] = useState("");
+  const [testCase, setTestCase] = useState("");
 
-  const access_token = localStorage.getItem("access_token");
+  const access_token =localStorage.getItem("access_token")
 
   console.log("state: ", state);
 
@@ -89,50 +90,73 @@ const GamePage = () => {
           Authorization: `Bearer ${access_token}`,
         },
       })
-      .then((res) => {
-        setIntialQ(res.data.description);
+      .then((res)=>{
+        console.log(res)
+        setIntialQ(res.data.description)
+        setTestCase(res.data.examples[0].test_case)
       })
-      .catch((error) => {
-        console.error("Error fetching data: ", error);
-      });
-  }, []);
+      .catch(error=> {
+          console.error("Error fetching data: ", error)
+      })
 
-  useEffect(() => {
-    setRoom(state.room);
-    console.log("room ", state.room);
-    setUsername(state.username);
+      
+    }, [])
+    
+    useEffect(() => {
+      setRoom(state.room);
+      console.log("room ", state.room);
+      setUsername(state.username);
+      
+      if(initialQ || testCase){
+        socket.emit("setting_question", {initialQ, testCase})
+        socket.emit("getting_question")
+        socket.on("got_question", data => {
+          console.log("getting_question: ", data)
+          setIntialQ(data.question)
+          setTestCase(data.testcases)
 
-    // return () => {
-    //   socket.off("receiveRooms", handleReceiveRooms);
-    // };
-  }, [state.room, state.username, handleReceiveRooms]);
+        })
+      }
+  }, [state.room, state.username, handleReceiveRooms, initialQ, testCase]);
 
   const API_URL = "https://api.codex.jaagrav.in";
-
-  const tests = [
-    {
-      py: [
-        "print(twoSum([2, 7, 11, 15], 9))",
-        "print(twoSum([21, 7, 11, 1], 8))",
-        "print(twoSum([21, 9, 1, 12], 10))",
-      ],
-    },
-    {
-      js: [
-        "console.log(twoSum([2, 7, 11, 15], 9))",
-        "console.log(twoSum([7, 12, 1, 19], 8))",
-        "console.log(twoSum([21, 9, 1, 12], 10))",
-      ],
-    },
-  ];
+ 
+  // const tests = [
+  //   {
+  //     py: [
+  //       `print(${testCase})`
+  //     ],
+  //   },
+  //   {
+  //     js: [
+  //       `console.log(${testCase})`
+  //     ],
+  //   },
+  // ];
 
   useEffect(() => {
+    const tests = [
+      {
+        py: [
+          `print(${testCase})`
+        ],
+      },
+      {
+        js: [
+          `console.log(${testCase})`
+        ],
+      },
+    ];
+
     if (userLang === "py") {
       setTestCases(tests[0].py);
     } else {
       setTestCases(tests[1].js);
     }
-  }, [userLang]);
+
+
+
+  }, [userLang, testCase]);
 
   const options = {
     fontSize: fontSize,
@@ -145,6 +169,12 @@ const GamePage = () => {
   const [buttonDisabled, setButtonDisabled] = useState(false);
   const [buttonPressed, setButtonPressed] = useState(false);
   const [popupHidden, setPopupHidden] = useState(true);
+
+  const handleCancel = () => {
+    if (socket && socket.connected){
+      socket.disconnect()
+    }
+  }
 
   const handleCompile = (action) => {
     if (action === "Run") {
