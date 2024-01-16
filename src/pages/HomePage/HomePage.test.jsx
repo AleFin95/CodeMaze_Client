@@ -46,6 +46,22 @@ describe("HomePage Component", () => {
     expect(button.textContent).toBe("Solo mode");
   });
 
+  /*it("User is forwarded to games page once button with text 1 Vs 1 is clicked", async () => {
+    const button1 = screen.getByText("1 Vs 1");
+    fireEvent.click(button1);
+
+    // Wait for any asynchronous behavior, if applicable
+    await waitFor(() => {
+      expect(window.location.pathname).toBe("/game");
+    });
+  });
+*/
+
+  it("Contains a list", () => {
+    const p = screen.getByRole("list");
+    expect(p).toBeInTheDocument();
+  });
+
   it("User is forwarded to games page once button with text 1 Vs 1 is clicked", async () => {
     const button1 = screen.getByText("1 Vs 1");
     expect(button1).toBeInTheDocument();

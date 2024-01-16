@@ -2,10 +2,12 @@ import { describe, it, expect, beforeEach, afterEach } from "vitest";
 import { screen, render, cleanup } from "@testing-library/react";
 import { AuthProvider } from "../../contexts/index";
 import { BrowserRouter } from "react-router-dom";
-import GameQuestions from "../../components/GameQuestions";
 import io from "socket.io-client";
 
-describe("GameQuestions", () => {
+import GameTestCases from ".";
+import GamePage from "../../pages/GamePage";
+
+describe("GameTestCases", () => {
   let server;
   let socket;
 
@@ -18,12 +20,14 @@ describe("GameQuestions", () => {
     render(
       <AuthProvider>
         <BrowserRouter>
-          <GameQuestions
-            socket={socket}
-            room="room"
-            roomData="roomData"
-            name="eco"
-          />
+          <GamePage>
+            <GameTestCases
+              socket={socket}
+              room="room"
+              roomData="roomData"
+              name="eco"
+            />
+          </GamePage>
         </BrowserRouter>
       </AuthProvider>
     );

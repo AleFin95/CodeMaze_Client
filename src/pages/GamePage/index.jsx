@@ -15,6 +15,7 @@ import {
   GameSubmitButton,
   GameRunButton,
   MatchingPlayers,
+  FeedbackPopUp,
 } from "../../components";
 import { Link } from "react-router-dom";
 
@@ -32,8 +33,11 @@ const GamePage = () => {
   const [loadingSubmit, setLoadingSubmit] = useState(false);
   const [room, setRoom] = useState("");
   const [username, setUsername] = useState("");
-  const [currentRoom, setCurrentRoom] = useState("");
+  const [allRooms, setAllRooms] = useState();
   const [loading, setLoading] = useState(true);
+  const [initialQ, setIntialQ] = useState("");
+
+  const access_token = localStorage.getItem("access_token");
 
   console.log("state: ", state);
 
@@ -68,15 +72,30 @@ const GamePage = () => {
     if (roomData === 2 && loading) {
       console.log("Setting loading to false");
       setLoading(false);
+      setAllRooms(data);
     }
   };
 
   useEffect(() => {
-    let r = state?.roomData || ""; // Use optional chaining and nullish coalescing
-    state?.isSolo ? setLoading(false) : setLoading(true);
+    let r = state.roomData;
+    state.isSolo ? setLoading(false) : setLoading(true);
+    // socket.on("receiveRooms", handleReceiveRooms)
     socket.emit("sendRooms", { r });
     socket.on("receiveRooms2", handleReceiveRooms2);
-  }, [state, loading]);
+
+    axios
+      .get(`https://codemaze-api.onrender.com/problems/random`, {
+        headers: {
+          Authorization: `Bearer ${access_token}`,
+        },
+      })
+      .then((res) => {
+        setIntialQ(res.data.description);
+      })
+      .catch((error) => {
+        console.error("Error fetching data: ", error);
+      });
+  }, []);
 
   useEffect(() => {
     setRoom(state.room);
@@ -123,11 +142,18 @@ const GamePage = () => {
     setUserOutput("");
   };
 
+  const [buttonDisabled, setButtonDisabled] = useState(false);
+  const [buttonPressed, setButtonPressed] = useState(false);
+  const [popupHidden, setPopupHidden] = useState(true);
+
   const handleCompile = (action) => {
     if (action === "Run") {
       setLoadingRun(true);
     } else if (action === "Submit") {
       setLoadingSubmit(true);
+      socket.emit("button_press", { room });
+      setButtonDisabled(true);
+      setButtonPressed(true);
     }
 
     axios
@@ -154,9 +180,45 @@ const GamePage = () => {
           setLoadingRun(false);
         } else if (action === "Submit") {
           setLoadingSubmit(false);
+          setPopupHidden(false);
+          socket.emit("display_popup", { room });
+          setTimeout(() => {
+            setButtonDisabled(false);
+            setPopupHidden(true);
+            setButtonPressed(false);
+            socket.emit("button_enable", { room });
+            socket.emit("hide_popup", { room });
+          }, 2000);
         }
       });
   };
+
+  useEffect(() => {
+    const buttonPressedListener = () => {
+      setButtonDisabled(true);
+    };
+    const buttonEnabledListener = () => {
+      setButtonDisabled(false);
+    };
+    const popupDisplayListener = () => {
+      setPopupHidden(false);
+    };
+    const popupHideListener = () => {
+      setPopupHidden(true);
+    };
+
+    socket.on("button_pressed", buttonPressedListener);
+    socket.on("button_enabled", buttonEnabledListener);
+    socket.on("displayed_popup", popupDisplayListener);
+    socket.on("hidden_popup", popupHideListener);
+
+    return () => {
+      socket.off("button_pressed", buttonPressedListener);
+      socket.off("button_enabled", buttonEnabledListener);
+      socket.off("displayed_popup", popupDisplayListener);
+      socket.off("hidden_popup", popupHideListener);
+    };
+  }, []);
 
   const isLoggedIn = localStorage.getItem("access_token");
 
@@ -172,7 +234,7 @@ const GamePage = () => {
           {/* Additional content for non-logged-in users */}
         </div>
       ) : loading ? (
-        <MatchingPlayers />
+        <MatchingPlayers handleCancel={handleCancel} />
       ) : (
         <div className="App">
           <GameNavbar
@@ -204,6 +266,7 @@ const GamePage = () => {
               <GameSubmitButton
                 handleCompile={handleCompile}
                 loadingSubmit={loadingSubmit}
+                disabled={buttonDisabled}
               />
             </div>
             <div className="right-container">
@@ -212,14 +275,20 @@ const GamePage = () => {
                 room={state.room}
                 roomData={state.roomData}
                 name={state.username}
+                isSolo={state.isSolo}
+                initialQ={initialQ}
               />
               <GameTestCases testCases={testCases} />
-              <GameOutput
-                spinner={spinner}
-                userOutput={userOutput}
-                loading={loadingRun || loadingSubmit}
-                clearOutput={clearOutput}
-              />
+              {popupHidden ? (
+                <GameOutput
+                  spinner={spinner}
+                  userOutput={userOutput}
+                  loading={loadingRun || loadingSubmit}
+                  clearOutput={clearOutput}
+                />
+              ) : (
+                <FeedbackPopUp buttonPressed={buttonPressed} />
+              )}
             </div>
           </div>
         </div>
