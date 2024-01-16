@@ -72,18 +72,17 @@ describe("Page Wrapper Component", () => {
       expect(window.location.pathname).toBe("/login");
     });
   });
-  /*
-    it('User is forwarded to Profile page when Avatar is clicked', async() => {
-      const link1 = screen.getByRole('img')
-      expect(link1).toBeInTheDocument()
-      fireEvent.click(link1);
-    
-      // Wait for any asynchronous behavior, if applicable
-      await waitFor(() => {
-        expect(window.location.pathname).toBe('/profile');
-      });
-  
-  })*/
+
+  /*it("User is forwarded to Profile page when Avatar is clicked", async () => {
+    const link1 = screen.getByRole("img");
+    expect(link1).toBeInTheDocument();
+    fireEvent.click(link1);
+
+    // Wait for any asynchronous behavior, if applicable
+    await waitFor(() => {
+      expect(window.location.pathname).toBe("/profile");
+    });
+  }); */
   //check wether links have different color when not active
 
   /*it('Nav links color changes when link is clicked', () => {
@@ -96,24 +95,20 @@ describe("Page Wrapper Component", () => {
     
   })*/
 
-  /*
-    it( 'dsds', async() => {
-         const rankingLink = screen.getByText((content, element) => {
-        // Check if the text "Ranking" is present in any of the descendant elements
-        const hasText = element.textContent.includes('Ranking');
-        return hasText;
-      });
-    
-      // Simulate a click on the link
-      fireEvent.click(rankingLink);
-    
-      // Wait for any asynchronous behavior, if applicable
-      await waitFor(() => {
-        // Assert that the URL is as expected after the click
-        expect(window.location.pathname).toBe('/ranking');
-    })
-   
-})*/
+  it("'User is forwarded to ranking page when ranking link is clicked", async () => {
+    const rankingLink = screen.getByText("Ranking");
+    expect(rankingLink).toBeInTheDocument();
+    fireEvent.click(rankingLink);
+
+    // Simulate a click on the link
+    fireEvent.click(rankingLink);
+
+    // Wait for any asynchronous behavior, if applicable
+    await waitFor(() => {
+      // Assert that the URL is as expected after the click
+      expect(window.location.pathname).toBe("/ranking");
+    });
+  });
 
   afterEach(() => {
     cleanup();
