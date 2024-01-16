@@ -3,7 +3,8 @@ import myImage from '../../assets/gif.gif';
 import { Link } from "react-router-dom";
 import './index.css'
 
-const MatchingPlayers = () => {
+
+const MatchingPlayers = ({ handleCancel }) => {
 
     const div = {
         backgroundImage: `url(${myImage})`,
@@ -39,7 +40,7 @@ const MatchingPlayers = () => {
     <section data-testid="section1" id="matching" style={sectionmatching}>
         <h1 data-testid="h1" style={h1}>Matching you with another player...</h1>
         <div data-testid="div" className='dd' style={div} ></div>
-        <Link data-testid="button" id="link" to="/" style={linkStyle}>Cancel</Link>
+        <Link data-testid="button" id="link" to="/" style={linkStyle} onClick={() => handleCancel()}>Cancel</Link>
     </section> 
    </>
     )

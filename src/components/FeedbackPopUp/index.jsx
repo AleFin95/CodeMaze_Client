@@ -2,9 +2,15 @@ import React, { useEffect } from 'react';
 import '../../assets/App.css';
 import './index.css';
 
-const FeedbackPopUp = () => {
+const FeedbackPopUp = ({ buttonPressed }) => {
   return (
-    <div>Feedback Pop up window </div>
+    <div>
+      {buttonPressed ? (
+        <h1>You WIN</h1>
+      ) : (
+        <h1>You LOOSE</h1>
+      )}
+    </div>
   )
 }
 

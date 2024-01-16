@@ -15,6 +15,7 @@ import {
   GameSubmitButton,
   GameRunButton,
   MatchingPlayers,
+  FeedbackPopUp,
 } from "../../components";
 import { Link } from "react-router-dom";
 
@@ -124,11 +125,19 @@ const GamePage = () => {
     setUserOutput("");
   };
 
+  const [ buttonDisabled, setButtonDisabled ] = useState(false)
+  const [ buttonPressed, setButtonPressed ] = useState(false)
+  const [ popupHidden, setPopupHidden ] = useState(true)
+
   const handleCompile = (action) => {
+
     if (action === "Run") {
       setLoadingRun(true);
     } else if (action === "Submit") {
       setLoadingSubmit(true);
+      socket.emit("button_press", { room })
+      setButtonDisabled(true)
+      setButtonPressed(true)
     }
 
     axios
@@ -155,11 +164,55 @@ const GamePage = () => {
           setLoadingRun(false);
         } else if (action === "Submit") {
           setLoadingSubmit(false);
+          setPopupHidden(false)
+          socket.emit("display_popup", { room })
+          setTimeout(() => {
+            setButtonDisabled(false)
+            setPopupHidden(true)
+            setButtonPressed(false)
+            socket.emit("button_enable", { room })
+            socket.emit("hide_popup", { room })
+          }, 2000)
         }
       });
+
   }; 
 
+  useEffect(() => {
+    const buttonPressedListener = () => {
+      setButtonDisabled(true)
+    };
+    const buttonEnabledListener = () => {
+      setButtonDisabled(false)
+    };
+    const popupDisplayListener = () => {
+      setPopupHidden(false)
+    };
+    const popupHideListener = () => {
+      setPopupHidden(true)
+    };
+
+    socket.on("button_pressed", buttonPressedListener)
+    socket.on('button_enabled', buttonEnabledListener)
+    socket.on('displayed_popup', popupDisplayListener)
+    socket.on('hidden_popup', popupHideListener)
+
+    return () => {
+      socket.off('button_pressed', buttonPressedListener)
+      socket.off('button_enabled', buttonEnabledListener)
+      socket.off('displayed_popup', popupDisplayListener)
+      socket.off('hidden_popup', popupHideListener)
+    }
+  },[])
+
   const isLoggedIn = localStorage.getItem("access_token");
+
+  const handleCancel = () => {
+    if (socket && socket.connected) {
+      socket.disconnect()
+    }
+  }
+
 
   return (
    <>
@@ -170,7 +223,7 @@ const GamePage = () => {
     <Link to="/login"><button id="loginBtn">Login</button></Link>
    {/* Additional content for non-logged-in users */}
  </div>) : (
-     loading  ? <MatchingPlayers/> :(
+     loading  ? <MatchingPlayers handleCancel={handleCancel}/> :(
      <div className="App">
         <GameNavbar
           userLang={userLang}
@@ -201,6 +254,7 @@ const GamePage = () => {
             <GameSubmitButton
               handleCompile={handleCompile}
               loadingSubmit={loadingSubmit}
+              disabled={buttonDisabled}
             />
           </div>
           <div className="right-container">
@@ -211,12 +265,18 @@ const GamePage = () => {
               name={state.username}
             />
             <GameTestCases testCases={testCases} />
-            <GameOutput
-              spinner={spinner}
-              userOutput={userOutput}
-              loading={loadingRun || loadingSubmit}
-              clearOutput={clearOutput}
-            />
+            {popupHidden ? (
+              <GameOutput
+                spinner={spinner}
+                userOutput={userOutput}
+                loading={loadingRun || loadingSubmit}
+                clearOutput={clearOutput}
+              />
+            ) : (
+              <FeedbackPopUp 
+                buttonPressed={buttonPressed}
+              />
+            )}
           </div>
         </div>
       </div>
