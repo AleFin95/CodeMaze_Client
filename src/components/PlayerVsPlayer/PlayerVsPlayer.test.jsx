@@ -6,30 +6,30 @@ import { BrowserRouter } from "react-router-dom";
 import matchers from "@testing-library/jest-dom/matchers";
 expect.extend(matchers);
 
-import GameQuestions from ".";
+import PlayerVsPlayer from ".";
 
-describe("GameQuestions", () => {
+describe("PlayerVsPlayer", () => {
   beforeEach(() => {
     render(
       <AuthProvider>
         <BrowserRouter>
-          <GameQuestions />
+          <PlayerVsPlayer />
         </BrowserRouter>
       </AuthProvider>
     );
   });
 
-  it("should find the heading", () => {
-    const heading = screen.getByRole("heading", { name: /Question:/i });
-    expect(heading).toBeInTheDocument();
+  it("renders player names", () => {
+    const player = screen.getByRole("heading", { name: /ss/i });
+    expect(player).toBeInTheDocument();
   });
 
-  /*it("should find the question text", () => {
-    const questionTextRegex =
-      /Given an array of integers nums and an integer target/i;
-    const question = screen.getByText(questionTextRegex);
-    expect(question).toBeInTheDocument();
-  }); */
+  it("renders title", () => {
+    const heading = screen.getByRole("heading", {
+      name: /The game will start in:\s*10/i,
+    });
+    expect(heading).toBeInTheDocument();
+  });
 
   afterEach(() => {
     cleanup();
