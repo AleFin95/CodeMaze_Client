@@ -29,11 +29,10 @@ const PageWrapper = () => {
 
   const h1Style = ({ isActive }) => ({
     color: isActive ? "#4bf275" : "rgb(215, 226, 89)",
-    textDecoration: "underline",
     textDecorationColor: isActive ? "#4bf275" : " transparent",
     textDecorationThickness: "2px", // Set the thickness of the underline
     borderRadius: "8px",
-    paddingBottom: "5px",
+    textDecoration: "none",
   });
 
   const isLoggedIn = !!localStorage.getItem("access_token");
