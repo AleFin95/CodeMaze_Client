@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Bungee+Spice&display=swap');
+
 #base{
     display: flex;
     justify-content: center;
@@ -10,7 +12,7 @@
     display: flex;
     flex-direction: column;
     gap:2em;
-    margin-bottom: 15em;
+    margin-bottom: 10em;
 }
 
 
@@ -19,9 +21,8 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    gap: 15em;
-   
-    margin-top: 7em;
+    gap: 10em;
+    margin-top: 10em;
 }
 
 #main div {
@@ -40,7 +41,48 @@
     margin-top: 0;
     height: 100px;
 }
+.title {
+    margin-bottom: 0;
+}
 
 .title h1 {
     font-size: 40px;
 }
+
+.title p {
+    font-family: 'Bungee Spice', sans-serif;
+    font-size: 80px;
+    margin-bottom: 10em;
+}
+
+.image-container {
+    opacity: 0;
+    transition: opacity 1s ease; /* Adjust the duration and easing function as needed */
+  }
+  
+  .image-container.show  {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+  .image-container.zoom-in img {
+    transform: scale(0); /* Adjust the scale factor for zooming in */
+  }
+
+  .image-container img {
+    width: 100%;
+    transition: transform 1s ease; /* Adjust the duration and easing function as needed */
+  }
+
+  .image-container2 {
+    overflow: hidden;
+  }
+  
+  .image-container2 img {
+    width: 100%;
+    transition: transform 1s ease; /* Adjust the duration and easing function as needed */
+    transform: translateX(100%); /* Start the image off-screen to the left */
+  }
+  
+  .image-container2.slide-in img {
+    transform: translateX(0); /* Move the image back to its original position */
+  }
