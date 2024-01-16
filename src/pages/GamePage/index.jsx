@@ -225,14 +225,6 @@ const GamePage = () => {
 
   const isLoggedIn = localStorage.getItem("access_token");
 
-
-  const handleCancel = () => {
-    if (socket && socket.connected) {
-      socket.disconnect()
-    }
-  }
-
-
   return (
    <>
    <Video />
