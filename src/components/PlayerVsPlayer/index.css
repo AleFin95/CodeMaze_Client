@@ -1,20 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Bungee+Spice&display=swap');
+
+#base{
+    display: flex;
+    justify-content: center;
+}
+
+#main div img {
+  height: 300px;
+  width: 300px;
+}
+
 #first {
     display: flex;
     flex-direction: column;
     gap:2em;
-    margin-bottom: 15em;
+    margin-bottom: 10em;
+    margin-top: 4em;
 }
 
-
-
-#main {
+#main { 
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    gap: 15em;
-   
-    margin-top: 15em;
+    gap: 75em;
+    margin-top: 8em;
 }
 
 #main div {
@@ -33,7 +43,35 @@
     margin-top: 0;
     height: 100px;
 }
+.title {
+    margin-bottom: 0em;
+}
 
 .title h1 {
-    font-size: 40px;
+    font-size: 45px;
+    color:white;
 }
+
+.title p {
+    font-family: 'Bungee Spice', sans-serif;
+    font-size: 80px;
+    margin-bottom: 0em;
+}
+
+.player1 h1, .player2 h1  {
+  font-size: 30px;
+}
+
+  .player2 {
+    overflow: hidden;
+  }
+
+  .player2 img {
+    width: 100%;
+    transition: transform 1s ease; /* Adjust the duration and easing function as needed */
+    transform: translateX(100%); /* Start the image off-screen to the left */
+  }
+
+  .player2.slide-in img {
+    transform: translateX(0); /* Move the image back to its original position */
+  }
