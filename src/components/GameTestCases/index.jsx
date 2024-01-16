@@ -1,4 +1,3 @@
-import { useAuth } from "../../contexts";
 const GameTestCases = ({ testCases }) => {
   return (
     <>

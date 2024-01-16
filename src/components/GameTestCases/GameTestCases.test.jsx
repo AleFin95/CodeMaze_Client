@@ -1,5 +1,13 @@
 import React from "react";
-import { describe, it, expect, beforeEach, afterEach } from "vitest";
+import {
+  describe,
+  it,
+  expect,
+  beforeEach,
+  afterEach,
+  mount,
+  mock,
+} from "vitest";
 import { screen, render, cleanup } from "@testing-library/react";
 import { AuthProvider } from "../../contexts/index";
 import { BrowserRouter } from "react-router-dom";
@@ -24,6 +32,7 @@ describe("GameTestCases", () => {
 
   it("should find the heading", () => {
     const heading = screen.getByRole("heading", { name: /Test Cases:/i });
+    console.log(heading);
     expect(heading).toBeInTheDocument();
   });
 

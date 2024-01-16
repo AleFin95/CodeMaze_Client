@@ -72,14 +72,30 @@ const GamePage = () => {
   };
 
   useEffect(() => {
-    let r = state.roomData;
-    state.isSolo ? setLoading(false) : setLoading(true);
-    // socket.on("receiveRooms", handleReceiveRooms)
-    // handleReceiveRooms2(state.roomData)
+    let r = state?.roomData;
+    let isSolo = state?.isSolo;
 
-    socket.emit("sendRooms", { r });
-    socket.on("receiveRooms2", handleReceiveRooms2);
-  }, []);
+    // Check if state.room is defined before accessing its properties
+    if (state && state.room) {
+      socket.emit("sendRooms", { r });
+      socket.on("receiveRooms2", handleReceiveRooms2);
+
+      // Check if state.roomData is defined before using it
+      const roomUsers = state.roomData?.[state.room]?.users;
+      const roomData = roomUsers ? roomUsers.length : 0;
+
+      if (roomData === 2 && loading) {
+        setLoading(false);
+      }
+    }
+  }, [
+    state?.room,
+    state?.isSolo,
+    state?.roomData,
+    socket,
+    handleReceiveRooms2,
+    setLoading,
+  ]);
 
   useEffect(() => {
     setRoom(state.room);
