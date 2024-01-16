@@ -2,37 +2,32 @@ import React from "react";
 
 import "./index.css";
 
-const ProfileInfo = ({ xp, wins, losses, sessions }) => {
+const ProfileInfo = ({ wins, losses, sessions }) => {
   return (
     <>
-      <div className="profile-info">
-        <div className="profile-info-container">
-          <div className="achievements-section">
-            <h2>Achievements</h2>
-            <p>XP: {xp}</p>
-            <p>Wins: {wins}</p>
-            <p>Losses: {losses}</p>
-          </div>
-
-          <div className="sessions-section">
-            <h2>Sessions played</h2>
-            {sessions.length === 0 ? (
-              <p>
-                Your gaming chair feels neglected. <br />
-                No epic gaming tales to share—yet!
-              </p>
-            ) : (
-              <div>
-                {sessions.map((sessionItem) => (
-                  <p key={sessionItem.id}>
-                    <p>Session ID: {sessionItem.id}</p>
-                  </p>
-                ))}
-              </div>
-            )}
-          </div>
+      <section id="sec-session">
+        <div className="sessions-section">
+          <h1 id="sessionsH1">Sessions played</h1>
+          {sessions.length === 0 ? (
+            <p id="font-profile">
+              Your gaming chair feels neglected. <br />
+              No epic gaming tales to share—yet!
+            </p>
+          ) : (
+            <div>
+              {sessions.map((sessionItem) => (
+                <p id="font-profile" key={sessionItem.id}>
+                  <p id="font-profile">Session ID: {sessionItem.id}</p>
+                </p>
+              ))}
+            </div>
+          )}
         </div>
-      </div>
+        <div className="achievements-section">
+          <h2>Wins: {wins}</h2>
+          <h2>Losses: {losses}</h2>
+        </div>
+      </section>
     </>
   );
 };

@@ -41,9 +41,6 @@ const PageWrapper = () => {
           <h1>CODEMAZE</h1>
         </NavLink>
         <div data-testid="div" className="onlyNavs">
-          <NavLink to="/ranking" style={linkStyle}>
-            Ranking
-          </NavLink>
           {isLoggedIn ? (
             <>
               {selectedAvatar && (
