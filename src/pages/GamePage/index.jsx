@@ -71,48 +71,54 @@ const GamePage = () => {
       setLoading(false);
     }
   }
+
+  const API_URL = "https://api.codex.jaagrav.in";
+
+  const [ question, setQuestion ] = useState("")
+  const [ testcase, setTestCase ] = useState("")
+  const access_token = localStorage.getItem("access_token")
   
   useEffect(() => {
     let r = state.roomData
     state.isSolo ? setLoading(false) : setLoading(true)
-    // socket.on("receiveRooms", handleReceiveRooms)
+    
     socket.emit("sendRooms", {r})
     socket.on("receiveRooms2", handleReceiveRooms2)
-  }, [])
-  
+    axios
+      .get(`https://codemaze-api.onrender.com/problems/random`, {
+        headers: {
+          Authorization: `Bearer ${access_token}`
+        }
+      })
+      .then((res)=>{
+        console.log(res)
+        setQuestion(res.data.description)
+        setTestCase(res.data.examples[0].test_case)
+      })
+      .catch(error=> {
+        console.error("Error fetching data: ", error)
+      })
+      socket.emit("setting_question", {question, testcase})
+      // socket.emit("getting_question", { room })
+    }, [])
+
   useEffect(() => {
     setRoom(state.room);
     console.log("room ", state.room);
     setUsername(state.username);
 
-    // return () => {
-    //   socket.off("receiveRooms", handleReceiveRooms);
-    // };
   }, [state.room, state.username, handleReceiveRooms]);
 
-  const API_URL = "https://api.codex.jaagrav.in";
- 
   const tests = [
-    {
-      py: [
-        "print(twoSum([2, 7, 11, 15], 9))",
-        "print(twoSum([21, 7, 11, 1], 8))",
-        "print(twoSum([21, 9, 1, 12], 10))",
-      ],
-    },
-    {
-      js: [
-        "console.log(twoSum([2, 7, 11, 15], 9))",
-        "console.log(twoSum([7, 12, 1, 19], 8))",
-        "console.log(twoSum([21, 9, 1, 12], 10))",
-      ],
-    },
+    { py: [`print(${testcase})`], },
+    { js: [`console.log(${testcase})`], },
   ];
 
   useEffect(() => {
     if (userLang === "py") {
       setTestCases(tests[0].py);
-    } else {
+    } 
+    else if (userLang === "js") {
       setTestCases(tests[1].js);
     }
   }, [userLang]);
@@ -202,6 +208,7 @@ const GamePage = () => {
       socket.off('button_enabled', buttonEnabledListener)
       socket.off('displayed_popup', popupDisplayListener)
       socket.off('hidden_popup', popupHideListener)
+
     }
   },[])
 
@@ -212,7 +219,6 @@ const GamePage = () => {
       socket.disconnect()
     }
   }
-
 
   return (
    <>
