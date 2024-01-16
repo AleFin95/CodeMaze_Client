@@ -4,18 +4,24 @@ import { useState, useEffect } from "react";
 import { VideoVs } from "../../components";
 import 'animate.css';
 
-const PlayerVsPlayer = () => {
+const PlayerVsPlayer = ({roomData}) => {
     const [counter, setCounter] = useState(10);
     const [showImage, setShowImage] = useState(true);
     const [secondAnimation, setSecondAnimation] = useState(false);
     const [timerShow, setTimerShow] = useState(false);
+    const [newds ,setNewds] = useState(true);
     
-    
+   /* localStorage.removeItem("interval")
+    localStorage.setItem("interval", true);*/
+
     useEffect(() => {
       // Function to be executed after the component has mounted
       const timeoutId = setTimeout(() => {
         // Update state to add the class after 2 seconds
         setSecondAnimation(true);
+        
+       
+       
       }, 1800); // Set the delay duration (in milliseconds)
   
       // Clean up the timeout when the component is unmounted or when the class is added
@@ -37,10 +43,11 @@ const PlayerVsPlayer = () => {
             const newCounter = prevCounter - 1;
     
             // Check if the counter reaches 0
-            if (newCounter === 0) {
+            if (newCounter === 1) {
               clearInterval(intervalId); // Stop the interval
-              localStorage.setItem("interval", false);
+              localStorage.setItem("interval",false)
             }
+            
             return newCounter;
           });
         }, 1200);
@@ -53,6 +60,8 @@ const PlayerVsPlayer = () => {
           clearTimeout(timeoutId);
         };
       }
+      
+      localStorage.removeItem("interval")
     }, [secondAnimation, setSecondAnimation, setCounter,timerShow, setTimerShow]);
     
 
@@ -64,10 +73,18 @@ const PlayerVsPlayer = () => {
         return () => clearTimeout(timeoutId);
       }, [secondAnimation]); // The empty dependency array [] ensures the effect runs only once after mount
     */
+      /*  if(newds === false){
+          localStorage.removeItem("interval")
+        }*/
+      //const stop = localStorage.getItem("interval");
+      /*console.log("ss",stop)
+      console.log(roomData)*/
 
+      
     return (
         <>
-         <VideoVs /> 
+        <VideoVs />
+         
         <section id="first">
             <section id="main">
                 <div className={`player1 ${secondAnimation ? 'show': ''}`}>
@@ -76,7 +93,7 @@ const PlayerVsPlayer = () => {
                 </div> 
                 <div className={`player2 ${secondAnimation ? 'show': ''}`}>
                     <img src={localStorage.getItem("selectedAvatar")}/>
-                    <h1>amelia</h1>
+                    <h1>{roomData}</h1>
                 </div>
             </section>
             <div className={`title ${timerShow ? 'show': ''}`}>
@@ -84,7 +101,8 @@ const PlayerVsPlayer = () => {
                 <p>{counter}</p>
             </div>
         </section>
-    </>
+      
+</>
   );
 };
 
