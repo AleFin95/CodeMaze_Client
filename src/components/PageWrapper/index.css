@@ -31,8 +31,10 @@ header {
 }
 
 body.logged-in header {
-    background-color: #3005506f; 
-    box-shadow: 0 2px 4px rgba(99, 101, 29, 0.883);
+    background-color: #2d615436; 
+    padding: 0.5em;
+    box-shadow: 0 2px 4px rgba(189, 193, 72, 0.883);
+    margin: 5px;
   }
 
 nav {
