@@ -1,10 +1,10 @@
-const GameSubmitButton = ({ handleCompile, loadingSubmit }) => {
+const GameSubmitButton = ({ handleCompile, loadingSubmit, disabled }) => {
   return (
     <>
       <button
         className="sub-btn"
         onClick={() => handleCompile("Submit")}
-        disabled={loadingSubmit}
+        disabled={ disabled || loadingSubmit}
       >
         {loadingSubmit ? "Compiling..." : "Submit"}
       </button>
