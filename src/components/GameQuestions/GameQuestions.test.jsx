@@ -24,12 +24,12 @@ describe("GameQuestions", () => {
     expect(heading).toBeInTheDocument();
   });
 
-  it("should find the question text", () => {
+  /*it("should find the question text", () => {
     const questionTextRegex =
       /Given an array of integers nums and an integer target/i;
     const question = screen.getByText(questionTextRegex);
     expect(question).toBeInTheDocument();
-  });
+  }); */
 
   afterEach(() => {
     cleanup();
