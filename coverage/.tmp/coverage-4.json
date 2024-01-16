@@ -1,1 +1,198 @@
-{"result":[{"scriptId":"1099","url":"file:///Users/alessiafinestauri/Desktop/LaFosseAcademy/final/Reddy_41_Client/src/components/GameNavbar/GameNavbar.test.jsx","functions":[{"functionName":"","ranges":[{"startOffset":0,"endOffset":8261,"count":1}],"isBlockCoverage":true},{"functionName":"","ranges":[{"startOffset":13,"endOffset":8261,"count":1}],"isBlockCoverage":true},{"functionName":"","ranges":[{"startOffset":1479,"endOffset":4087,"count":1}],"isBlockCoverage":true},{"functionName":"","ranges":[{"startOffset":1522,"endOffset":2505,"count":6}],"isBlockCoverage":true},{"functionName":"","ranges":[{"startOffset":2576,"endOffset":2749,"count":1}],"isBlockCoverage":true},{"functionName":"","ranges":[{"startOffset":2798,"endOffset":2934,"count":1}],"isBlockCoverage":true},{"functionName":"","ranges":[{"startOffset":3019,"endOffset":3196,"count":1}],"isBlockCoverage":true},{"functionName":"","ranges":[{"startOffset":3278,"endOffset":3447,"count":1}],"isBlockCoverage":true},{"functionName":"","ranges":[{"startOffset":3532,"endOffset":3732,"count":1}],"isBlockCoverage":true},{"functionName":"","ranges":[{"startOffset":3813,"endOffset":3998,"count":1}],"isBlockCoverage":true},{"functionName":"","ranges":[{"startOffset":4035,"endOffset":4083,"count":6}],"isBlockCoverage":true}]},{"scriptId":"1440","url":"file:///Users/alessiafinestauri/Desktop/LaFosseAcademy/final/Reddy_41_Client/src/contexts/index.jsx","functions":[{"functionName":"","ranges":[{"startOffset":0,"endOffset":6336,"count":1}],"isBlockCoverage":true},{"functionName":"","ranges":[{"startOffset":13,"endOffset":6336,"count":1}],"isBlockCoverage":true},{"functionName":"getAccessToken","ranges":[{"startOffset":692,"endOffset":734,"count":6}],"isBlockCoverage":true},{"functionName":"getSelectedAvatar","ranges":[{"startOffset":762,"endOffset":806,"count":18}],"isBlockCoverage":true},{"functionName":"AuthProvider","ranges":[{"startOffset":888,"endOffset":2264,"count":6}],"isBlockCoverage":true},{"functionName":"updateAccessToken","ranges":[{"startOffset":1247,"endOffset":1366,"count":0}],"isBlockCoverage":false},{"functionName":"setAvatar","ranges":[{"startOffset":1388,"endOffset":1488,"count":0}],"isBlockCoverage":false},{"functionName":"","ranges":[{"startOffset":1524,"endOffset":1579,"count":6}],"isBlockCoverage":true},{"functionName":"","ranges":[{"startOffset":1634,"endOffset":1689,"count":6}],"isBlockCoverage":true},{"functionName":"","ranges":[{"startOffset":1741,"endOffset":1805,"count":6}],"isBlockCoverage":true},{"functionName":"","ranges":[{"startOffset":1760,"endOffset":1800,"count":6}],"isBlockCoverage":true},{"functionName":"get","ranges":[{"startOffset":2366,"endOffset":2394,"count":6}],"isBlockCoverage":true},{"functionName":"useAuth","ranges":[{"startOffset":2414,"endOffset":2465,"count":0}],"isBlockCoverage":false},{"functionName":"get","ranges":[{"startOffset":2562,"endOffset":2585,"count":0}],"isBlockCoverage":false}]},{"scriptId":"1678","url":"file:///Users/alessiafinestauri/Desktop/LaFosseAcademy/final/Reddy_41_Client/src/components/GameNavbar/index.jsx","functions":[{"functionName":"","ranges":[{"startOffset":0,"endOffset":9769,"count":1}],"isBlockCoverage":true},{"functionName":"","ranges":[{"startOffset":13,"endOffset":9769,"count":1}],"isBlockCoverage":true},{"functionName":"GameNavbar","ranges":[{"startOffset":742,"endOffset":4985,"count":6}],"isBlockCoverage":true},{"functionName":"leaveRoom","ranges":[{"startOffset":971,"endOffset":1007,"count":0}],"isBlockCoverage":false},{"functionName":"handleLangChange","ranges":[{"startOffset":1140,"endOffset":1204,"count":0}],"isBlockCoverage":false},{"functionName":"handleThemeChange","ranges":[{"startOffset":1234,"endOffset":1299,"count":0}],"isBlockCoverage":false},{"functionName":"onChange","ranges":[{"startOffset":3883,"endOffset":3917,"count":0}],"isBlockCoverage":false}]},{"scriptId":"1774","url":"file:///Users/alessiafinestauri/Desktop/LaFosseAcademy/final/Reddy_41_Client/src/components/GameNavbar/index.css","functions":[{"functionName":"","ranges":[{"startOffset":0,"endOffset":486,"count":1}],"isBlockCoverage":true},{"functionName":"","ranges":[{"startOffset":13,"endOffset":486,"count":1}],"isBlockCoverage":true}]}]}
+{
+  "result": [
+    {
+      "scriptId": "1099",
+      "url": "file:///Users/alessiafinestauri/Desktop/LaFosseAcademy/final/Reddy_41_Client/src/components/GameNavbar/GameNavbar.test.jsx",
+      "functions": [
+        {
+          "functionName": "",
+          "ranges": [{ "startOffset": 0, "endOffset": 8261, "count": 1 }],
+          "isBlockCoverage": true
+        },
+        {
+          "functionName": "",
+          "ranges": [{ "startOffset": 13, "endOffset": 8261, "count": 1 }],
+          "isBlockCoverage": true
+        },
+        {
+          "functionName": "",
+          "ranges": [{ "startOffset": 1479, "endOffset": 4087, "count": 1 }],
+          "isBlockCoverage": true
+        },
+        {
+          "functionName": "",
+          "ranges": [{ "startOffset": 1522, "endOffset": 2505, "count": 6 }],
+          "isBlockCoverage": true
+        },
+        {
+          "functionName": "",
+          "ranges": [{ "startOffset": 2576, "endOffset": 2749, "count": 1 }],
+          "isBlockCoverage": true
+        },
+        {
+          "functionName": "",
+          "ranges": [{ "startOffset": 2798, "endOffset": 2934, "count": 1 }],
+          "isBlockCoverage": true
+        },
+        {
+          "functionName": "",
+          "ranges": [{ "startOffset": 3019, "endOffset": 3196, "count": 1 }],
+          "isBlockCoverage": true
+        },
+        {
+          "functionName": "",
+          "ranges": [{ "startOffset": 3278, "endOffset": 3447, "count": 1 }],
+          "isBlockCoverage": true
+        },
+        {
+          "functionName": "",
+          "ranges": [{ "startOffset": 3532, "endOffset": 3732, "count": 1 }],
+          "isBlockCoverage": true
+        },
+        {
+          "functionName": "",
+          "ranges": [{ "startOffset": 3813, "endOffset": 3998, "count": 1 }],
+          "isBlockCoverage": true
+        },
+        {
+          "functionName": "",
+          "ranges": [{ "startOffset": 4035, "endOffset": 4083, "count": 6 }],
+          "isBlockCoverage": true
+        }
+      ]
+    },
+    {
+      "scriptId": "1440",
+      "url": "file:///Users/alessiafinestauri/Desktop/LaFosseAcademy/final/Reddy_41_Client/src/contexts/index.jsx",
+      "functions": [
+        {
+          "functionName": "",
+          "ranges": [{ "startOffset": 0, "endOffset": 6336, "count": 1 }],
+          "isBlockCoverage": true
+        },
+        {
+          "functionName": "",
+          "ranges": [{ "startOffset": 13, "endOffset": 6336, "count": 1 }],
+          "isBlockCoverage": true
+        },
+        {
+          "functionName": "getAccessToken",
+          "ranges": [{ "startOffset": 692, "endOffset": 734, "count": 6 }],
+          "isBlockCoverage": true
+        },
+        {
+          "functionName": "getSelectedAvatar",
+          "ranges": [{ "startOffset": 762, "endOffset": 806, "count": 18 }],
+          "isBlockCoverage": true
+        },
+        {
+          "functionName": "AuthProvider",
+          "ranges": [{ "startOffset": 888, "endOffset": 2264, "count": 6 }],
+          "isBlockCoverage": true
+        },
+        {
+          "functionName": "updateAccessToken",
+          "ranges": [{ "startOffset": 1247, "endOffset": 1366, "count": 0 }],
+          "isBlockCoverage": false
+        },
+        {
+          "functionName": "setAvatar",
+          "ranges": [{ "startOffset": 1388, "endOffset": 1488, "count": 0 }],
+          "isBlockCoverage": false
+        },
+        {
+          "functionName": "",
+          "ranges": [{ "startOffset": 1524, "endOffset": 1579, "count": 6 }],
+          "isBlockCoverage": true
+        },
+        {
+          "functionName": "",
+          "ranges": [{ "startOffset": 1634, "endOffset": 1689, "count": 6 }],
+          "isBlockCoverage": true
+        },
+        {
+          "functionName": "",
+          "ranges": [{ "startOffset": 1741, "endOffset": 1805, "count": 6 }],
+          "isBlockCoverage": true
+        },
+        {
+          "functionName": "",
+          "ranges": [{ "startOffset": 1760, "endOffset": 1800, "count": 6 }],
+          "isBlockCoverage": true
+        },
+        {
+          "functionName": "get",
+          "ranges": [{ "startOffset": 2366, "endOffset": 2394, "count": 6 }],
+          "isBlockCoverage": true
+        },
+        {
+          "functionName": "useAuth",
+          "ranges": [{ "startOffset": 2414, "endOffset": 2465, "count": 0 }],
+          "isBlockCoverage": false
+        },
+        {
+          "functionName": "get",
+          "ranges": [{ "startOffset": 2562, "endOffset": 2585, "count": 0 }],
+          "isBlockCoverage": false
+        }
+      ]
+    },
+    {
+      "scriptId": "1678",
+      "url": "file:///Users/alessiafinestauri/Desktop/LaFosseAcademy/final/Reddy_41_Client/src/components/GameNavbar/index.jsx",
+      "functions": [
+        {
+          "functionName": "",
+          "ranges": [{ "startOffset": 0, "endOffset": 9769, "count": 1 }],
+          "isBlockCoverage": true
+        },
+        {
+          "functionName": "",
+          "ranges": [{ "startOffset": 13, "endOffset": 9769, "count": 1 }],
+          "isBlockCoverage": true
+        },
+        {
+          "functionName": "GameNavbar",
+          "ranges": [{ "startOffset": 742, "endOffset": 4985, "count": 6 }],
+          "isBlockCoverage": true
+        },
+        {
+          "functionName": "leaveRoom",
+          "ranges": [{ "startOffset": 971, "endOffset": 1007, "count": 0 }],
+          "isBlockCoverage": false
+        },
+        {
+          "functionName": "handleLangChange",
+          "ranges": [{ "startOffset": 1140, "endOffset": 1204, "count": 0 }],
+          "isBlockCoverage": false
+        },
+        {
+          "functionName": "handleThemeChange",
+          "ranges": [{ "startOffset": 1234, "endOffset": 1299, "count": 0 }],
+          "isBlockCoverage": false
+        },
+        {
+          "functionName": "onChange",
+          "ranges": [{ "startOffset": 3883, "endOffset": 3917, "count": 0 }],
+          "isBlockCoverage": false
+        }
+      ]
+    },
+    {
+      "scriptId": "1774",
+      "url": "file:///Users/alessiafinestauri/Desktop/LaFosseAcademy/final/Reddy_41_Client/src/components/GameNavbar/index.css",
+      "functions": [
+        {
+          "functionName": "",
+          "ranges": [{ "startOffset": 0, "endOffset": 486, "count": 1 }],
+          "isBlockCoverage": true
+        },
+        {
+          "functionName": "",
+          "ranges": [{ "startOffset": 13, "endOffset": 486, "count": 1 }],
+          "isBlockCoverage": true
+        }
+      ]
+    }
+  ]
+}

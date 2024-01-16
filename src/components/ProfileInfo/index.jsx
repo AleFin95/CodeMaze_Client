@@ -1,5 +1,4 @@
 import React from "react";
-
 import "./index.css";
 
 const ProfileInfo = ({ xp, wins, losses, sessions }) => {
