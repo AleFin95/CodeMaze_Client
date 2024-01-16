@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-const GameQuestions = () => {
-  const [text] =
-    useState(`Given an array of integers nums and an integer target, 
+const GameQuestions = ({socket, room, roomData, name}) => {
+  
+  const [userRooms, setUserRooms] = useState()
+  const [text, setText] = useState(
+    `Given an array of integers nums and an integer target, 
     return indices of the two numbers such that they add up to target. 
     You may assume that each input would have exactly one solution, 
     and you may not use the same element twice. You can return the answer in any order.
@@ -13,13 +15,31 @@ const GameQuestions = () => {
     these children subjected to the following requirements: Each child
     must have at least one candy. Children with a higher rating get more
     candies than their neighbors. Return the minimum number of candies you
-    need to have to distribute the candies to the children.`);
+    need to have to distribute the candies to the children.`
+  );
+
+  console.log("question room: ", room)
+  console.log("question roomData: ", roomData)
+  console.log("qNmae: ", name)
+
+  useEffect(() => {
+    socket.emit("send_question", {text, room, name})
+    
+    socket.on("get_question", data => {
+      console.log("data: ", data)
+      setText(data)
+    })
+
+  }, [socket])
+
+
+
 
   return (
     <>
       <h4>Question:</h4>
       <div className="input-box">
-        <textarea readOnly id="code-inp" defaultValue={text} />
+        <textarea readOnly id="code-inp">{text}</textarea>
       </div>
     </>
   );

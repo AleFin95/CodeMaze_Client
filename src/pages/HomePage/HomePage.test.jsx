@@ -1,5 +1,4 @@
 import React from "react";
-import { AuthProvider } from "../../contexts/index";
 import { describe, it, expect, beforeEach, afterEach } from "vitest";
 import {
   screen,
@@ -7,6 +6,7 @@ import {
   cleanup,
   fireEvent,
   waitFor,
+  getByTestId,
 } from "@testing-library/react";
 
 import { BrowserRouter, MemoryRouter } from "react-router-dom";
@@ -19,11 +19,9 @@ import HomePage from ".";
 describe("HomePage Component", () => {
   beforeEach(() => {
     render(
-      <AuthProvider>
-        <BrowserRouter>
-          <HomePage />
-        </BrowserRouter>
-      </AuthProvider>
+      <BrowserRouter>
+        <HomePage />{" "}
+      </BrowserRouter>
     );
   });
 
@@ -49,18 +47,17 @@ describe("HomePage Component", () => {
   });
 
   it("User is forwarded to games page once button with text 1 Vs 1 is clicked", async () => {
-    const link = screen.getByRole("link"); // Use screen here
-    // Simulate a click on the link
-    fireEvent.click(link);
-    // Wait for navigation to occur
+    const button1 = screen.getByText("1 Vs 1");
+    fireEvent.click(button1);
+
+    // Wait for any asynchronous behavior, if applicable
     await waitFor(() => {
-      // Check the window location after navigation
       expect(window.location.pathname).toBe("/game");
     });
   });
 
   it("User is forwarded to games page once button with text Solo mode is clicked", async () => {
-    const button2 = screen.getByTestId("button2");
+    const button2 = screen.getByText("Solo mode");
     fireEvent.click(button2);
     await waitFor(() => {
       expect(window.location.pathname).toBe("/game");
