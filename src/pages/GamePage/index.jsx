@@ -131,15 +131,13 @@ const GamePage = () => {
 
   const handleCompile = (action) => {
 
-    socket.emit("button_press", { room })
-    setButtonDisabled(true)
-    setButtonPressed(true)
-
-
     if (action === "Run") {
       setLoadingRun(true);
     } else if (action === "Submit") {
       setLoadingSubmit(true);
+      socket.emit("button_press", { room })
+      setButtonDisabled(true)
+      setButtonPressed(true)
     }
 
     axios
@@ -168,16 +166,16 @@ const GamePage = () => {
           setLoadingSubmit(false);
           setPopupHidden(false)
           socket.emit("display_popup", { room })
+          setTimeout(() => {
+            setButtonDisabled(false)
+            setPopupHidden(true)
+            setButtonPressed(false)
+            socket.emit("button_enable", { room })
+            socket.emit("hide_popup", { room })
+          }, 2000)
         }
       });
 
-      setTimeout(() => {
-        setButtonDisabled(false)
-        setPopupHidden(true)
-        setButtonPressed(false)
-        socket.emit("button_enable", { room })
-        socket.emit("hide_popup", { room })
-      }, 3000)
   }; 
 
   useEffect(() => {
@@ -253,11 +251,11 @@ const GamePage = () => {
               handleCompile={handleCompile}
               loadingRun={loadingRun}
             />
-              <GameSubmitButton
-                handleCompile={handleCompile}
-                loadingSubmit={loadingSubmit}
-                disabled={buttonDisabled}
-              />
+            <GameSubmitButton
+              handleCompile={handleCompile}
+              loadingSubmit={loadingSubmit}
+              disabled={buttonDisabled}
+            />
           </div>
           <div className="right-container">
             <GameQuestions
