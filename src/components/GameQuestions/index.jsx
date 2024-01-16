@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 const GameQuestions = ({socket, room, roomData, name}) => {
   
   const [userRooms, setUserRooms] = useState()
+  const [question, setQuestion] = useState("")
   const [text, setText] = useState(
     `Given an array of integers nums and an integer target, 
     return indices of the two numbers such that they add up to target. 
@@ -25,10 +26,16 @@ const GameQuestions = ({socket, room, roomData, name}) => {
   useEffect(() => {
     socket.emit("send_question", {text, room, name})
     
-    socket.on("get_question", data => {
-      console.log("data: ", data)
-      setText(data)
-    })
+    const handleGetQuestion = (data) => {
+      console.log("data: ", data);
+      setQuestion(data);
+    };
+
+    socket.on("get_question", handleGetQuestion);
+
+    return () => {
+      socket.off("get_question", handleGetQuestion);
+    };
 
   }, [socket])
 
@@ -39,7 +46,7 @@ const GameQuestions = ({socket, room, roomData, name}) => {
     <>
       <h4>Question:</h4>
       <div className="input-box">
-        <textarea readOnly id="code-inp">{text}</textarea>
+        <textarea readOnly id="code-inp" value={question}></textarea>
       </div>
     </>
   );

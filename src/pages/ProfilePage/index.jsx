@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./index.css";
 import { useAuth } from "../../contexts";
+import { NavLink, useNavigate } from "react-router-dom";
 import { AvatarModal, ProfileInfo, ProgressBar } from "../../components";
 import profileImage from "./assets/game.png";
 
@@ -91,6 +92,15 @@ const ProfilePage = () => {
     fetchData();
   }, []);
 
+  const isLoggedIn = !!localStorage.getItem("access_token");
+
+  const handleLogout = () => {
+    localStorage.removeItem("access_token");
+    localStorage.removeItem("username");
+    //localStorage.removeItem("isAdmin");
+    navigate("/");
+  };
+
   return (
     <>
       <div className="profilepage">
@@ -111,6 +121,19 @@ const ProfilePage = () => {
               >
                 Edit Avatar
               </button>
+              <div className="logout-profile">
+                {isLoggedIn ? (
+                  <>
+                    <NavLink to="/" onClick={handleLogout} id="logoutid">
+                      Logout
+                    </NavLink>
+                  </>
+                ) : (
+                  <NavLink to="/login" style={linkStyle}>
+                    Login/Register
+                  </NavLink>
+                )}
+              </div>
             </div>
 
             <AvatarModal
