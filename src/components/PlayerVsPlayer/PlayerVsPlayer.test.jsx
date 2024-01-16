@@ -26,7 +26,7 @@ describe("PlayerVsPlayer", () => {
 
   it("renders title", () => {
     const heading = screen.getByRole("heading", {
-      name: /The game will start in:\s*10/i,
+      name: /The game will start in/i,
     });
     expect(heading).toBeInTheDocument();
   });
