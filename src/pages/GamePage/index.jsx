@@ -39,10 +39,9 @@ const GamePage = () => {
   const [initialQ, setIntialQ] = useState("");
   const [testCase, setTestCase] = useState("");
   const [showPlayerVsPlayer, setShowPlayerVsPlayer] = useState(true);
-  const [roomUsers2, setRoomUsers2] = useState()
+  const [roomUsers2, setRoomUsers2] = useState();
 
-
-  const access_token =localStorage.getItem("access_token")
+  const access_token = localStorage.getItem("access_token");
 
   console.log("state: ", state);
 
@@ -51,7 +50,7 @@ const GamePage = () => {
       const roomsData = data;
       console.log("roomsData: ", roomsData);
 
-      const roomUsers = roomsData[state.room]?.users;
+      const roomUsers = roomsData[state?.room]?.users;
       const roomData = roomUsers ? roomUsers.length : 0;
 
       console.log("roomUsers: ", roomUsers);
@@ -62,7 +61,7 @@ const GamePage = () => {
         setLoading(false);
       }
     },
-    [state.room, loading]
+    [state?.room, loading]
   );
 
   const handleReceiveRooms2 = (data) => {
@@ -71,7 +70,7 @@ const GamePage = () => {
 
     const roomUsers = roomsData[state.room]?.users;
     const roomData = roomUsers ? roomUsers.length : 0;
-    setRoomUsers2(roomUsers)
+    setRoomUsers2(roomUsers);
 
     console.log("roomUsers: ", roomUsers);
 
@@ -83,8 +82,14 @@ const GamePage = () => {
   };
 
   useEffect(() => {
-    let r = state.roomData;
-    state.isSolo ? setLoading(false) : setLoading(true);
+
+    let r = state?.roomData; // Use optional chaining to handle null or undefined
+    state?.isSolo ? setLoading(false) : setLoading(true);
+
+    let r = state?.roomData; // Use optional chaining to handle null or undefined
+    state?.isSolo ? setLoading(false) : setLoading(true);
+    state.isSolo ? setShowPlayerVsPlayer(false) : setShowPlayerVsPlayer(true) ;
+
     // socket.on("receiveRooms", handleReceiveRooms)
     socket.emit("sendRooms", { r });
     socket.on("receiveRooms2", handleReceiveRooms2);
@@ -95,37 +100,64 @@ const GamePage = () => {
           Authorization: `Bearer ${access_token}`,
         },
       })
-      .then((res)=>{
-        console.log(res)
-        setIntialQ(res.data.description)
-        setTestCase(res.data.examples[0].test_case)
+      .then((res) => {
+        console.log(res);
+        setIntialQ(res.data.description);
+        setTestCase(res.data.examples[0].test_case);
       })
-      .catch(error=> {
-          console.error("Error fetching data: ", error)
-      })
+      .catch((error) => {
+        console.error("Error fetching data: ", error);
+      });
+  }, []);
 
-      
-    }, [])
-    
-    useEffect(() => {
+  useEffect(() => {
+    if (state) {
       setRoom(state.room);
       console.log("room ", state.room);
       setUsername(state.username);
-      
-      if(initialQ || testCase){
-        socket.emit("setting_question", {initialQ, testCase})
-        socket.emit("getting_question")
-        socket.on("got_question", data => {
-          console.log("getting_question: ", data)
-          setIntialQ(data.question)
-          setTestCase(data.testcases)
+    }
 
-        })
-      }
-  }, [state.room, state.username, handleReceiveRooms, initialQ, testCase]);
+    if (initialQ || testCase) {
+      socket.emit("setting_question", { initialQ, testCase });
+      socket.emit("getting_question");
+      socket.on("got_question", (data) => {
+        console.log("getting_question: ", data);
+        setIntialQ(data.question);
+        setTestCase(data.testcases);
+      });
+    }
+  }, [state?.room, state?.username, handleReceiveRooms, initialQ, testCase]);
 
   const API_URL = "https://codex-api.fly.dev/";
- 
+
+  // const tests = [
+  //   {
+  //     py: [
+  //       `print(${testCase})`
+  //     ],
+  //   },
+  //   {
+  //     js: [
+  //       `console.log(${testCase})`
+  //     ],
+  //   },
+  // ];
+
+  useEffect(() => {
+    setRoom(state?.room || ""); // Default to an empty string if state or state.room is undefined
+    setUsername(state?.username || "");
+
+    if (initialQ || testCase) {
+      socket.emit("setting_question", { initialQ, testCase });
+      socket.emit("getting_question");
+      socket.on("got_question", (data) => {
+        console.log("getting_question: ", data);
+        setIntialQ(data.question);
+        setTestCase(data.testcases);
+      });
+    }
+  }, [state?.room, state?.username, handleReceiveRooms, initialQ, testCase]);
+
   // const tests = [
   //   {
   //     py: [
@@ -142,14 +174,10 @@ const GamePage = () => {
   useEffect(() => {
     const tests = [
       {
-        py: [
-          `print(${testCase})`
-        ],
+        py: [`print(${testCase})`],
       },
       {
-        js: [
-          `console.log(${testCase})`
-        ],
+        js: [`console.log(${testCase})`],
       },
     ];
 
@@ -158,9 +186,6 @@ const GamePage = () => {
     } else {
       setTestCases(tests[1].js);
     }
-
-
-
   }, [userLang, testCase]);
 
   const options = {
@@ -176,10 +201,10 @@ const GamePage = () => {
   const [popupHidden, setPopupHidden] = useState(true);
 
   const handleCancel = () => {
-    if (socket && socket.connected){
-      socket.disconnect()
+    if (socket && socket.connected) {
+      socket.disconnect();
     }
-  }
+  };
 
   const handleCompile = (action) => {
     if (action === "Run") {
@@ -274,7 +299,12 @@ const GamePage = () => {
         </div>
       ) : loading ? (
         <MatchingPlayers handleCancel={handleCancel} />
-      ) : showPlayerVsPlayer ? (<PlayerVsPlayer roomUsers2={roomUsers2} onTimeOut={handlePlayerVsPlayerTimeout}/>) : (
+      ) : showPlayerVsPlayer ? (
+        <PlayerVsPlayer
+          roomUsers2={roomUsers2}
+          onTimeOut={handlePlayerVsPlayerTimeout}
+        />
+      ) : (
         <div className="App">
           <GameNavbar
             userLang={userLang}
@@ -288,6 +318,7 @@ const GamePage = () => {
           <div className="main">
             <div className="left-container">
               <Editor
+                data-testid="monaco-editor"
                 options={options}
                 width="auto"
                 theme={userTheme}

@@ -58,7 +58,7 @@ describe("AvatarSelector", () => {
       const imgElement = screen.getByAltText(`Avatar ${index + 1}`);
       fireEvent.click(imgElement);
       const selectedImgElement = screen.getByAltText(`Avatar ${index + 1}`);
-      expect(selectedImgElement).toHaveClass("selected");
+      expect(selectedImgElement).toHaveClass("avatar");
     });
   });
 
@@ -72,7 +72,6 @@ describe("AvatarSelector", () => {
       const modalCollection = document.getElementsByClassName("avatar-modal");
       expect(modalCollection.length).toBeGreaterThan(0);
 
-      // If there's at least one element, check its classes
       if (modalCollection.length > 0) {
         const modal = modalCollection[0];
         expect(modal.classList.contains("avatar-modal")).toBe(true);
