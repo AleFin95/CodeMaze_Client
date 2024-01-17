@@ -149,7 +149,7 @@ const PlayerVsPlayer = ({ roomUsers2, onTimeOut }) => {
   </section>
   <div className={`title ${timerShow ? "show" : ""}`}>
     <h1>Starting in </h1>
-    <p>{counter}</p>
+    <p data-testid='counter'>{counter}</p>
   </div>
 </section>
     </>
