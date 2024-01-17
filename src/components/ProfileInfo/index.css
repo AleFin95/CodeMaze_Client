@@ -8,7 +8,6 @@
     opacity: 1;
     transition: opacity 0.3s ease-in-out;
     margin-bottom: 0;
-    margin-top: -100px;
     margin-left: 30%;
     margin-right: 30%;
   }
@@ -131,8 +130,7 @@
     transform: scale(0.6);
     cursor: pointer;
     position: relative;
-
-
+    margin-top: -130px;
   }
   
   .small-table table {
