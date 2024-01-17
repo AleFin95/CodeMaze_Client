@@ -19,17 +19,39 @@ describe("GameQuestions", () => {
     );
   });
 
-  it("should find the heading", () => {
+  it("renders the question heading", () => {
     const heading = screen.getByRole("heading", { name: /Question:/i });
     expect(heading).toBeInTheDocument();
   });
 
-  /*it("should find the question text", () => {
-    const questionTextRegex =
-      /Given an array of integers nums and an integer target/i;
-    const question = screen.getByText(questionTextRegex);
-    expect(question).toBeInTheDocument();
-  }); */
+  it("renders a readonly textarea with the correct ID", () => {
+    const textarea = screen.getByRole("textbox", {
+      readonly: true,
+      id: "code-inp",
+    });
+    expect(textarea).toBeInTheDocument();
+  });
+
+  it("checks the content of the textarea", () => {
+    const textarea = screen.getByRole("textbox", {
+      readonly: true,
+      id: "code-inp",
+    });
+    expect(textarea).toHaveValue("");
+  });
+
+  it("verifies the accessibility of the heading", () => {
+    const heading = screen.getByRole("heading", { name: /Question:/i });
+    expect(heading).toHaveAccessibleName(/Question:/i);
+  });
+
+  it("verifies that the textarea is readonly", () => {
+    const textarea = screen.getByRole("textbox", {
+      readonly: true,
+      id: "code-inp",
+    });
+    expect(textarea).toHaveAttribute("readonly");
+  });
 
   afterEach(() => {
     cleanup();

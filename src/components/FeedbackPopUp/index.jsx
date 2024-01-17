@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
-import '../../assets/App.css';
-import './index.css';
+import React, { useEffect } from "react";
+import "../../assets/App.css";
+import "./index.css";
 
 const FeedbackPopUp = ({ buttonPressed, expectedOutcome, correctAnswer }) => {
   return (
@@ -27,4 +27,4 @@ const FeedbackPopUp = ({ buttonPressed, expectedOutcome, correctAnswer }) => {
   )
 }
 
-export default FeedbackPopUp
+export default FeedbackPopUp;

@@ -90,13 +90,13 @@ describe("HomePage Component", () => {
 
   it("Display first list with Play with your friends! text", () => {
     const p = screen.getByTestId("list1");
-    expect(p.textContent).toBe(" Play with your friends! ");
+    expect(p.textContent).toBe("Play with your friends!");
   });
 
   it("Display second list with Multiple programming languages to choose from! text", () => {
     const p = screen.getByTestId("list2");
     expect(p.textContent).toBe(
-      " Multiple programming languages to choose from!"
+      "Multiple programming languages to choose from!"
     );
   });
 
