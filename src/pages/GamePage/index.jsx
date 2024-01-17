@@ -115,7 +115,7 @@ const GamePage = () => {
     }
   }, [state?.room, state?.username, handleReceiveRooms, initialQ, testCase]);
 
-  const API_URL = "https://api.codex.jaagrav.in";
+  const API_URL = "https://codex-api.fly.dev";
 
   // const tests = [
   //   {

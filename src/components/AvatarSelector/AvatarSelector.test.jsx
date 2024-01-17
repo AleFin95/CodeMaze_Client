@@ -58,7 +58,7 @@ describe("AvatarSelector", () => {
       const imgElement = screen.getByAltText(`Avatar ${index + 1}`);
       fireEvent.click(imgElement);
       const selectedImgElement = screen.getByAltText(`Avatar ${index + 1}`);
-      expect(selectedImgElement).toHaveClass("selected");
+      expect(selectedImgElement).toHaveClass("avatar");
     });
   });
 
