@@ -1,24 +1,26 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
-import io from "socket.io-client";
+import React, { createContext, useContext, useEffect, useState } from 'react';
+import io from 'socket.io-client';
 
-const getAccessToken = () => localStorage.getItem("access_token");
-const getSelectedAvatar = () => localStorage.getItem("selectedAvatar");
+const getAccessToken = () => localStorage.getItem('access_token');
+const getSelectedAvatar = () => localStorage.getItem('selectedAvatar');
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [accessToken, setAccessToken] = useState(getAccessToken);
   const [selectedAvatar, setSelectedAvatar] = useState(getSelectedAvatar);
-  const [socket, setSocket] = useState(io.connect('http://localhost:5000'));
+  const [socket, setSocket] = useState(
+    io.connect('https://codemaze-api.onrender.com/')
+  );
 
   const updateAccessToken = (newAccessToken) => {
     setAccessToken(newAccessToken);
-    localStorage.setItem("access_token", newAccessToken);
+    localStorage.setItem('access_token', newAccessToken);
   };
 
   const setAvatar = (avatar) => {
     setSelectedAvatar(avatar);
-    localStorage.setItem("selectedAvatar", avatar);
+    localStorage.setItem('selectedAvatar', avatar);
   };
 
   useEffect(() => {
@@ -47,7 +49,7 @@ export const AuthProvider = ({ children }) => {
         updateAccessToken,
         selectedAvatar,
         setAvatar,
-        socket,
+        socket
       }}
     >
       {children}
