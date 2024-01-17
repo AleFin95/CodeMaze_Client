@@ -46,24 +46,24 @@ const GamePage = () => {
 
   console.log("state: ", state);
 
-  const handleReceiveRooms = useCallback(
-    (data) => {
-      const roomsData = data;
-      // console.log("roomsData: ", roomsData);
+  // const handleReceiveRooms = useCallback(
+  //   (data) => {
+  //     const roomsData = data;
+  //     // console.log("roomsData: ", roomsData);
 
-      const roomUsers = roomsData[state.room]?.users;
-      const roomData = roomUsers ? roomUsers.length : 0;
+  //     const roomUsers = roomsData[state.room]?.users;
+  //     const roomData = roomUsers ? roomUsers.length : 0;
 
-      // console.log("roomUsers: ", roomUsers);
-      // console.log("roomData: ", roomData);
+  //     // console.log("roomUsers: ", roomUsers);
+  //     // console.log("roomData: ", roomData);
 
-      if (roomData === 2 && loading) {
-        console.log("Setting loading to false");
-        setLoading(false);
-      }
-    },
-    [state.room, loading]
-  );
+  //     if (roomData === 2 && loading) {
+  //       console.log("Setting loading to false");
+  //       setLoading(false);
+  //     }
+  //   },
+  //   [state.room, loading]
+  // );
 
   const handleReceiveRooms2 = (data) => {
     const roomsData = data;
@@ -128,7 +128,7 @@ const GamePage = () => {
         setExpectedOutcome(data.expected)
       })
     }
-  }, [state.room, state.username, handleReceiveRooms, initialQ, testCase, expectedOutcome]);
+  }, [state.room, state.username, handleReceiveRooms2, initialQ, testCase, expectedOutcome]);
 
 
   useEffect(() => {
