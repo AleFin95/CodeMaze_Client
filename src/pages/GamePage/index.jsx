@@ -16,6 +16,7 @@ import {
   GameRunButton,
   MatchingPlayers,
   FeedbackPopUp,
+  PlayerVsPlayer,
 } from "../../components";
 import { Link } from "react-router-dom";
 
@@ -36,6 +37,9 @@ const GamePage = () => {
   const [ room, setRoom ] = useState("");
   const [ username, setUsername ] = useState("");
   const [ allRooms, setAllRooms ] = useState();
+
+  const [showPlayerVsPlayer, setShowPlayerVsPlayer] = useState(true);
+  const [roomUsers2, setRoomUsers2] = useState()
 
 
   const access_token =localStorage.getItem("access_token")
@@ -67,6 +71,7 @@ const GamePage = () => {
 
     const roomUsers = roomsData[state.room]?.users;
     const roomData = roomUsers ? roomUsers.length : 0;
+    setRoomUsers2(roomUsers)
 
     // console.log("roomUsers: ", roomUsers);
 
@@ -85,6 +90,7 @@ const GamePage = () => {
   useEffect(() => {
     let r = state.roomData;
     state.isSolo ? setLoading(false) : setLoading(true);
+    state.isSolo ? setShowPlayerVsPlayer(false) : setShowPlayerVsPlayer(true) ;
     socket.emit("sendRooms", { r });
     socket.on("receiveRooms2", handleReceiveRooms2);
 
@@ -265,9 +271,12 @@ const GamePage = () => {
   }, []);
 
   const isLoggedIn = localStorage.getItem("access_token");
-  
   const options = {
     fontSize: fontSize,
+  };
+
+  const handlePlayerVsPlayerTimeout = () => {
+    setShowPlayerVsPlayer(false);
   };
 
   const clearOutput = () => {
@@ -293,7 +302,7 @@ const GamePage = () => {
         </div>
       ) : loading ? (
         <MatchingPlayers handleCancel={handleCancel} />
-      ) : (
+      ) : showPlayerVsPlayer ? (<PlayerVsPlayer roomUsers2={roomUsers2} onTimeOut={handlePlayerVsPlayerTimeout}/>) : (
         <div className="App">
           <GameNavbar
             userLang={userLang}
