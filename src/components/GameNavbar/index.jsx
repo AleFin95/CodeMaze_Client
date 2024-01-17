@@ -1,6 +1,6 @@
-import Select from "react-select";
-import "./index.css";
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
+import Select from 'react-select';
+import './index.css';
 
 const GameNavbar = ({
   userLang,
@@ -12,17 +12,17 @@ const GameNavbar = ({
   socket
 }) => {
   const languages = [
-    { value: "py", label: "Python" },
-    { value: "js", label: "JavaScript" },
+    { value: 'py', label: 'Python' },
+    { value: 'js', label: 'JavaScript' }
   ];
 
   const leaveRoom = () => {
-    socket.disconnect()
-  }
+    socket.disconnect();
+  };
 
   const themes = [
-    { value: "vs-dark", label: "Dark" },
-    { value: "light", label: "Light" },
+    { value: 'vs-dark', label: 'Dark' },
+    { value: 'light', label: 'Light' }
   ];
 
   const handleLangChange = (selectedOption) => {
@@ -34,39 +34,46 @@ const GameNavbar = ({
   };
 
   return (
-    <div className="navbar">
-      <h1>Code Compiler</h1>
+    <div className='navbar'>
+      <div className='navbar-item'>
+        <label htmlFor='languageSelect'>Language:</label>
+        <Select
+          id='languageSelect'
+          options={languages}
+          value={{ value: userLang, label: userLang }}
+          onChange={handleLangChange}
+          placeholder={userLang}
+        />
+      </div>
 
-      <label htmlFor="languageSelect">Select Language</label>
-      <Select
-        id="languageSelect"
-        options={languages}
-        value={{ value: userLang, label: userLang }}
-        onChange={handleLangChange}
-        placeholder={userLang}
-      />
+      <div className='navbar-item'>
+        <label htmlFor='themeSelect'>Theme:</label>
+        <Select
+          id='themeSelect'
+          options={themes}
+          value={{ value: userTheme, label: userTheme }}
+          onChange={handleThemeChange}
+          placeholder={userTheme}
+        />
+      </div>
 
-      <label htmlFor="themeSelect">Select Theme</label>
-      <Select
-        id="themeSelect"
-        options={themes}
-        value={{ value: userTheme, label: userTheme }}
-        onChange={handleThemeChange}
-        placeholder={userTheme}
-      />
+      <div className='navbar-item'>
+        <label htmlFor='fontSizeRange'>Font Size:</label>
+        <input
+          id='fontSizeRange'
+          type='range'
+          min='18'
+          max='30'
+          value={fontSize}
+          step='2'
+          onChange={(e) => setFontSize(e.target.value)}
+        />
+      </div>
 
-      <label htmlFor="fontSizeRange">Font Size</label>
-      <input
-        id="fontSizeRange"
-        type="range"
-        min="18"
-        max="30"
-        value={fontSize}
-        step="2"
-        onChange={(e) => setFontSize(e.target.value)}
-      />
-      <Link to="/">
-        <button className="leave" onClick={leaveRoom}>Leave Room</button>
+      <Link to='/'>
+        <button className='leave' onClick={leaveRoom}>
+          Leave Room
+        </button>
       </Link>
     </div>
   );
