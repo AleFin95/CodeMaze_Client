@@ -53,24 +53,20 @@ describe("ProfilePage", () => {
     expect(usernameElement).toBeInTheDocument();
   });
 
-  it("displays achievements section with XP, wins, and losses", () => {
-    const xpElement = screen.getByText(/XP:/);
-    const winsElement = screen.getByText(/Wins:/);
-    const lossesElement = screen.getByText(/Losses:/);
+  it("should show wins and losses", () => {
+    const winsRegex = /Wins:\s*(\d+)/;
+    const lossesRegex = /Losses:\s*(\d+)/;
 
-    expect(xpElement).toBeInTheDocument();
-    expect(winsElement).toBeInTheDocument();
-    expect(lossesElement).toBeInTheDocument();
+    const winsCount = screen.getByText(winsRegex);
+    const lossesCount = screen.getByText(lossesRegex);
+
+    expect(winsCount).toBeInTheDocument();
+    expect(lossesCount).toBeInTheDocument();
   });
 
-  it("displays sessions section with appropriate message", () => {
-    const sessionsElement = screen.getByText("Sessions played");
-    const noSessionsMessage = screen.getByText(
-      "Your gaming chair feels neglected. No epic gaming tales to share—yet!"
-    );
-
+  it("displays Match History", () => {
+    const sessionsElement = screen.getByText("Match History");
     expect(sessionsElement).toBeInTheDocument();
-    expect(noSessionsMessage).toBeInTheDocument();
   });
 
   afterEach(() => {

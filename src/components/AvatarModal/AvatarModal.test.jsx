@@ -48,28 +48,30 @@ describe("AvatarModal", () => {
     expect(heading).toBeInTheDocument();
   });
 
-  it("renders the achievements section with XP, wins, and losses", () => {
-    const achievementsHeading = screen.getByText("Achievements");
-    expect(achievementsHeading).toBeInTheDocument();
+  it("User is forwarded to Ranking page when Ranking link is clicked", async () => {
+    const link1 = screen.getByText("Ranking");
+    expect(link1).toBeInTheDocument();
+    fireEvent.click(link1);
 
-    const xpElement = screen.getByText("XP: 0");
-    const winsElement = screen.getByText("Wins: 0");
-    const lossesElement = screen.getByText("Losses: 0");
-
-    expect(xpElement).toBeInTheDocument();
-    expect(winsElement).toBeInTheDocument();
-    expect(lossesElement).toBeInTheDocument();
+    await waitFor(() => {
+      expect(window.location.pathname).toBe("/ranking");
+    });
   });
 
-  it("renders the sessions section with a message", () => {
-    const sessionsHeading = screen.getByText("Sessions played");
-    expect(sessionsHeading).toBeInTheDocument();
+  it("renders the Match History section", () => {
+    const matchHeading = screen.getByText("Match History");
+    expect(matchHeading).toBeInTheDocument();
+  });
 
-    const sessionsMessage = screen.getByText(
-      "Your gaming chair feels neglected. No epic gaming tales to share—yet!"
-    );
+  it("should show wins and losses", () => {
+    const winsRegex = /Wins:\s*(\d+)/;
+    const lossesRegex = /Losses:\s*(\d+)/;
 
-    expect(sessionsMessage).toBeInTheDocument();
+    const winsCount = screen.getByText(winsRegex);
+    const lossesCount = screen.getByText(lossesRegex);
+
+    expect(winsCount).toBeInTheDocument();
+    expect(lossesCount).toBeInTheDocument();
   });
 
   afterEach(() => {
