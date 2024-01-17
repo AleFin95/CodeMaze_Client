@@ -1,9 +1,9 @@
-# fly.toml app configuration file generated for reddy41-client on 2024-01-17T15:43:04Z
+# fly.toml app configuration file generated for codemaze-client on 2024-01-17T16:05:10Z
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = "reddy41-client"
+app = "codemaze-client"
 primary_region = "ams"
 
 [build]
