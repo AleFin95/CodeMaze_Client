@@ -139,11 +139,11 @@ const PlayerVsPlayer = ({ roomUsers2, onTimeOut }) => {
       <section id="first">
       <section id="main">
     <div className={`player1 ${secondAnimation ? "show" : ""}`}>
-      <img src={localStorage.getItem("selectedAvatar")} />
+      <img aria-label="avatar1" src={localStorage.getItem("selectedAvatar")} />
       <h1>{localStorage.getItem("username")}</h1>
     </div>
     <div className={`player2 ${secondAnimation ? "show" : ""}`}>
-      <img src={localStorage.getItem("selectedAvatar")} />
+      <img aria-label="avatar2" src={localStorage.getItem("selectedAvatar")} />
       <h1>{enemyName}</h1>
     </div>
   </section>
