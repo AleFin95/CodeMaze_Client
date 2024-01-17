@@ -39,34 +39,21 @@ describe("Page Wrapper Component", () => {
     expect(screen.getByText("Login/Register")).toBeInTheDocument();
   });
 
-  /*it("User is forwarded to Home page when Home link is clicked", async () => {
-    const link1 = screen.getByText("Home");
+  it("User is forwarded to CODEMAZE page when Home link is clicked", async () => {
+    const link1 = screen.getByText("CODEMAZE");
     expect(link1).toBeInTheDocument();
     fireEvent.click(link1);
 
-    // Wait for any asynchronous behavior, if applicable
     await waitFor(() => {
       expect(window.location.pathname).toBe("/");
     });
-  }); */
-
-  /*it("User is forwarded to Ranking page when Ranking link is clicked", async () => {
-    const link1 = screen.getByText("Ranking");
-    expect(link1).toBeInTheDocument();
-    fireEvent.click(link1);
-
-    // Wait for any asynchronous behavior, if applicable
-    await waitFor(() => {
-      expect(window.location.pathname).toBe("/ranking");
-    });
-  });*/
+  });
 
   it("User is forwarded to Login page when Login link is clicked", async () => {
     const link1 = screen.getByText("Login/Register");
     expect(link1).toBeInTheDocument();
     fireEvent.click(link1);
 
-    // Wait for any asynchronous behavior, if applicable
     await waitFor(() => {
       expect(window.location.pathname).toBe("/login");
     });
@@ -77,7 +64,6 @@ describe("Page Wrapper Component", () => {
     expect(link1).toBeInTheDocument();
     fireEvent.click(link1);
 
-    // Wait for any asynchronous behavior, if applicable
     await waitFor(() => {
       expect(window.location.pathname).toBe("/profile");
     });
@@ -88,7 +74,7 @@ describe("Page Wrapper Component", () => {
     const loginLink = screen.getByText('Login/Register')
     fireEvent.click(loginLink);
   
-    // Wait for any asynchronous behavior, if applicable
+
   
     expect(loginLink).toHaveStyle("color: #4bf275");
     
