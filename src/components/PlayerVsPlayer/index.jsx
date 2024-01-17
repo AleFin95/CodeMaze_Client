@@ -22,7 +22,7 @@ const PlayerVsPlayer = ({ roomUsers2, onTimeOut }) => {
       setSecondAnimation(true);
     }, 1800); // Set the delay duration (in milliseconds)
 
-    const username = localStorage.getItem("username");
+     
 
     console.log("roomUsers2: ", roomUsers2);
 
@@ -97,26 +97,33 @@ const PlayerVsPlayer = ({ roomUsers2, onTimeOut }) => {
       //const myAvatar = //username;
       //const enemyAvatar = ;
 
-      /*useEffect(() => {
+      useEffect(() => {
         const fetchUsersAvatarData = async () => {
           try {
             const access_token = localStorage.getItem("access_token");
             const options = {
               method: "POST",
+              body: JSON.stringify({
+                username_one: username,
+                username_two: enemyName
+              }),
+
               headers: {
-                Authorization: `Bearer ${access_token}`,
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${access_token}`,
               },
             };
     
             const response = await fetch(
-              "https://codemaze-api.onrender.com/users/avatar",
+              "https://codemaze-api.onrender.com/users/avatars",
               options
             );
-    
+              
             if (response.status === 200) {
               const data = await response.json();
               setData(data);
-              console.log(data);
+              console.log("IM HEREEEEEE");
+              console.log("DATAAA",data);
             } else {
               throw new Error("Failed to fetch avatar");
             }
@@ -125,7 +132,7 @@ const PlayerVsPlayer = ({ roomUsers2, onTimeOut }) => {
           }
         }; fetchUsersAvatarData();
       }, []);
-      */
+      
     return (
         <>
         <VideoVs />
