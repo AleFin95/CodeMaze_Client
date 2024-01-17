@@ -119,21 +119,7 @@ const GamePage = () => {
       }
   }, [state.room, state.username, handleReceiveRooms, initialQ, testCase]);
 
-  const API_URL = "https://api.codex.jaagrav.in";
- 
-  // const tests = [
-  //   {
-  //     py: [
-  //       `print(${testCase})`
-  //     ],
-  //   },
-  //   {
-  //     js: [
-  //       `console.log(${testCase})`
-  //     ],
-  //   },
-  // ];
-
+  
   useEffect(() => {
     const tests = [
       {
@@ -175,6 +161,8 @@ const GamePage = () => {
       socket.disconnect()
     }
   }
+  
+  const API_URL = "https://api.codex.jaagrav.in";
 
   const handleCompile = (action) => {
     if (action === "Run") {
