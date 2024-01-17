@@ -1,15 +1,15 @@
+import React from "react";
 import { describe, it, expect, beforeEach, afterEach } from "vitest";
 import { screen, render, cleanup } from "@testing-library/react";
 import { AuthProvider } from "../../contexts/index";
 import { BrowserRouter } from "react-router-dom";
-
-import GameTestCases from ".";
+import matchers from "@testing-library/jest-dom/matchers";
+expect.extend(matchers);
 import GamePage from "../../pages/GamePage";
 
-describe("GameTestCases", () => {
-  let server;
-  let socket;
+import GameTestCases from ".";
 
+describe("GameTestCases", () => {
   beforeEach(() => {
     render(
       <AuthProvider>
@@ -22,15 +22,17 @@ describe("GameTestCases", () => {
     );
   });
 
-  it.skip("should find the heading", () => {
-    const heading = screen.getByRole("heading", { name: /Test Cases:/i });
+  it("should find the heading", () => {
+    const heading = screen.getByRole("heading", {
+      name: /Login to Access Game/i,
+    });
     expect(heading).toBeInTheDocument();
   });
 
-  it.skip("displays a link", () => {
+  /*it("displays a link", () => {
     const link = screen.getByRole("link");
     expect(link).toBeInTheDocument();
-  });
+  }); */
 
   afterEach(() => {
     cleanup();
