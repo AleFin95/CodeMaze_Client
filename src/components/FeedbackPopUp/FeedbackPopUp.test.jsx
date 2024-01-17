@@ -13,15 +13,20 @@ describe("ProfileInfo", () => {
     render(
       <AuthProvider>
         <BrowserRouter>
-          <FeedbackPopUp />
+          <FeedbackPopUp buttonPressed={false} />
         </BrowserRouter>
       </AuthProvider>
     );
   });
 
-  it("should find the Feedback Pop up window in feedback", () => {
-    const xp = screen.getByText(/Feedback Pop up window/i);
-    expect(xp).toBeInTheDocument();
+  it('renders "You LOOSE" when buttonPressed is false', () => {
+    const loseMessages = screen.getAllByText("You LOOSE");
+
+    expect(loseMessages.length).toBeGreaterThan(0);
+
+    loseMessages.forEach((element) => {
+      expect(element).toHaveTextContent("You LOOSE");
+    });
   });
 
   afterEach(() => {

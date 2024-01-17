@@ -11,6 +11,8 @@ export const AuthProvider = ({ children }) => {
   const [selectedAvatar, setSelectedAvatar] = useState(getSelectedAvatar);
   const [socket, setSocket] = useState(io.connect("http://localhost:4000"));
 
+  const [socket, setSocket] = useState(io.connect("http://localhost:4000"));
+
   const updateAccessToken = (newAccessToken) => {
     setAccessToken(newAccessToken);
     localStorage.setItem("access_token", newAccessToken);

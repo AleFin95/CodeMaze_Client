@@ -1,30 +1,34 @@
-import React from 'react';
-import { describe, it, expect, beforeEach, afterEach } from 'vitest';
-import { screen, render, cleanup, fireEvent, waitFor} from '@testing-library/react';
+import React from "react";
+import { describe, it, expect, beforeEach, afterEach } from "vitest";
+import {
+  screen,
+  render,
+  cleanup,
+  fireEvent,
+  waitFor,
+} from "@testing-library/react";
 
-import { MemoryRouter } from 'react-router-dom';
+import { MemoryRouter } from "react-router-dom";
 
-import matchers from '@testing-library/jest-dom/matchers';
+import matchers from "@testing-library/jest-dom/matchers";
 expect.extend(matchers);
 
-import RankingPage from '.';
+import RankingPage from ".";
 
-describe('HomePage Component',() => {
-    render(
-        <MemoryRouter>
-            <RankingPage />
-        </MemoryRouter>
-    )
+describe("HomePage Component", () => {
+  render(
+    <MemoryRouter>
+      <RankingPage />
+    </MemoryRouter>
+  );
 
-    it('h1 displays Leaderboard'), () => {
-      const p = screen.getByText('Leaderboard');
+  it("h1 displays Leaderboard"),
+    () => {
+      const p = screen.getByText("Leaderboard");
       expect(p).toBeInTheDocument();
-    }
-
-
-}
-)
+    };
+});
 
 afterEach(() => {
-    cleanup()
-  })
+  cleanup();
+});

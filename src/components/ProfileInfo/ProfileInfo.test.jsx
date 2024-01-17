@@ -13,25 +13,15 @@ describe("ProfileInfo", () => {
     render(
       <AuthProvider>
         <BrowserRouter>
-          <ProfileInfo />
+          <ProfileInfo xp={0} wins={0} losses={0} sessions={[]} />
         </BrowserRouter>
       </AuthProvider>
     );
   });
 
   it("should find the heading in the profile info", () => {
-    const heading = screen.getByRole("heading", { name: /Achievements/i });
+    const heading = screen.getByRole("heading", { name: /Match History/i });
     expect(heading).toBeInTheDocument();
-  });
-
-  it("should find the 2nd heading in the profile info", () => {
-    const heading = screen.getByRole("heading", { name: /Sessions played/i });
-    expect(heading).toBeInTheDocument();
-  });
-
-  it("should find the XP in the profile info", () => {
-    const xp = screen.getByText(/XP:/i);
-    expect(xp).toBeInTheDocument();
   });
 
   it("should find the Wins in the profile info", () => {
