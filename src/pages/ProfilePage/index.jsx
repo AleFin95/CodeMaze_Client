@@ -129,9 +129,7 @@ const ProfilePage = () => {
                     </NavLink>
                   </>
                 ) : (
-                  <NavLink to="/login" style={linkStyle}>
-                    Login/Register
-                  </NavLink>
+                  <NavLink to="/login">Login/Register</NavLink>
                 )}
               </div>
             </div>
