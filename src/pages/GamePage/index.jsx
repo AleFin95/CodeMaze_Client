@@ -82,8 +82,14 @@ const GamePage = () => {
   };
 
   useEffect(() => {
+
     let r = state?.roomData; // Use optional chaining to handle null or undefined
     state?.isSolo ? setLoading(false) : setLoading(true);
+
+    let r = state?.roomData; // Use optional chaining to handle null or undefined
+    state?.isSolo ? setLoading(false) : setLoading(true);
+    state.isSolo ? setShowPlayerVsPlayer(false) : setShowPlayerVsPlayer(true) ;
+
     // socket.on("receiveRooms", handleReceiveRooms)
     socket.emit("sendRooms", { r });
     socket.on("receiveRooms2", handleReceiveRooms2);
