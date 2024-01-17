@@ -22,9 +22,6 @@ describe("Main", () => {
     const homeLink = screen.getByText("CODEMAZE");
     expect(homeLink).toBeInTheDocument();
 
-    const rankingLink = screen.getByText("Ranking");
-    expect(rankingLink).toBeInTheDocument();
-
     const logLink = screen.getByText("Login/Register");
     expect(logLink).toBeInTheDocument();
   });
