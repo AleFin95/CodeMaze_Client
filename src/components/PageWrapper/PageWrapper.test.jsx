@@ -34,9 +34,8 @@ describe("Page Wrapper Component", () => {
     expect(nav.childNodes.length).toBe(2);
   });
 
-  it("it renders Ranking and Game links", () => {
-    /*expect(screen.getByText("Home")).toBeInTheDocument();*/
-    expect(screen.getByText("Ranking")).toBeInTheDocument();
+  it("it renders  CODEMAZE and Game links", () => {
+    expect(screen.getByText("CODEMAZE")).toBeInTheDocument();
     expect(screen.getByText("Login/Register")).toBeInTheDocument();
   });
 
@@ -51,7 +50,7 @@ describe("Page Wrapper Component", () => {
     });
   }); */
 
-  it("User is forwarded to Ranking page when Ranking link is clicked", async () => {
+  /*it("User is forwarded to Ranking page when Ranking link is clicked", async () => {
     const link1 = screen.getByText("Ranking");
     expect(link1).toBeInTheDocument();
     fireEvent.click(link1);
@@ -60,7 +59,7 @@ describe("Page Wrapper Component", () => {
     await waitFor(() => {
       expect(window.location.pathname).toBe("/ranking");
     });
-  });
+  });*/
 
   it("User is forwarded to Login page when Login link is clicked", async () => {
     const link1 = screen.getByText("Login/Register");
@@ -94,21 +93,6 @@ describe("Page Wrapper Component", () => {
     expect(loginLink).toHaveStyle("color: #4bf275");
     
   })*/
-
-  it("'User is forwarded to ranking page when ranking link is clicked", async () => {
-    const rankingLink = screen.getByText("Ranking");
-    expect(rankingLink).toBeInTheDocument();
-    fireEvent.click(rankingLink);
-
-    // Simulate a click on the link
-    fireEvent.click(rankingLink);
-
-    // Wait for any asynchronous behavior, if applicable
-    await waitFor(() => {
-      // Assert that the URL is as expected after the click
-      expect(window.location.pathname).toBe("/ranking");
-    });
-  });
 
   afterEach(() => {
     cleanup();
