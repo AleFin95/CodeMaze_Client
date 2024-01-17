@@ -1,11 +1,5 @@
 
-  
-  #sec-session{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    width: 80%;
-  }
+
 
   .sessions-section {
     display: flex;
@@ -20,20 +14,24 @@
 
   .achievements-section {
     display: flex;
-    flex-direction:column;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
     text-align: center;
     opacity: 1;
     transition: opacity 0.3s ease-in-out;
+    padding-right: 30%;
+
   }
 
   #font-profile {
-    font-size: 16px;
+    font-size: 20px;
   }
-  .session-main{
-    display: flex;
-    flex-direction: row;
-    align-items:flex-start;
+
+  #font-profile-session {
+    font-size: 40px;
   }
+
   #sessionsH1{
     margin-top: 20px;
     margin-bottom:10px;
@@ -125,8 +123,6 @@
     transform: scale(0.5);
     cursor: pointer;
     position: relative;
-    margin-top: -90px;
-    margin-left: 40px;
 
   }
   

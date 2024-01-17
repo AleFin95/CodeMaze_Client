@@ -1,63 +1,63 @@
-import { useState, useEffect, useCallback } from "react";
-import { Editor } from "@monaco-editor/react";
-import { useLocation } from "react-router-dom";
-import axios from "axios";
-import { useAuth } from "../../contexts";
+import { Editor } from '@monaco-editor/react';
+import axios from 'axios';
+import { useCallback, useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import { useAuth } from '../../contexts';
 
-import spinner from "./assets/ring-resize.svg";
-import "./index.css";
+import { Link } from 'react-router-dom';
 import {
-  Video,
-  GameNavbar,
-  GameQuestions,
-  GameTestCases,
-  GameOutput,
-  GameSubmitButton,
-  GameRunButton,
-  MatchingPlayers,
   FeedbackPopUp,
+  GameNavbar,
+  GameOutput,
+  GameQuestions,
+  GameRunButton,
+  GameSubmitButton,
+  GameTestCases,
+  MatchingPlayers,
   PlayerVsPlayer,
-} from "../../components";
-import { Link } from "react-router-dom";
+  Video
+} from '../../components';
+import spinner from './assets/ring-resize.svg';
+import './index.css';
 
 const GamePage = () => {
   const { state } = useLocation();
   const { socket } = useAuth();
-  const [userCode, setUserCode] = useState("");
-  const [userLang, setUserLang] = useState("py");
+  const [userCode, setUserCode] = useState('');
+  const [userLang, setUserLang] = useState('py');
   const [testCases, setTestCases] = useState([]);
-  const [userTheme, setUserTheme] = useState("vs-dark");
+  const [userTheme, setUserTheme] = useState('vs-dark');
   const [fontSize, setFontSize] = useState(20);
-  const [userInput, setUserInput] = useState("");
-  const [userOutput, setUserOutput] = useState("");
+  const [userInput, setUserInput] = useState('');
+  const [userOutput, setUserOutput] = useState('');
   const [loadingRun, setLoadingRun] = useState(false);
   const [loadingSubmit, setLoadingSubmit] = useState(false);
-  const [room, setRoom] = useState("");
-  const [username, setUsername] = useState("");
+  const [room, setRoom] = useState('');
+  const [username, setUsername] = useState('');
   const [allRooms, setAllRooms] = useState();
   const [loading, setLoading] = useState(true);
-  const [initialQ, setIntialQ] = useState("");
-  const [testCase, setTestCase] = useState("");
+  const [initialQ, setIntialQ] = useState('');
+  const [testCase, setTestCase] = useState('');
   const [showPlayerVsPlayer, setShowPlayerVsPlayer] = useState(true);
   const [roomUsers2, setRoomUsers2] = useState();
 
-  const access_token = localStorage.getItem("access_token");
+  const access_token = localStorage.getItem('access_token');
 
-  console.log("state: ", state);
+  console.log('state: ', state);
 
   const handleReceiveRooms = useCallback(
     (data) => {
       const roomsData = data;
-      console.log("roomsData: ", roomsData);
+      console.log('roomsData: ', roomsData);
 
       const roomUsers = roomsData[state?.room]?.users;
       const roomData = roomUsers ? roomUsers.length : 0;
 
-      console.log("roomUsers: ", roomUsers);
-      console.log("roomData: ", roomData);
+      console.log('roomUsers: ', roomUsers);
+      console.log('roomData: ', roomData);
 
       if (roomData === 2 && loading) {
-        console.log("Setting loading to false");
+        console.log('Setting loading to false');
         setLoading(false);
       }
     },
@@ -66,36 +66,35 @@ const GamePage = () => {
 
   const handleReceiveRooms2 = (data) => {
     const roomsData = data;
-    console.log("roomsData: ", roomsData);
+    console.log('roomsData: ', roomsData);
 
     const roomUsers = roomsData[state.room]?.users;
     const roomData = roomUsers ? roomUsers.length : 0;
     setRoomUsers2(roomUsers);
 
-    console.log("roomUsers: ", roomUsers);
+    console.log('roomUsers: ', roomUsers);
 
     if (roomData === 2 && loading) {
-      console.log("Setting loading to false");
+      console.log('Setting loading to false');
       setLoading(false);
       setAllRooms(data);
     }
   };
 
   useEffect(() => {
-
     let r = state?.roomData; // Use optional chaining to handle null or undefined
     state?.isSolo ? setLoading(false) : setLoading(true);
     state.isSolo ? setShowPlayerVsPlayer(false) : setShowPlayerVsPlayer(true) ;
 
     // socket.on("receiveRooms", handleReceiveRooms)
-    socket.emit("sendRooms", { r });
-    socket.on("receiveRooms2", handleReceiveRooms2);
+    socket.emit('sendRooms', { r });
+    socket.on('receiveRooms2', handleReceiveRooms2);
 
     axios
       .get(`https://codemaze-api.onrender.com/problems/random`, {
         headers: {
-          Authorization: `Bearer ${access_token}`,
-        },
+          Authorization: `Bearer ${access_token}`
+        }
       })
       .then((res) => {
         console.log(res);
@@ -103,29 +102,29 @@ const GamePage = () => {
         setTestCase(res.data.examples[0].test_case);
       })
       .catch((error) => {
-        console.error("Error fetching data: ", error);
+        console.error('Error fetching data: ', error);
       });
   }, []);
 
   useEffect(() => {
     if (state) {
       setRoom(state.room);
-      console.log("room ", state.room);
+      console.log('room ', state.room);
       setUsername(state.username);
     }
 
     if (initialQ || testCase) {
-      socket.emit("setting_question", { initialQ, testCase });
-      socket.emit("getting_question");
-      socket.on("got_question", (data) => {
-        console.log("getting_question: ", data);
+      socket.emit('setting_question', { initialQ, testCase });
+      socket.emit('getting_question');
+      socket.on('got_question', (data) => {
+        console.log('getting_question: ', data);
         setIntialQ(data.question);
         setTestCase(data.testcases);
       });
     }
   }, [state?.room, state?.username, handleReceiveRooms, initialQ, testCase]);
 
-  const API_URL = "https://codex-api.fly.dev/";
+  const API_URL = 'https://codex-api.fly.dev/';
 
   // const tests = [
   //   {
@@ -141,14 +140,14 @@ const GamePage = () => {
   // ];
 
   useEffect(() => {
-    setRoom(state?.room || ""); // Default to an empty string if state or state.room is undefined
-    setUsername(state?.username || "");
+    setRoom(state?.room || ''); // Default to an empty string if state or state.room is undefined
+    setUsername(state?.username || '');
 
     if (initialQ || testCase) {
-      socket.emit("setting_question", { initialQ, testCase });
-      socket.emit("getting_question");
-      socket.on("got_question", (data) => {
-        console.log("getting_question: ", data);
+      socket.emit('setting_question', { initialQ, testCase });
+      socket.emit('getting_question');
+      socket.on('got_question', (data) => {
+        console.log('getting_question: ', data);
         setIntialQ(data.question);
         setTestCase(data.testcases);
       });
@@ -171,14 +170,14 @@ const GamePage = () => {
   useEffect(() => {
     const tests = [
       {
-        py: [`print(${testCase})`],
+        py: [`print(${testCase})`]
       },
       {
-        js: [`console.log(${testCase})`],
-      },
+        js: [`console.log(${testCase})`]
+      }
     ];
 
-    if (userLang === "py") {
+    if (userLang === 'py') {
       setTestCases(tests[0].py);
     } else {
       setTestCases(tests[1].js);
@@ -186,11 +185,11 @@ const GamePage = () => {
   }, [userLang, testCase]);
 
   const options = {
-    fontSize: fontSize,
+    fontSize: fontSize
   };
 
   const clearOutput = () => {
-    setUserOutput("");
+    setUserOutput('');
   };
 
   const [buttonDisabled, setButtonDisabled] = useState(false);
@@ -204,11 +203,11 @@ const GamePage = () => {
   };
 
   const handleCompile = (action) => {
-    if (action === "Run") {
+    if (action === 'Run') {
       setLoadingRun(true);
-    } else if (action === "Submit") {
+    } else if (action === 'Submit') {
       setLoadingSubmit(true);
-      socket.emit("button_press", { room });
+      socket.emit('button_press', { room });
       setButtonDisabled(true);
       setButtonPressed(true);
     }
@@ -219,8 +218,8 @@ const GamePage = () => {
         language: userLang,
         input: userInput,
         headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
+          'Content-Type': 'application/x-www-form-urlencoded'
+        }
       })
       .then((res) => {
         setUserOutput(res.data.output);
@@ -233,18 +232,18 @@ const GamePage = () => {
         );
       })
       .finally(() => {
-        if (action === "Run") {
+        if (action === 'Run') {
           setLoadingRun(false);
-        } else if (action === "Submit") {
+        } else if (action === 'Submit') {
           setLoadingSubmit(false);
           setPopupHidden(false);
-          socket.emit("display_popup", { room });
+          socket.emit('display_popup', { room });
           setTimeout(() => {
             setButtonDisabled(false);
             setPopupHidden(true);
             setButtonPressed(false);
-            socket.emit("button_enable", { room });
-            socket.emit("hide_popup", { room });
+            socket.emit('button_enable', { room });
+            socket.emit('hide_popup', { room });
           }, 2000);
         }
       });
@@ -264,20 +263,20 @@ const GamePage = () => {
       setPopupHidden(true);
     };
 
-    socket.on("button_pressed", buttonPressedListener);
-    socket.on("button_enabled", buttonEnabledListener);
-    socket.on("displayed_popup", popupDisplayListener);
-    socket.on("hidden_popup", popupHideListener);
+    socket.on('button_pressed', buttonPressedListener);
+    socket.on('button_enabled', buttonEnabledListener);
+    socket.on('displayed_popup', popupDisplayListener);
+    socket.on('hidden_popup', popupHideListener);
 
     return () => {
-      socket.off("button_pressed", buttonPressedListener);
-      socket.off("button_enabled", buttonEnabledListener);
-      socket.off("displayed_popup", popupDisplayListener);
-      socket.off("hidden_popup", popupHideListener);
+      socket.off('button_pressed', buttonPressedListener);
+      socket.off('button_enabled', buttonEnabledListener);
+      socket.off('displayed_popup', popupDisplayListener);
+      socket.off('hidden_popup', popupHideListener);
     };
   }, []);
 
-  const isLoggedIn = localStorage.getItem("access_token");
+  const isLoggedIn = localStorage.getItem('access_token');
 
   const handlePlayerVsPlayerTimeout = () => {
     setShowPlayerVsPlayer(false);
@@ -287,10 +286,10 @@ const GamePage = () => {
     <>
       <Video />
       {isLoggedIn === null ? (
-        <div className="message22">
+        <div className='message22'>
           <h1>Login to Access Game</h1>
-          <Link to="/login">
-            <button id="loginBtn">Login</button>
+          <Link to='/login'>
+            <button id='loginBtn'>Login</button>
           </Link>
           {/* Additional content for non-logged-in users */}
         </div>
@@ -302,7 +301,7 @@ const GamePage = () => {
           onTimeOut={handlePlayerVsPlayerTimeout}
         />
       ) : (
-        <div className="App">
+        <div className='App'>
           <GameNavbar
             userLang={userLang}
             setUserLang={setUserLang}
@@ -312,18 +311,18 @@ const GamePage = () => {
             setFontSize={setFontSize}
             socket={socket}
           />
-          <div className="main">
-            <div className="left-container">
+          <div className='main'>
+            <div className='left-container'>
               <Editor
-                data-testid="monaco-editor"
+                data-testid='monaco-editor'
                 options={options}
-                width="auto"
+                width='auto'
                 theme={userTheme}
                 language={userLang}
-                defaultLanguage="python"
-                defaultValue="# Enter your code here"
+                defaultLanguage='python'
+                defaultValue='# Enter your code here'
                 onChange={(value) => {
-                  setUserCode(value + "\n" + testCases.join("\n"));
+                  setUserCode(value + '\n' + testCases.join('\n'));
                 }}
               />
               <GameRunButton
@@ -336,7 +335,7 @@ const GamePage = () => {
                 disabled={buttonDisabled}
               />
             </div>
-            <div className="right-container">
+            <div className='right-container'>
               <GameQuestions
                 socket={socket}
                 room={state.room}

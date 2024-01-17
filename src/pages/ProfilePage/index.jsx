@@ -3,7 +3,6 @@ import "./index.css";
 import { useAuth } from "../../contexts";
 import { NavLink, useNavigate } from "react-router-dom";
 import { AvatarModal, ProfileInfo, ProgressBar } from "../../components";
-import myImgBackground from "../../assets/game.png";
 
 const ProfilePage = () => {
   const { selectedAvatar, setAvatar } = useAuth();
@@ -92,17 +91,9 @@ const ProfilePage = () => {
     fetchData();
   }, []);
 
-  const isLoggedIn = !!localStorage.getItem("access_token");
-
   return (
     <>
-      <div className="image-profile">
-        <div
-          className="img-background"
-          style={{ backgroundImage: `url(${myImgBackground})` }}
-        ></div>
-      </div>
-      <section id="profile-section">
+      <section id="main-profilepage">
         <div className="profilepage">
           <section id="first-section">
             <div className="profile-container">
@@ -174,14 +165,14 @@ const ProfilePage = () => {
                 title="Giphy Background"
               ></iframe>
             </div>
-          </section>
 
-          <ProfileInfo
-            xp={profileInfo.xp}
-            wins={profileInfo.wins}
-            losses={profileInfo.losses}
-            sessions={profileInfo.sessions}
-          />
+            <ProfileInfo
+              xp={profileInfo.xp}
+              wins={profileInfo.wins}
+              losses={profileInfo.losses}
+              sessions={profileInfo.sessions}
+            />
+          </section>
         </div>
       </section>
     </>
