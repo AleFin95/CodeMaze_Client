@@ -86,8 +86,9 @@ export const HomePage = () => {
   };
 
   const h2Styles = {
-    fontSize: '40px',
-    fontFamily: "'Lemon', serif",
+    fontSize: '50px',
+    fontFamily: "'Geist Mono', serif",
+    fontWeight: '900',
     marginBottom: '1em',
     marginTop: '1em'
   };
