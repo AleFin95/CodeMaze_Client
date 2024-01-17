@@ -3,7 +3,6 @@ import "./index.css";
 import { useAuth } from "../../contexts";
 import { NavLink, useNavigate } from "react-router-dom";
 import { AvatarModal, ProfileInfo, ProgressBar } from "../../components";
-import myImgBackground from "../../assets/game.png";
 
 const ProfilePage = () => {
   const { selectedAvatar, setAvatar } = useAuth();
@@ -92,24 +91,9 @@ const ProfilePage = () => {
     fetchData();
   }, []);
 
-  const isLoggedIn = !!localStorage.getItem("access_token");
-
-  const handleLogout = () => {
-    localStorage.removeItem("access_token");
-    localStorage.removeItem("username");
-    //localStorage.removeItem("isAdmin");
-    navigate("/");
-  };
-
   return (
     <>
-      <div className="image-profile">
-        <div
-          className="img-background"
-          style={{ backgroundImage: `url(${myImgBackground})` }}
-        ></div>
-      </div>
-      <section id="profile-section">
+      <section id="main-profilepage">
         <div className="profilepage">
           <section id="first-section">
             <div className="profile-container">
@@ -128,19 +112,6 @@ const ProfilePage = () => {
                 >
                   Edit Avatar
                 </button>
-                <div className="logout-profile">
-                  {isLoggedIn ? (
-                    <>
-                      <NavLink to="/" onClick={handleLogout} id="logoutid">
-                        Logout
-                      </NavLink>
-                    </>
-                  ) : (
-                    <NavLink to="/login" style={linkStyle}>
-                      Login/Register
-                    </NavLink>
-                  )}
-                </div>
               </div>
 
               <AvatarModal
@@ -189,19 +160,17 @@ const ProfilePage = () => {
               <iframe
                 className="background-iframe"
                 src="https://giphy.com/embed/6ThSJSAsHAEj1dH2TT"
-                allowFullScreen
                 frameBorder="0"
-                title="Giphy Background"
               ></iframe>
             </div>
-          </section>
 
-          <ProfileInfo
-            xp={profileInfo.xp}
-            wins={profileInfo.wins}
-            losses={profileInfo.losses}
-            sessions={profileInfo.sessions}
-          />
+            <ProfileInfo
+              xp={profileInfo.xp}
+              wins={profileInfo.wins}
+              losses={profileInfo.losses}
+              sessions={profileInfo.sessions}
+            />
+          </section>
         </div>
       </section>
     </>

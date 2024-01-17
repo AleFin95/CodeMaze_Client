@@ -20,60 +20,75 @@ nav h1 {
     font-family: 'Anton', sans-serif;
 }
 */
-body {margin: 0;}
+body {
+  margin: 0;
+}
 
 header {
-    background-color: #0a3e315c;
-    padding: 0.3em 0.7em;
-    box-shadow: 0 4px 6px rgba(29, 101, 64, 0.883);
-    margin: 2px;
-
+  background-color: #0a3e315c;
+  padding: 0.3em 0.7em;
+  box-shadow: 0 4px 6px rgba(29, 101, 64, 0.883);
+  margin: 2px;
+  border-radius: 20px;
+  min-width: 0;
 }
 
 body.logged-in header {
-    background-color: #2d615436; 
-    padding: 0.3em 0.7em;
-    box-shadow: 0 4px 6px rgba(217, 221, 100, 0.883);
-    margin: 6px;
-  }
+  background-color: #2d615436;
+  padding: 0.3em 0.7em;
+  box-shadow: 0 4px 6px rgba(217, 221, 100, 0.883);
+  margin: 6px;
+}
 
-  nav {
-    display: flex;
-    justify-content:space-between;
-    margin: 0 10px;
-    max-width: 100%;
-    height: 50%;
+nav {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 10px;
+  max-width: 100%;
+  height: 50%;
 }
 
 header h1 {
-    font-size: 50px;
-    color: #4bf275;
-    margin-right: 100px;
-    letter-spacing: 13px;
-   border-bottom:3px solid #4bf275;
-   border-radius: 8px;
-}
-
-
-
-.logout {
-    background-color: #dc3545; 
-    color: #fff;
-    border: none;
-    padding: 10px 15px;
-    font-size: 18px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+  font-size: 50px;
+  color: #4bf275;
+  letter-spacing: 13px;
+  border-bottom: 3px solid #4bf275;
+  border-radius: 8px;
+  margin: 20px 0;
 }
 
 .logout:hover {
-    background-color: #7ec82392; /* Darker red color on hover */
+  background-color: #7ec82392; /* Darker red color on hover */
 }
 
 .onlyNavs {
-    width: 100%;
-    display: flex;
-    justify-content:end;
-    margin-left: 300px; 
-    align-items: center;
-  }
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.avatar-logout {
+  display: flex;
+  height: 55%;
+  gap: 20px;
+  align-items: center;
+}
+
+.avatar-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#logoutid {
+  font-size: 20px;
+  color: #000;
+  text-decoration: none;
+}
+
+#logoutid:hover {
+  transform: scale(1.05); /* Enlarge the button slightly on hover */
+  /* box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.2); /* Adjusting shadow on hover for depth */
+  background-color: #4bf275;
+}

@@ -1,11 +1,5 @@
 
-  
-  #sec-session{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    width: 80%;
-  }
+
 
   .sessions-section {
     display: flex;
@@ -14,26 +8,32 @@
     opacity: 1;
     transition: opacity 0.3s ease-in-out;
     margin-bottom: 0;
+    margin-left: 30%;
+    margin-right: 30%;
   }
   
 
-
   .achievements-section {
     display: flex;
-    flex-direction:column;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
     text-align: center;
     opacity: 1;
     transition: opacity 0.3s ease-in-out;
+    padding-right: 30%;
+    margin-top: -15%;
+
   }
 
   #font-profile {
-    font-size: 16px;
+    font-size: 20px;
   }
-  .session-main{
-    display: flex;
-    flex-direction: row;
-    align-items:flex-start;
+
+  #font-profile-session {
+    font-size: 40px;
   }
+
   #sessionsH1{
     margin-top: 20px;
     margin-bottom:10px;
@@ -47,13 +47,16 @@
     background-color: #030202f1;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
+    width: 100%;
+    
   
   }
   
   .session-table table {
     width: 100%;
+    height: fit-content;
     border-collapse: collapse;
+    
   }
   
   .session-table thead {
@@ -63,6 +66,7 @@
   
   .session-table tbody {
     display: block;
+    
   }
   
   .session-table tr {
@@ -74,6 +78,7 @@
     border-bottom: 1px solid #ecf0f1;
     transition: background-color 0.3s ease;
     height: 30px; 
+   
   }
   
   .session-table tr:hover {
@@ -122,17 +127,19 @@
   
   
   .small-table {
-    transform: scale(0.5);
+    transform: scale(0.6);
     cursor: pointer;
     position: relative;
-    margin-top: -90px;
-    margin-left: 40px;
-
+    margin-top: -130px;
   }
   
+  .small-table table {
+    width:60%; /* Adjust the width as needed */
+    white-space: nowrap;
+  }
 
   .large-table {
-    transform: scale(2) translate(20%, -70%);
+    transform: scale(1);
     cursor: pointer;
 
     top: 0%;

@@ -8,7 +8,7 @@ const AvatarModal = ({ isOpen, onClose, avatars, onSelectAvatar }) => {
       <AvatarSelector
         avatars={avatars}
         onSelectAvatar={onSelectAvatar}
-        selectedAvatar={null} // Assuming selectedAvatar is not used in the modal
+        selectedAvatar={null}
       />
     </div>
   );
