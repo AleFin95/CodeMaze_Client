@@ -105,9 +105,11 @@ const GamePage = () => {
   }, []);
 
   useEffect(() => {
-    setRoom(state.room);
-    console.log("room ", state.room);
-    setUsername(state.username);
+    if (state) {
+      setRoom(state.room);
+      console.log("room ", state.room);
+      setUsername(state.username);
+    }
 
     if (initialQ || testCase) {
       socket.emit("setting_question", { initialQ, testCase });
@@ -118,7 +120,7 @@ const GamePage = () => {
         setTestCase(data.testcases);
       });
     }
-  }, [state.room, state.username, handleReceiveRooms, initialQ, testCase]);
+  }, [state?.room, state?.username, handleReceiveRooms, initialQ, testCase]);
 
   const API_URL = "https://codex-api.fly.dev/";
 
