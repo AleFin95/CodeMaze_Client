@@ -16,6 +16,7 @@ import {
   GameRunButton,
   MatchingPlayers,
   FeedbackPopUp,
+  PlayerVsPlayer,
 } from "../../components";
 import { Link } from "react-router-dom";
 
@@ -37,6 +38,9 @@ const GamePage = () => {
   const [loading, setLoading] = useState(true);
   const [initialQ, setIntialQ] = useState("");
   const [testCase, setTestCase] = useState("");
+  const [showPlayerVsPlayer, setShowPlayerVsPlayer] = useState(true);
+  const [roomUsers2, setRoomUsers2] = useState()
+
 
   const access_token =localStorage.getItem("access_token")
 
@@ -67,6 +71,7 @@ const GamePage = () => {
 
     const roomUsers = roomsData[state.room]?.users;
     const roomData = roomUsers ? roomUsers.length : 0;
+    setRoomUsers2(roomUsers)
 
     console.log("roomUsers: ", roomUsers);
 
@@ -119,7 +124,7 @@ const GamePage = () => {
       }
   }, [state.room, state.username, handleReceiveRooms, initialQ, testCase]);
 
-  const API_URL = "https://api.codex.jaagrav.in";
+  const API_URL = "https://codex-api.fly.dev/";
  
   // const tests = [
   //   {
@@ -252,6 +257,10 @@ const GamePage = () => {
 
   const isLoggedIn = localStorage.getItem("access_token");
 
+  const handlePlayerVsPlayerTimeout = () => {
+    setShowPlayerVsPlayer(false);
+  };
+
   return (
     <>
       <Video />
@@ -265,7 +274,7 @@ const GamePage = () => {
         </div>
       ) : loading ? (
         <MatchingPlayers handleCancel={handleCancel} />
-      ) : (
+      ) : showPlayerVsPlayer ? (<PlayerVsPlayer roomUsers2={roomUsers2} onTimeOut={handlePlayerVsPlayerTimeout}/>) : (
         <div className="App">
           <GameNavbar
             userLang={userLang}
