@@ -61,7 +61,7 @@ describe("MatchingPlayers Component", () => {
     expect(button).toBeInTheDocument();
   });
 
-  it.skip("User is forwarded to Home page when Cancel link is clicked", async () => {
+  /*it("User is forwarded to Home page when Cancel link is clicked", async () => {
     const button = screen.getByTestId("button");
     fireEvent.click(button);
 
@@ -69,7 +69,7 @@ describe("MatchingPlayers Component", () => {
     await waitFor(() => {
       expect(window.location.pathname).toBe("/");
     });
-  });
+  });*/
 
   afterEach(() => {
     cleanup();
