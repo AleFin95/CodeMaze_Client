@@ -1,5 +1,4 @@
-const GameQuestions = ({initialQ}) => {
-
+const GameQuestions = ({ initialQ }) => {
   return (
     <>
       <h4>Question:</h4>
