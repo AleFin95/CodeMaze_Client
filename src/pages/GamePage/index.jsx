@@ -85,6 +85,7 @@ const GamePage = () => {
   useEffect(() => {
     let r = state.roomData;
     state.isSolo ? setLoading(false) : setLoading(true);
+    state.isSolo ? setShowPlayerVsPlayer(false) : setShowPlayerVsPlayer(true) ;
     // socket.on("receiveRooms", handleReceiveRooms)
     socket.emit("sendRooms", { r });
     socket.on("receiveRooms2", handleReceiveRooms2);
