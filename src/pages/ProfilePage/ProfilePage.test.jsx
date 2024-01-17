@@ -25,12 +25,12 @@ describe("ProfilePage", () => {
     );
   });
 
-  it.skip("renders edit avatar button", () => {
+  it("renders edit avatar button", () => {
     const editAvatarButton = screen.getByText("Edit Avatar");
     expect(editAvatarButton).toBeInTheDocument();
   });
 
-  it.skip("triggers avatar selection modal on edit avatar button click", async () => {
+  it("triggers avatar selection modal on edit avatar button click", async () => {
     const editAvatarButton = screen.getByText("Edit Avatar");
     fireEvent.click(editAvatarButton);
 
@@ -48,12 +48,12 @@ describe("ProfilePage", () => {
     });
   });
 
-  it.skip("displays user information", () => {
+  it("displays user information", () => {
     const usernameElement = screen.getByText("Username:");
     expect(usernameElement).toBeInTheDocument();
   });
 
-  it.skip("displays achievements section with XP, wins, and losses", () => {
+  it("displays achievements section with XP, wins, and losses", () => {
     const xpElement = screen.getByText(/XP:/);
     const winsElement = screen.getByText(/Wins:/);
     const lossesElement = screen.getByText(/Losses:/);
@@ -63,7 +63,7 @@ describe("ProfilePage", () => {
     expect(lossesElement).toBeInTheDocument();
   });
 
-  it.skip("displays sessions section with appropriate message", () => {
+  it("displays sessions section with appropriate message", () => {
     const sessionsElement = screen.getByText("Sessions played");
     const noSessionsMessage = screen.getByText(
       "Your gaming chair feels neglected. No epic gaming tales to share—yet!"
