@@ -26,10 +26,24 @@ describe("PlayerVsPlayer", () => {
 
   it.skip("renders title", () => {
     const heading = screen.getByRole("heading", {
-      name: /The game will start in/i,
+      name: /Starting in/i,
     });
     expect(heading).toBeInTheDocument();
   });
+
+  it('Contains a p element',() => {
+    const p = screen.getByTestId('counter')
+    expect(p).toBeInTheDocument();
+  }
+  )
+
+  it('Contains 3 headers',() => {
+    const h1s = screen.getByRole(heading)
+    expect(h1s.lenght).toBeLessThanOrEqual(3);
+  }
+  )
+
+
 
   afterEach(() => {
     cleanup();
