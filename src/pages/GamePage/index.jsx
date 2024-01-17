@@ -36,6 +36,7 @@ const GamePage = () => {
   const [allRooms, setAllRooms] = useState();
   const [loading, setLoading] = useState(true);
   const [initialQ, setIntialQ] = useState("");
+  const [testCase, setTestCase] = useState("");
 
   const access_token = localStorage.getItem("access_token");
 
@@ -46,7 +47,7 @@ const GamePage = () => {
       const roomsData = data;
       console.log("roomsData: ", roomsData);
 
-      const roomUsers = roomsData[state.room]?.users;
+      const roomUsers = roomsData[state?.room]?.users;
       const roomData = roomUsers ? roomUsers.length : 0;
 
       console.log("roomUsers: ", roomUsers);
@@ -57,7 +58,7 @@ const GamePage = () => {
         setLoading(false);
       }
     },
-    [state.room, loading]
+    [state?.room, loading]
   );
 
   const handleReceiveRooms2 = (data) => {
@@ -77,8 +78,8 @@ const GamePage = () => {
   };
 
   useEffect(() => {
-    let r = state.roomData;
-    state.isSolo ? setLoading(false) : setLoading(true);
+    let r = state?.roomData; // Use optional chaining to handle null or undefined
+    state?.isSolo ? setLoading(false) : setLoading(true);
     // socket.on("receiveRooms", handleReceiveRooms)
     socket.emit("sendRooms", { r });
     socket.on("receiveRooms2", handleReceiveRooms2);
@@ -90,7 +91,9 @@ const GamePage = () => {
         },
       })
       .then((res) => {
+        console.log(res);
         setIntialQ(res.data.description);
+        setTestCase(res.data.examples[0].test_case);
       })
       .catch((error) => {
         console.error("Error fetching data: ", error);
@@ -98,41 +101,51 @@ const GamePage = () => {
   }, []);
 
   useEffect(() => {
-    setRoom(state.room);
-    console.log("room ", state.room);
-    setUsername(state.username);
+    setRoom(state?.room || ""); // Default to an empty string if state or state.room is undefined
+    setUsername(state?.username || "");
 
-    // return () => {
-    //   socket.off("receiveRooms", handleReceiveRooms);
-    // };
-  }, [state.room, state.username, handleReceiveRooms]);
+    if (initialQ || testCase) {
+      socket.emit("setting_question", { initialQ, testCase });
+      socket.emit("getting_question");
+      socket.on("got_question", (data) => {
+        console.log("getting_question: ", data);
+        setIntialQ(data.question);
+        setTestCase(data.testcases);
+      });
+    }
+  }, [state?.room, state?.username, handleReceiveRooms, initialQ, testCase]);
 
   const API_URL = "https://api.codex.jaagrav.in";
 
-  const tests = [
-    {
-      py: [
-        "print(twoSum([2, 7, 11, 15], 9))",
-        "print(twoSum([21, 7, 11, 1], 8))",
-        "print(twoSum([21, 9, 1, 12], 10))",
-      ],
-    },
-    {
-      js: [
-        "console.log(twoSum([2, 7, 11, 15], 9))",
-        "console.log(twoSum([7, 12, 1, 19], 8))",
-        "console.log(twoSum([21, 9, 1, 12], 10))",
-      ],
-    },
-  ];
+  // const tests = [
+  //   {
+  //     py: [
+  //       `print(${testCase})`
+  //     ],
+  //   },
+  //   {
+  //     js: [
+  //       `console.log(${testCase})`
+  //     ],
+  //   },
+  // ];
 
   useEffect(() => {
+    const tests = [
+      {
+        py: [`print(${testCase})`],
+      },
+      {
+        js: [`console.log(${testCase})`],
+      },
+    ];
+
     if (userLang === "py") {
       setTestCases(tests[0].py);
     } else {
       setTestCases(tests[1].js);
     }
-  }, [userLang]);
+  }, [userLang, testCase]);
 
   const options = {
     fontSize: fontSize,
@@ -145,6 +158,12 @@ const GamePage = () => {
   const [buttonDisabled, setButtonDisabled] = useState(false);
   const [buttonPressed, setButtonPressed] = useState(false);
   const [popupHidden, setPopupHidden] = useState(true);
+
+  const handleCancel = () => {
+    if (socket && socket.connected) {
+      socket.disconnect();
+    }
+  };
 
   const handleCompile = (action) => {
     if (action === "Run") {
@@ -249,6 +268,7 @@ const GamePage = () => {
           <div className="main">
             <div className="left-container">
               <Editor
+                data-testid="monaco-editor"
                 options={options}
                 width="auto"
                 theme={userTheme}
