@@ -3,7 +3,7 @@ import "./index.css";
 import { useAuth } from "../../contexts";
 import { NavLink, useNavigate } from "react-router-dom";
 import { AvatarModal, ProfileInfo, ProgressBar } from "../../components";
-import profileImage from "./assets/game.png";
+import myImgBackground from "../../assets/game.png";
 
 const ProfilePage = () => {
   const { selectedAvatar, setAvatar } = useAuth();
@@ -94,91 +94,96 @@ const ProfilePage = () => {
 
   const isLoggedIn = !!localStorage.getItem("access_token");
 
-  const handleLogout = () => {
-    localStorage.removeItem("access_token");
-    localStorage.removeItem("username");
-    //localStorage.removeItem("isAdmin");
-    navigate("/");
-  };
-
   return (
     <>
-      <div className="profilepage">
-        <div>
-          <div className="profile-container">
-            <div className="avatar-section">
-              {selectedAvatar && (
-                <img
-                  src={selectedAvatar}
-                  alt="Selected Avatar"
-                  className="avatar"
-                />
-              )}
-
-              <button
-                className="edit-avatar-btn"
-                onClick={handleEditAvatarClick}
-              >
-                Edit Avatar
-              </button>
-              <div className="logout-profile">
-                {isLoggedIn ? (
-                  <>
-                    <NavLink to="/" onClick={handleLogout} id="logoutid">
-                      Logout
-                    </NavLink>
-                  </>
-                ) : (
-                  <NavLink to="/login" style={linkStyle}>
-                    Login/Register
-                  </NavLink>
+      <div className="image-profile">
+        <div
+          className="img-background"
+          style={{ backgroundImage: `url(${myImgBackground})` }}
+        ></div>
+      </div>
+      <section id="profile-section">
+        <div className="profilepage">
+          <section id="first-section">
+            <div className="profile-container">
+              <div className="avatar-section">
+                {selectedAvatar && (
+                  <img
+                    src={selectedAvatar}
+                    alt="Selected Avatar"
+                    className="avatar"
+                  />
                 )}
+
+                <button
+                  className="edit-avatar-btn"
+                  onClick={handleEditAvatarClick}
+                >
+                  Edit Avatar
+                </button>
+              </div>
+
+              <AvatarModal
+                isOpen={isModalOpen}
+                onClose={handleModalClose}
+                avatars={avatars}
+                onSelectAvatar={handleAvatarSelection}
+              />
+
+              <div className="user-info">
+                <h1>Username: </h1>
+                <p>{profileInfo.username}</p>
+                {profileInfo.rank.map((rankItem) => {
+                  const remainingXP = rankItem.max_xp - profileInfo.xp;
+                  return (
+                    <div key={rankItem.id}>
+                      <p>{rankItem.name}</p>
+                      <ProgressBar
+                        currentXP={profileInfo.xp}
+                        minXPBronze={0}
+                        maxXPBronze={250}
+                        minXPSilver={251}
+                        maxXPSilver={500}
+                        minXPGold={501}
+                        maxXPGold={750}
+                        minXPlatinum={751}
+                        maxXPlatinum={1000}
+                      />
+                      <p id="font-profile">
+                        Remaining XP to {rankItem.name}:{" "}
+                        {remainingXP > 0 ? remainingXP : "Reached"}
+                      </p>
+                    </div>
+                  );
+                })}
               </div>
             </div>
+            <div className="gif-section">
+              <NavLink
+                to="/ranking"
+                style={{ textDecoration: "none", marginLeft: "50px" }}
+              >
+                <h1 id="h1-ranking">Ranking</h1>
+              </NavLink>
 
-            <AvatarModal
-              isOpen={isModalOpen}
-              onClose={handleModalClose}
-              avatars={avatars}
-              onSelectAvatar={handleAvatarSelection}
-            />
-
-            <div className="user-info">
-              <h1>Username: </h1>
-              <p>{profileInfo.username}</p>
-              {profileInfo.rank.map((rankItem) => {
-                const remainingXP = rankItem.max_xp - profileInfo.xp;
-                return (
-                  <div key={rankItem.id}>
-                    <p>{rankItem.name}</p>
-                    <ProgressBar
-                      currentXP={profileInfo.xp}
-                      minXPBronze={0}
-                      maxXPBronze={250}
-                      minXPSilver={251}
-                      maxXPSilver={500}
-                      minXPGold={501}
-                      maxXPGold={750}
-                      minXPlatinum={751}
-                      maxXPlatinum={1000}
-                    />
-                    <p>
-                      Remaining XP to {rankItem.name}:{" "}
-                      {remainingXP > 0 ? remainingXP : "Reached"}
-                    </p>
-                  </div>
-                );
-              })}
+              <iframe
+                className="background-iframe"
+                src="https://giphy.com/embed/6ThSJSAsHAEj1dH2TT"
+                allowFullScreen
+                frameBorder="0"
+                title="Giphy Background"
+              ></iframe>
             </div>
-          </div>
+          </section>
+
+          <ProfileInfo
+            xp={profileInfo.xp}
+            wins={profileInfo.wins}
+            losses={profileInfo.losses}
+            sessions={profileInfo.sessions}
+          />
         </div>
-        <ProfileInfo
-          xp={profileInfo.xp}
-          wins={profileInfo.wins}
-          losses={profileInfo.losses}
-          sessions={profileInfo.sessions}
-        />
-      </div>
+      </section>
     </>
   );
 };

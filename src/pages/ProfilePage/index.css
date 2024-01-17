@@ -1,25 +1,62 @@
 
+#profile-section {
+  display: flex; 
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+
 .profilepage{
-  background-image: url("./assets/game.png");
-  background-size: cover;
-  background-repeat: no-repeat;
-  margin:0;
+  width: 90%;
+  object-fit:contain;
+  display: flex; 
+  flex-direction: column;
+  align-items: center;
+
+}
+
+.image-profile{
+  position: absolute;
+  top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
   z-index: -1;
-  padding-bottom: 100px;
+}
+
+.img-background{
+  position: absolute;
+  background-repeat: no-repeat;
+  background-position: center top;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+  
+}
+
+
+#first-section{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 80%;
+
 
 }
 
 .profile-container {
   
-    width: 50%;
+    width: 60%;
     height: 50%;
     margin:0;
     margin-bottom: 0px;
-    padding-top: 200px;
+    padding-top: 100px;
     display: flex;
     flex-direction: row; 
     justify-content:space-evenly;
@@ -37,33 +74,53 @@
     z-index: -1;
   }
 
+#h1-ranking{
+  margin-bottom: 20px;
+  border-bottom:3px solid #4bf275;
+  border-radius: 8px;
 
-    .avatar-section {
-        display:flex;
-        flex-direction: column ;
-        padding-left: 20px;
-        align-items: center;
-      }
+}
+
+
+.gif-section{
+  display: flex;
+  flex-direction: column;
+  justify-content:left;
+  text-align: center;
+  padding-top: 100px;
+  padding-right: 60px;
+
+}
+
+.background-iframe{
+  width: 120%; 
+  height: 120%;  
+  pointer-events: none; 
+
+
+}
 
   
   .avatar {
-    width: 150px;
-    height: 150px;
+    width: 100px;
+    height: 100px;
     border-radius: 50%;
     object-fit: cover;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
   }
 
 
   .edit-avatar-btn {
     text-align: center;
-    width: 90%;
+    width: 80%;
+    height: 30px;
     background-color: #1f1b32;
     color: #ebee83;
     padding: 8px 10px;
     border-radius: 15px;
     cursor: pointer;
     border: #1f1b32;
+    font-size: 12px;
   }
   
   .avatar-section:hover .edit-avatar-btn {
@@ -82,20 +139,3 @@
     margin: 0; /* Remove default margin for h2 */
   }
   
-  .logout-profile{
-    display: flex;
-    justify-content: center;
-    width: 90%;
-    margin-top: 20px;
-  }
-
-  #logoutid{
-    padding-top: 0;
-    padding-bottom: 0;
-    margin-bottom: 20px;
-    font-size: 20px;
-    color: #4bf275;
-    text-decoration: underline;
-
-    
-  }
