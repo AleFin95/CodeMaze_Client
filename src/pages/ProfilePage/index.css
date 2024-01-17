@@ -100,31 +100,27 @@
 
 }
 
-    .avatar-section {
-        display:flex;
-        flex-direction: column ;
-        align-items: center;
-      }
-
   
   .avatar {
-    width: 130px;
-    height: 130px;
+    width: 100px;
+    height: 100px;
     border-radius: 50%;
     object-fit: cover;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
   }
 
 
   .edit-avatar-btn {
     text-align: center;
-    width: 90%;
+    width: 80%;
+    height: 30px;
     background-color: #1f1b32;
     color: #ebee83;
     padding: 8px 10px;
     border-radius: 15px;
     cursor: pointer;
     border: #1f1b32;
+    font-size: 12px;
   }
   
   .avatar-section:hover .edit-avatar-btn {
@@ -143,20 +139,3 @@
     margin: 0; /* Remove default margin for h2 */
   }
   
-  .logout-profile{
-    display: flex;
-    justify-content: center;
-    width: 90%;
-    margin-top: 20px;
-  }
-
-  #logoutid{
-    padding-top: 0;
-    padding-bottom: 0;
-    margin-bottom: 20px;
-    font-size: 20px;
-    color: #4bf275;
-    text-decoration: underline;
-
-    
-  }

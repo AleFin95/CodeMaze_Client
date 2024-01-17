@@ -94,13 +94,6 @@ const ProfilePage = () => {
 
   const isLoggedIn = !!localStorage.getItem("access_token");
 
-  const handleLogout = () => {
-    localStorage.removeItem("access_token");
-    localStorage.removeItem("username");
-    //localStorage.removeItem("isAdmin");
-    navigate("/");
-  };
-
   return (
     <>
       <div className="image-profile">
@@ -128,19 +121,6 @@ const ProfilePage = () => {
                 >
                   Edit Avatar
                 </button>
-                <div className="logout-profile">
-                  {isLoggedIn ? (
-                    <>
-                      <NavLink to="/" onClick={handleLogout} id="logoutid">
-                        Logout
-                      </NavLink>
-                    </>
-                  ) : (
-                    <NavLink to="/login" style={linkStyle}>
-                      Login/Register
-                    </NavLink>
-                  )}
-                </div>
               </div>
 
               <AvatarModal

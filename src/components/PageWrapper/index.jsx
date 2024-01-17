@@ -34,6 +34,13 @@ const PageWrapper = () => {
 
   document.body.classList.toggle("logged-in", isLoggedIn);
 
+  const handleLogout = () => {
+    localStorage.removeItem("access_token");
+    localStorage.removeItem("username");
+    //localStorage.removeItem("isAdmin");
+    navigate("/");
+  };
+
   return (
     <header style={{ marginBottom: "20px" }}>
       <nav>
@@ -43,22 +50,29 @@ const PageWrapper = () => {
         <div data-testid="div" className="onlyNavs">
           {isLoggedIn ? (
             <>
-              {selectedAvatar && (
-                <NavLink to="/profile">
-                  <img
-                    src={selectedAvatar}
-                    alt="Selected Avatar"
-                    className="avatar selected"
-                    style={{
-                      marginLeft: "-30px",
-                      marginRight: "20px",
-                      borderRadius: "50%",
-                      width: "60px",
-                      height: "60px",
-                    }}
-                  />
-                </NavLink>
-              )}
+              <div className="avatar-logout">
+                <div className="avatar-btn">
+                  {selectedAvatar && (
+                    <NavLink to="/profile">
+                      <img
+                        src={selectedAvatar}
+                        alt="Selected Avatar"
+                        className="avatar selected"
+                        style={{
+                          borderRadius: "50%",
+                          width: "80px",
+                          height: "80px",
+                        }}
+                      />
+                    </NavLink>
+                  )}
+                </div>
+                <div className="logout-profile">
+                  <NavLink to="/" onClick={handleLogout} id="logoutid">
+                    Logout
+                  </NavLink>
+                </div>
+              </div>
             </>
           ) : (
             <NavLink to="/login" style={linkStyle}>
