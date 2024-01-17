@@ -21,6 +21,7 @@ export const HomePage = () => {
   useEffect(() => {
     const user = localStorage.getItem('username');
     const user_id = localStorage.getItem("user_id")
+    setUserId(user_id)
     setUsername(user);
   }, [localStorage.getItem('access_token')]);
 
