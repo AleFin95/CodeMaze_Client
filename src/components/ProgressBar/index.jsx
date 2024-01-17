@@ -16,7 +16,7 @@ const ProgressBar = ({
 }) => {
   const calculateProgress = () => {
     if (currentXP < minXPBronze) {
-      return 0; // No XP
+      return 0; 
     } else if (currentXP >= minXPBronze && currentXP <= maxXPBronze) {
       return ((currentXP - minXPBronze) / (maxXPBronze - minXPBronze)) * 25;
     } else if (currentXP >= minXPSilver && currentXP <= maxXPSilver) {
@@ -30,7 +30,7 @@ const ProgressBar = ({
         75 + ((currentXP - minXPlatinum) / (maxXPlatinum - minXPlatinum)) * 25
       );
     } else {
-      return 100; // User surpassed the highest rank
+      return 100; 
     }
   };
 

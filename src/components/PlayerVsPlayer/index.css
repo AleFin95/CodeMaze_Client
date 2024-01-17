@@ -1,90 +1,106 @@
 @import url('https://fonts.googleapis.com/css2?family=Bungee+Spice&display=swap');
 
 #base{
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
-
+#main div img {
+  height: 300px;
+  width: 300px;
+}
 
 #first {
-    position: fixed;
-    display: flex;
-    flex-direction: column;
-    gap:2em;
-    margin-bottom: 10em;
-    
-
+  display: flex;
+  flex-direction: column;
+  gap:1em;
+  margin-bottom: 10em;
+  margin-top: 7em;
 }
 
-
 #main { 
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 10em;
-    margin-top: 8em;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 75em;
+  margin-top: 8em;
 }
 
 #main div {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin:1em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin:1em;
 }
 
 #main img {
-    height: 300px;
-    width:200px ;
+  height: 200px;
+  width:150px ;
+  margin-bottom: 2%;
 }
 
 #theBottom {
-    margin-top: 0;
-    height: 100px;
+  margin-top: 0;
+  height: 100px;
 }
+
 .title {
-    margin-bottom: 0;
+  opacity: 0;
+  margin-bottom: 0em;
+  margin-top: 2em; 
+}
+
+.title.show {
+  opacity: 1; 
+}
+
+.title.show p {
+  opacity: 1;
+  animation: flipInX;
+  animation-iteration-count: 10;
+  animation-duration: 1.2s;
 }
 
 .title h1 {
-    font-size: 40px;
+  font-size: 45px;
+  color:white;  
+
 }
 
 .title p {
-    font-family: 'Bungee Spice', sans-serif;
-    font-size: 80px;
-    margin-bottom: 10em;
+  font-family: 'Bungee Spice', sans-serif;
+  font-size: 80px;
+  margin-top: 0;
+  margin-bottom: 0em;
 }
 
-.image-container {
-    opacity: 0;
-    transition: opacity 1s ease; /* Adjust the duration and easing function as needed */
-  }
-  
-  .image-container.show  {
-    opacity: 1;
-    transform: scale(1.2);
-  }
-  .image-container.zoom-in img {
-    transform: scale(0); /* Adjust the scale factor for zooming in */
-  }
+.player1 h1, .player2 h1  {
+  font-size: 45px;
+  margin: 0;
+  padding-top: 10px;
+  opacity: 0;
+  color: white;
+}
 
-  .image-container img {
-    width: 100%;
-    transition: transform 1s ease; /* Adjust the duration and easing function as needed */
-  }
+.player1.show h1 {
+  opacity: 1;
+  animation: flipInY;
+  animation-duration: 1s;
+}
 
-  .image-container2 {
-    overflow: hidden;
-  }
-  
-  .image-container2 img {
-    width: 100%;
-    transition: transform 1s ease; /* Adjust the duration and easing function as needed */
-    transform: translateX(100%); /* Start the image off-screen to the left */
-  }
-  
-  .image-container2.slide-in img {
-    transform: translateX(0); /* Move the image back to its original position */
-  }
+.player2.show h1 {
+  opacity: 1;
+  animation: flipInY;
+  animation-duration: 1s;
+}
+
+.player1 {  
+  animation: backInLeft; /* referring directly to the animation's @keyframe declaration */
+  animation-duration: 1.6s;  
+}
+
+.player2 {
+  animation: backInRight; /* referring directly to the animation's @keyframe declaration */
+  animation-duration: 1.6s;
+} 
