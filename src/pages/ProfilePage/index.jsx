@@ -79,6 +79,7 @@ const ProfilePage = () => {
         if (response.status === 200) {
           const data = await response.json();
           setProfileInfo(data);
+          localStorage.setItem('user_id', data.id);
           console.log(data);
         } else {
           throw new Error("Failed to fetch profile info");

@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Anton&family=Carrois+Gothic&family=Manrope&family=Nunito+Sans:opsz,wght@6..12,300&family=Rubik+Glitch&display=swap');
-
 /*body {
     margin: 0;
 }
@@ -51,14 +49,13 @@ nav {
 header h1 {
   font-size: 50px;
   color: #4bf275;
-  letter-spacing: 13px;
   border-bottom: 3px solid #4bf275;
   border-radius: 8px;
   margin: 20px 0;
 }
 
 .logout:hover {
-  background-color: #7ec82392; /* Darker red color on hover */
+  background-color: #7ec82392;
 }
 
 .onlyNavs {
@@ -88,7 +85,6 @@ header h1 {
 }
 
 #logoutid:hover {
-  transform: scale(1.05); /* Enlarge the button slightly on hover */
-  /* box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.2); /* Adjusting shadow on hover for depth */
+  transform: scale(1.05);
   background-color: #4bf275;
 }
