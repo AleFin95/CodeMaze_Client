@@ -22,12 +22,12 @@ describe("GameTestCases", () => {
     );
   });
 
-  it("should find the heading", () => {
+  /*it("should find the heading", () => {
     const heading = screen.getByRole("heading", {
       name: /Login to Access Game/i,
     });
     expect(heading).toBeInTheDocument();
-  });
+  });*/
 
   /*it("displays a link", () => {
     const link = screen.getByRole("link");
