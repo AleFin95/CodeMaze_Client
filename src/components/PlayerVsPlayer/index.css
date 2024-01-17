@@ -6,8 +6,8 @@
 }
 
 #main div img {
-  height: 300px;
-  width: 300px;
+  height: 250px;
+  width: 250px;
 }
 
 #first {
@@ -47,8 +47,8 @@
 
 .title {
   opacity: 0;
-  margin-bottom: 0em;
-  margin-top: 2em; 
+  margin-bottom: 10em;
+  margin-top: -10em; 
 }
 
 .title.show {
@@ -98,9 +98,11 @@
 .player1 {  
   animation: backInLeft; /* referring directly to the animation's @keyframe declaration */
   animation-duration: 1.6s;  
+  padding-left: 15%;
 }
 
 .player2 {
   animation: backInRight; /* referring directly to the animation's @keyframe declaration */
   animation-duration: 1.6s;
+  padding-right: 15%;
 } 

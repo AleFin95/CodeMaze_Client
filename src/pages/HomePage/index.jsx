@@ -22,8 +22,7 @@ export const HomePage = () => {
     const user = localStorage.getItem('username');
     const user_id = localStorage.getItem("user_id")
     setUsername(user);
-    setUserId(user_id)
-  }, []);
+  }, [localStorage.getItem('access_token')]);
 
   const joinRoom = (e) => {
     e.preventDefault();
@@ -91,8 +90,9 @@ export const HomePage = () => {
   };
 
   const h2Styles = {
-    fontSize: '40px',
-    fontFamily: "'Lemon', serif",
+    fontSize: '50px',
+    fontFamily: "'Geist Mono', serif",
+    fontWeight: '900',
     marginBottom: '1em',
     marginTop: '1em'
   };
@@ -153,26 +153,28 @@ export const HomePage = () => {
               </li>
             </ul>
           </div>
-          <div className='buttons'>
-            <Link id='link1' to='/game'>
+          {username && (
+            <div className='buttons'>
+              <Link id='link1' to='/game'>
+                <button
+                  data-testid='button1'
+                  style={button}
+                  className='button1'
+                  onClick={joinRoom}
+                >
+                  1 Vs 1
+                </button>
+              </Link>
               <button
-                data-testid='button1'
+                data-testid='button2'
                 style={button}
-                className='button1'
-                onClick={joinRoom}
+                className='button2'
+                onClick={soloRoom}
               >
-                1 Vs 1
+                Solo mode
               </button>
-            </Link>
-            <button
-              data-testid='button2'
-              style={button}
-              className='button2'
-              onClick={soloRoom}
-            >
-              Solo mode
-            </button>
-          </div>
+            </div>
+          )}
         </section>
       </section>
     </>

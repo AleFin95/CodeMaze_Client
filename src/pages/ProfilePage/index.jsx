@@ -161,9 +161,7 @@ const ProfilePage = () => {
               <iframe
                 className="background-iframe"
                 src="https://giphy.com/embed/6ThSJSAsHAEj1dH2TT"
-                allowFullScreen
                 frameBorder="0"
-                title="Giphy Background"
               ></iframe>
             </div>
 

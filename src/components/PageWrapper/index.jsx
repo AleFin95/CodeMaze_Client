@@ -12,7 +12,7 @@ const PageWrapper = () => {
     textDecoration: 'none',
     padding: '10px 15px',
     fontSize: '30px',
-    fontFamily: 'Courier New',
+    fontFamily: 'Geist Mono',
     fontWeight: isActive ? 'regular' : 'regular',
     borderBottom: isActive ? '3px solid #4bf275' : ' transparent',
     borderRadius: '8px',
@@ -97,8 +97,14 @@ const PageWrapper = () => {
               </div>
             </>
           ) : (
-            <NavLink to='/login' style={linkStyle}>
-              Login/Register
+            <NavLink
+              to='/login'
+              data-testid='button1'
+              id='logoutid'
+              style={button}
+              className='button1'
+            >
+              Join us
             </NavLink>
           )}
         </div>
