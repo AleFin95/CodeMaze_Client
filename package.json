@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@monaco-editor/react": "^4.6.0",
+    "animate.css": "^4.1.1",
     "axios": "^1.4.0",
     "flywheel-leaderboard": "^0.0.3",
     "matchers": "^0.0.1",

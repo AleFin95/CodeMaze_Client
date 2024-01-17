@@ -9,7 +9,7 @@
     overflow: hidden;
     position: relative;
     margin-bottom: 10px;
-    background-color: #b6b2b2;
+    background-color: #b6b2b2d4;
   }
   
   .bronze-light {
@@ -19,7 +19,7 @@
     top: 0;
     left: 0;
     width: 25%;
-    background: #ad4f11; /* Lighter Bronze color */
+    background: #ad4f1172; /* Lighter Bronze color */
   }
   
   .silver-light {
@@ -29,7 +29,7 @@
     top: 0;
     left: 25%;
     width: 25%;
-    background: #b6b2b2; /* Lighter Silver color */
+    background: #b6b2b270; /* Lighter Silver color */
   }
   
   .gold-light {
@@ -39,7 +39,7 @@
     top: 0;
     left: 50%;
     width: 25%;
-    background: #ebbe0b; /* Lighter Gold color */
+    background: #ebbe0b69; /* Lighter Gold color */
   }
   
   .platinum-light {
@@ -49,7 +49,7 @@
     top: 0;
     left: 75%;
     width: 25%;
-    background: #d0cece; /* Lighter Platinum color */
+    background: #d0cece81; /* Lighter Platinum color */
   }
   
   .mainbar {
