@@ -93,27 +93,30 @@ const PlayerVsPlayer = ({ roomUsers2, onTimeOut }) => {
   //const stop = localStorage.getItem("interval");
   /*console.log("ss",stop)
       console.log(roomData)*/
+      const username = localStorage.getItem("username");
+      //const myAvatar = //username;
+      //const enemyAvatar = ;
+      
+    return (
+        <>
+        <VideoVs />
 
-  return (
-    <>
-      <VideoVs />
-
-      <section id="first">
-        <section id="main">
-          <div className={`player1 ${secondAnimation ? "show" : ""}`}>
-            <img src={localStorage.getItem("selectedAvatar")} />
-            <h1>{localStorage.getItem("username")}</h1>
-          </div>
-          <div className={`player2 ${secondAnimation ? "show" : ""}`}>
-            <img src={localStorage.getItem("selectedAvatar")} />
-            <h1>{enemyName}</h1>
-          </div>
-        </section>
-        <div className={`title ${timerShow ? "show" : ""}`}>
-          <h1>Starting in </h1>
-          <p>{counter}</p>
-        </div>
-      </section>
+<section id="first">
+  <section id="main">
+    <div className={`player1 ${secondAnimation ? "show" : ""}`}>
+      <img src={localStorage.getItem("selectedAvatar")} />
+      <h1>{localStorage.getItem("username")}</h1>
+    </div>
+    <div className={`player2 ${secondAnimation ? "show" : ""}`}>
+      <img src={localStorage.getItem("selectedAvatar")} />
+      <h1>{enemyName}</h1>
+    </div>
+  </section>
+  <div className={`title ${timerShow ? "show" : ""}`}>
+    <h1>Starting in </h1>
+    <p>{counter}</p>
+  </div>
+</section>
     </>
   );
 };
