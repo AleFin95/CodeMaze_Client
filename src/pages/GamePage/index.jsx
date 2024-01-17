@@ -133,8 +133,6 @@ const GamePage = () => {
       }
   }, [state.room, state.username, handleReceiveRooms2, initialQ, testCase, expectedOutcome]);
 
-  const API_URL = "https://codex-api.fly.dev/";
-
   useEffect(() => {
     const tests = [
       { py: [ `print(${testCase})` ],},
