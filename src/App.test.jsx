@@ -20,9 +20,9 @@ describe("App Component", () => {
   });
 
   it("renders navigation links", () => {
-    const rankingLink = screen.getByRole("link", { name: "Ranking" });
+    const homeLink = screen.getByRole("link", { name: "CODEMAZE" });
     const loginLink = screen.getByRole("link", { name: "Login/Register" });
-    expect(rankingLink).toBeInTheDocument();
+    expect(homeLink).toBeInTheDocument();
     expect(loginLink).toBeInTheDocument();
   });
 
@@ -53,11 +53,9 @@ describe("App Component", () => {
 
   it("renders links with correct href attributes", () => {
     const homeLink = screen.getByRole("link", { name: "CODEMAZE" });
-    const rankingLink = screen.getByRole("link", { name: "Ranking" });
     const loginLink = screen.getByRole("link", { name: "Login/Register" });
 
     expect(homeLink).toHaveAttribute("href", "/");
-    expect(rankingLink).toHaveAttribute("href", "/ranking");
     expect(loginLink).toHaveAttribute("href", "/login");
   });
 
