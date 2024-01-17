@@ -9,7 +9,7 @@ const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [accessToken, setAccessToken] = useState(getAccessToken);
   const [selectedAvatar, setSelectedAvatar] = useState(getSelectedAvatar);
-  const [socket, setSocket] = useState(io.connect("http://localhost:3000"));
+  const [socket, setSocket] = useState(io.connect("http://localhost:4000"));
 
   const updateAccessToken = (newAccessToken) => {
     setAccessToken(newAccessToken);

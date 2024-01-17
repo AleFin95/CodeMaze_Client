@@ -4,12 +4,13 @@ import { useState, useEffect } from "react";
 import { VideoVs } from "../../components";
 import 'animate.css';
 
-const PlayerVsPlayer = ({roomData}) => {
+const PlayerVsPlayer = ({roomUsers2, onTimeOut}) => {
     const [counter, setCounter] = useState(10);
     const [showImage, setShowImage] = useState(true);
     const [secondAnimation, setSecondAnimation] = useState(false);
     const [timerShow, setTimerShow] = useState(false);
     const [newds ,setNewds] = useState(true);
+    const [enemyName, setEnemyName] = useState()
     
    /* localStorage.removeItem("interval")
     localStorage.setItem("interval", true);*/
@@ -23,7 +24,18 @@ const PlayerVsPlayer = ({roomData}) => {
        
        
       }, 1800); // Set the delay duration (in milliseconds)
-  
+    
+      const username = localStorage.getItem("username")
+
+      console.log("roomUsers2: ", roomUsers2)
+
+      for(let i = 0; i<roomUsers2.length; i++){
+        const currentName = roomUsers2[i];
+        if(currentName !== username){
+          setEnemyName(currentName)
+        }
+      }
+
       // Clean up the timeout when the component is unmounted or when the class is added
       return () => clearTimeout(timeoutId);
     }, []); // The empty dependency array [] ensures the effect runs only once after mount
@@ -46,6 +58,8 @@ const PlayerVsPlayer = ({roomData}) => {
             if (newCounter === 1) {
               clearInterval(intervalId); // Stop the interval
               localStorage.setItem("interval",false)
+
+              onTimeOut();
             }
             
             return newCounter;
@@ -89,11 +103,11 @@ const PlayerVsPlayer = ({roomData}) => {
             <section id="main">
                 <div className={`player1 ${secondAnimation ? 'show': ''}`}>
                     <img src={localStorage.getItem("selectedAvatar")}/>
-                    <h1>ss{localStorage.getItem("username")}</h1>
+                    <h1>{localStorage.getItem("username")}</h1>
                 </div> 
                 <div className={`player2 ${secondAnimation ? 'show': ''}`}>
                     <img src={localStorage.getItem("selectedAvatar")}/>
-                    <h1>{roomData}</h1>
+                    <h1>{enemyName}</h1>
                 </div>
             </section>
             <div className={`title ${timerShow ? 'show': ''}`}>
