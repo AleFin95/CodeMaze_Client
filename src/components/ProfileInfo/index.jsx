@@ -9,28 +9,6 @@ const ProfileInfo = ({ wins, losses, sessions, userId }) => {
     setIsLarge(!isLarge);
   };
 
-  useEffect(() => {
-    const fetchOpponentsAvatars = async () => {
-      const opponentsUsernames = sessions.map(
-        (sessionItem) =>
-          sessionItem.users.find((user) => user.id !== userId).username
-      );
-
-      const avatarsResponse = await fetch(`/users/avatars`, {
-        method: "POST", // Assuming you need to send a list of usernames in the request body
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ usernames: opponentsUsernames }),
-      });
-
-      const avatarsData = await avatarsResponse.json();
-      setOpponentsAvatars(avatarsData);
-    };
-
-    fetchOpponentsAvatars();
-  }, [sessions, userId]);
-
   return (
     <>
       <div
@@ -66,21 +44,7 @@ const ProfileInfo = ({ wins, losses, sessions, userId }) => {
                           .username
                       }
                     </td>
-                    <td>
-                      {sessionItem.winner[0].username}
-
-                      {opponentsAvatars[index] && (
-                        <img
-                          src={opponentsAvatars[index].avatar}
-                          alt="Opponent Avatar"
-                          style={{
-                            width: "30px",
-                            height: "30px",
-                            borderRadius: "50%",
-                          }}
-                        />
-                      )}
-                    </td>
+                    <td>{sessionItem.winner[0].username}</td>
                   </tr>
                 ))}
               </tbody>
