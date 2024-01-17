@@ -18,7 +18,7 @@ export const HomePage = () => {
   useEffect(() => {
     const user = localStorage.getItem('username');
     setUsername(user);
-  }, []);
+  }, [username]);
 
   const joinRoom = (e) => {
     e.preventDefault();
@@ -148,26 +148,28 @@ export const HomePage = () => {
               </li>
             </ul>
           </div>
-          <div className='buttons'>
-            <Link id='link1' to='/game'>
+          {username && (
+            <div className='buttons'>
+              <Link id='link1' to='/game'>
+                <button
+                  data-testid='button1'
+                  style={button}
+                  className='button1'
+                  onClick={joinRoom}
+                >
+                  1 Vs 1
+                </button>
+              </Link>
               <button
-                data-testid='button1'
+                data-testid='button2'
                 style={button}
-                className='button1'
-                onClick={joinRoom}
+                className='button2'
+                onClick={soloRoom}
               >
-                1 Vs 1
+                Solo mode
               </button>
-            </Link>
-            <button
-              data-testid='button2'
-              style={button}
-              className='button2'
-              onClick={soloRoom}
-            >
-              Solo mode
-            </button>
-          </div>
+            </div>
+          )}
         </section>
       </section>
     </>
