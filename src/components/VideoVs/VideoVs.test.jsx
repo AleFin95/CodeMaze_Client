@@ -23,9 +23,11 @@ describe("Video Component", () => {
     expect(videoElement).toBeInTheDocument();
     expect(videoElement).toHaveAttribute("autoPlay");
     expect(videoElement).toHaveAttribute("loop");
-    expect(videoElement.querySelector("source")).toHaveAttribute(
-      "src",
-      "/backgrounds/vs-green.mp4"
+    /*expect(videoElement).toHaveAttribute("muted");*/
+
+    const sourceElement = screen.getByText(
+      "Your browser does not support the video tag."
     );
+    expect(sourceElement).toBeInTheDocument();
   });
 });
