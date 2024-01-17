@@ -18,7 +18,7 @@ export const HomePage = () => {
   useEffect(() => {
     const user = localStorage.getItem('username');
     setUsername(user);
-  }, [username]);
+  }, [localStorage.getItem('access_token')]);
 
   const joinRoom = (e) => {
     e.preventDefault();
