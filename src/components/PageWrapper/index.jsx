@@ -97,8 +97,14 @@ const PageWrapper = () => {
               </div>
             </>
           ) : (
-            <NavLink to='/login' style={linkStyle}>
-              Login/Register
+            <NavLink
+              to='/login'
+              data-testid='button1'
+              id='logoutid'
+              style={button}
+              className='button1'
+            >
+              Join us
             </NavLink>
           )}
         </div>
