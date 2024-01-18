@@ -19,12 +19,12 @@ describe("PlayerVsPlayer", () => {
     );
   });
 
-  it.skip("renders player names", () => {
+  its("renders player names", () => {
     const player = screen.getByRole("heading", { name: /ss/i });
     expect(player).toBeInTheDocument();
   });
 
-  it.skip("renders title", () => {
+  it("renders title", () => {
     const heading = screen.getByRole("heading", {
       name: /Starting in/i,
     });
