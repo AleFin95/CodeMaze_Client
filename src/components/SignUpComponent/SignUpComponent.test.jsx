@@ -25,7 +25,7 @@ describe("SignUpComponent", () => {
     const headingElement = screen.getByRole("heading", { level: 2 });
 
     expect(headingElement).to.exist;
-    expect(headingElement.textContent).toBe("Register Here !");
+    expect(headingElement.textContent).toBe("Register Here!");
   });
 
   it("Submits the form correctly", async () => {
