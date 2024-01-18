@@ -13,15 +13,14 @@ export const HomePage = () => {
   const [isSolo, setIsSolo] = useState();
   const [roomData, setRoomData] = useState();
   const navigateTo = useNavigate();
-  
+
   const [username, setUsername] = useState('');
   const [userId, setUserId] = useState();
 
-
   useEffect(() => {
     const user = localStorage.getItem('username');
-    const user_id = localStorage.getItem("user_id")
-    setUserId(user_id)
+    const user_id = localStorage.getItem('user_id');
+    setUserId(user_id);
     setUsername(user);
   }, [localStorage.getItem('access_token')]);
 
