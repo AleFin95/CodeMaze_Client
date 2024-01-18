@@ -119,7 +119,6 @@ const PlayerVsPlayer = ({ roomUsers2, onTimeOut }) => {
 
   const username = localStorage.getItem('username');
 
-<<<<<<< HEAD
       useEffect(() => {
         const fetchUsersAvatarData = async () => {
           try {
@@ -175,27 +174,6 @@ const PlayerVsPlayer = ({ roomUsers2, onTimeOut }) => {
     <p data-testid='counter'>{counter}</p>
   </div>
 </section>
-=======
-  return (
-    <>
-      <VideoVs />
-      <section id='first'>
-        <section id='main'>
-          <div className={`player1 ${secondAnimation ? 'show' : ''}`}>
-            <img src={localStorage.getItem('selectedAvatar')} />
-            <h1>{localStorage.getItem('username')}</h1>
-          </div>
-          <div className={`player2 ${secondAnimation ? 'show' : ''}`}>
-            <img src={enemyAvatar} />
-            <h1>{enemyName}</h1>
-          </div>
-        </section>
-        <div className={`title ${timerShow ? 'show' : ''}`}>
-          <h1>Starting in </h1>
-          <p>{counter}</p>
-        </div>
-      </section>
->>>>>>> 2b18c16e2695fd24c6d1d91924be2b9117942e4e
     </>
   );
 };
