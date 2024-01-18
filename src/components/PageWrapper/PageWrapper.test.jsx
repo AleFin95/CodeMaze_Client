@@ -34,9 +34,9 @@ describe("Page Wrapper Component", () => {
     expect(nav.childNodes.length).toBe(2);
   });
 
-  it("it renders  CODEMAZE and Game links", () => {
+  it("it renders  CODEMAZE and Join us", () => {
     expect(screen.getByText("CODEMAZE")).toBeInTheDocument();
-    expect(screen.getByText("Login/Register")).toBeInTheDocument();
+    expect(screen.getByText("Join us")).toBeInTheDocument();
   });
 
   it("User is forwarded to CODEMAZE page when Home link is clicked", async () => {
@@ -49,8 +49,8 @@ describe("Page Wrapper Component", () => {
     });
   });
 
-  it("User is forwarded to Login page when Login link is clicked", async () => {
-    const link1 = screen.getByText("Login/Register");
+  it("User is forwarded to Login page when Join us link is clicked", async () => {
+    const link1 = screen.getByText("Join us");
     expect(link1).toBeInTheDocument();
     fireEvent.click(link1);
 
@@ -68,17 +68,6 @@ describe("Page Wrapper Component", () => {
       expect(window.location.pathname).toBe("/profile");
     });
   }); */
-  //check wether links have different color when not active
-
-  /*it('Nav links color changes when link is clicked', () => {
-    const loginLink = screen.getByText('Login/Register')
-    fireEvent.click(loginLink);
-  
-
-  
-    expect(loginLink).toHaveStyle("color: #4bf275");
-    
-  })*/
 
   afterEach(() => {
     cleanup();

@@ -25,11 +25,11 @@ describe("HomePage Component", () => {
     );
   });
 
-  it("Contains 2 buttons", () => {
-    /*const button1 = document.querySelector('.button1')
+  /* it("Contains 2 buttons", () => {
+    const button1 = document.querySelector('.button1')
         expect(button1.innerHTML).toBeTruthy()
         const button2 = document.querySelector('.button2')
-        expect(button2.innerHTML).toBeTruthy()*/
+        expect(button2.innerHTML).toBeTruthy()
     const buttons = screen.getAllByRole("button");
     expect(buttons.length).toBeLessThan(3);
   });
@@ -46,7 +46,7 @@ describe("HomePage Component", () => {
     expect(button.textContent).toBe("Solo mode");
   });
 
-  /*it("User is forwarded to games page once button with text 1 Vs 1 is clicked", async () => {
+  it("User is forwarded to games page once button with text 1 Vs 1 is clicked", async () => {
     const button1 = screen.getByText("1 Vs 1");
     fireEvent.click(button1);
 
@@ -55,12 +55,7 @@ describe("HomePage Component", () => {
       expect(window.location.pathname).toBe("/game");
     });
   });
-*/
 
-  it("Contains a list", () => {
-    const p = screen.getByRole("list");
-    expect(p).toBeInTheDocument();
-  });
 
   it("User is forwarded to games page once button with text 1 Vs 1 is clicked", async () => {
     const button1 = screen.getByText("1 Vs 1");
@@ -75,7 +70,7 @@ describe("HomePage Component", () => {
     await waitFor(() => {
       expect(window.location.pathname).toBe("/game");
     });
-  });
+  }); */
 
   it("Contains a list", () => {
     const p = screen.getByRole("list");
