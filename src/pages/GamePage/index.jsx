@@ -73,7 +73,7 @@ const GamePage = () => {
 
     let r = state?.roomData;
     state?.isSolo ? setLoading(false) : setLoading(true);
-    state.isSolo ? setShowPlayerVsPlayer(false) : setShowPlayerVsPlayer(true);
+    state?.isSolo ? setShowPlayerVsPlayer(false) : setShowPlayerVsPlayer(true);
 
     socket.emit("sendRooms", { r });
     socket.on("receiveRooms2", handleReceiveRooms2);
@@ -110,8 +110,8 @@ const GamePage = () => {
       });
     }
   }, [
-    state.room,
-    state.username,
+    state?.room,
+    state?.username,
     handleReceiveRooms2,
     initialQ,
     testCase,
