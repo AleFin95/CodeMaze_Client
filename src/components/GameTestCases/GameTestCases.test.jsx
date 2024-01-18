@@ -22,17 +22,15 @@ describe("GameTestCases", () => {
     );
   });
 
-  /*it("should find the heading", () => {
-    const heading = screen.getByRole("heading", {
-      name: /Login to Access Game/i,
-    });
+  it("should find the heading", () => {
+    const heading = screen.getByRole("heading");
     expect(heading).toBeInTheDocument();
-  });*/
+  });
 
-  /*it("displays a link", () => {
+  it("displays a link", () => {
     const link = screen.getByRole("link");
     expect(link).toBeInTheDocument();
-  }); */
+  });
 
   afterEach(() => {
     cleanup();

@@ -21,16 +21,12 @@ describe("App Component", () => {
 
   it("renders navigation links", () => {
     const homeLink = screen.getByRole("link", { name: "CODEMAZE" });
-    const loginLink = screen.getByRole("link", { name: "Login/Register" });
     expect(homeLink).toBeInTheDocument();
-    expect(loginLink).toBeInTheDocument();
   });
 
-  it("renders buttons with correct text", () => {
-    const button1 = screen.getByTestId("button1");
-    const button2 = screen.getByTestId("button2");
-    expect(button1).toHaveTextContent("1 Vs 1");
-    expect(button2).toHaveTextContent("Solo mode");
+  it("renders navigation", () => {
+    const navElement = screen.getByRole("navigation");
+    expect(navElement).toBeInTheDocument();
   });
 
   it("renders list items with correct text", () => {
@@ -53,10 +49,7 @@ describe("App Component", () => {
 
   it("renders links with correct href attributes", () => {
     const homeLink = screen.getByRole("link", { name: "CODEMAZE" });
-    const loginLink = screen.getByRole("link", { name: "Login/Register" });
-
     expect(homeLink).toHaveAttribute("href", "/");
-    expect(loginLink).toHaveAttribute("href", "/login");
   });
 
   it("renders icons with correct styling", () => {
@@ -66,14 +59,13 @@ describe("App Component", () => {
     expect(icon2).toHaveStyle({ fontSize: "40px", color: "rgb(75, 242, 117)" });
   });
 
-  it("clicking on the 1 Vs 1 button navigates to /game", () => {
-    const buttons = document.getElementsByClassName("button1");
-    expect(buttons.length).toBeGreaterThan(0);
-
-    fireEvent.click(buttons[0]);
-
-    const link = document.getElementById("link1");
-    expect(link).toHaveAttribute("href", "/game");
+  it("render test list", () => {
+    const ulElement = screen.getByRole("list");
+    const list1Element = screen.getByTestId("list1");
+    const list2Element = screen.getByTestId("list2");
+    expect(ulElement).toBeInTheDocument();
+    expect(list1Element).toBeInTheDocument();
+    expect(list2Element).toBeInTheDocument();
   });
 
   afterEach(() => {

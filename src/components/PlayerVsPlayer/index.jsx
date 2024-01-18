@@ -119,25 +119,61 @@ const PlayerVsPlayer = ({ roomUsers2, onTimeOut }) => {
 
   const username = localStorage.getItem('username');
 
-  return (
-    <>
-      <VideoVs />
-      <section id='first'>
-        <section id='main'>
-          <div className={`player1 ${secondAnimation ? 'show' : ''}`}>
-            <img src={localStorage.getItem('selectedAvatar')} />
-            <h1>{localStorage.getItem('username')}</h1>
-          </div>
-          <div className={`player2 ${secondAnimation ? 'show' : ''}`}>
-            <img src={enemyAvatar} />
-            <h1>{enemyName}</h1>
-          </div>
-        </section>
-        <div className={`title ${timerShow ? 'show' : ''}`}>
-          <h1>Starting in </h1>
-          <p>{counter}</p>
-        </div>
-      </section>
+      useEffect(() => {
+        const fetchUsersAvatarData = async () => {
+          try {
+            const access_token = localStorage.getItem("access_token");
+            const options = {
+              method: "POST",
+              body: JSON.stringify({
+                username_one: username,
+                username_two: enemyName
+              }),
+
+              headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${access_token}`,
+              },
+            };
+    
+            const response = await fetch(
+              "https://codemaze-api.onrender.com/users/avatars",
+              options
+            );
+              
+            if (response.status === 200) {
+              const data = await response.json();
+              setData(data);
+              console.log("IM HEREEEEEE");
+              console.log("DATAAA",data);
+            } else {
+              throw new Error("Failed to fetch avatar");
+            }
+          } catch (error) {
+            console.error(error);
+          }
+        }; fetchUsersAvatarData();
+      }, []);
+      
+    return (
+        <>
+        <VideoVs />
+      <section id="first">
+      <section id="main">
+    <div className={`player1 ${secondAnimation ? "show" : ""}`}>
+      <img aria-label="avatar1" src={localStorage.getItem("selectedAvatar")} />
+      <h1>{localStorage.getItem("username")}</h1>
+    </div>
+    <div className={`player2 ${secondAnimation ? "show" : ""}`}>
+      <img aria-label="avatar2" src={localStorage.getItem("selectedAvatar")} />
+      <h1>{enemyName}</h1>
+    </div>
+  </section>
+  <div className={`title ${timerShow ? "show" : ""}`}>
+    <h1>Starting in </h1>
+    <p data-testid='counter'>{counter}</p>
+  </div>
+</section>
     </>
   );
 };
