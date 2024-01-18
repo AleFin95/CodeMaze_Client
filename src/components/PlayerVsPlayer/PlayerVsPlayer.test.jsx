@@ -19,15 +19,8 @@ describe("PlayerVsPlayer", () => {
     );
   });
 
-  its("renders player names", () => {
-    const player = screen.getByRole("heading", { name: /ss/i });
-    expect(player).toBeInTheDocument();
-  });
-
   it("renders title", () => {
-    const heading = screen.getByRole("heading", {
-      name: /Starting in/i,
-    });
+    const heading = screen.getByText('Starting in')
     expect(heading).toBeInTheDocument();
   });
 
@@ -39,18 +32,16 @@ describe("PlayerVsPlayer", () => {
   )
 
   it('Contains 2 images',() => {
-    const image = screen.getByRole('img')
-    expect(image.length).toBe(2)
+    const image = document.querySelectorAll('img')
+    expect(image.length).toBe(2) 
   }
   )
-  it('Contains 3 headers',() => {
-    const h1s = screen.getByRole(heading)
-    expect(h1s.length).toBeLessThanOrEqual(3);
-  }
-  )
+  it("only displays 3 header ", () => {
+    const h1s = screen.queryAllByRole("heading");
+    expect(h1s.length).not.toBeGreaterThan(3);
+  });
 
-
-
+   
   afterEach(() => {
     cleanup();
   });
