@@ -79,7 +79,7 @@ const ProfilePage = () => {
         if (response.status === 200) {
           const data = await response.json();
           setProfileInfo(data);
-          localStorage.setItem('user_id', data.id);
+          localStorage.setItem("user_id", data.id);
           console.log(data);
         } else {
           throw new Error("Failed to fetch profile info");
@@ -153,7 +153,11 @@ const ProfilePage = () => {
             <div className="gif-section">
               <NavLink
                 to="/ranking"
-                style={{ textDecoration: "none", marginLeft: "50px" }}
+                style={{
+                  textDecoration: "none",
+                  marginRight: "60px",
+                  marginLeft: "100px",
+                }}
               >
                 <h1 id="h1-ranking">Ranking</h1>
               </NavLink>

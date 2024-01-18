@@ -25,7 +25,7 @@ describe("Video Component", () => {
     expect(videoElement).toHaveAttribute("loop");
     expect(videoElement.querySelector("source")).toHaveAttribute(
       "src",
-      "/backgrounds/background3.mp4"
+      "/backgrounds/background2.mp4"
     );
   });
 });
