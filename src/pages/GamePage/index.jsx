@@ -1,10 +1,9 @@
 import { Editor } from "@monaco-editor/react";
 import axios from "axios";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../../contexts";
 
-import { Link } from "react-router-dom";
 import {
   FeedbackPopUp,
   GameNavbar,
@@ -73,7 +72,7 @@ const GamePage = () => {
 
     let r = state?.roomData;
     state?.isSolo ? setLoading(false) : setLoading(true);
-    state?.isSolo ? setShowPlayerVsPlayer(false) : setShowPlayerVsPlayer(true);
+    state.isSolo ? setShowPlayerVsPlayer(false) : setShowPlayerVsPlayer(true);
 
     socket.emit("sendRooms", { r });
     socket.on("receiveRooms2", handleReceiveRooms2);
@@ -110,8 +109,8 @@ const GamePage = () => {
       });
     }
   }, [
-    state?.room,
-    state?.username,
+    state.room,
+    state.username,
     handleReceiveRooms2,
     initialQ,
     testCase,
@@ -245,9 +244,11 @@ const GamePage = () => {
       "https://codemaze-api.onrender.com/sessions",
       options
     );
-    console.log(response.status);
-    handleCancel();
-    navigateTo("/profile");
+
+    if (response.status === 201) {
+      handleCancel();
+      navigateTo("/profile");
+    }
   };
 
   useEffect(() => {
@@ -322,15 +323,7 @@ const GamePage = () => {
   return (
     <>
       <Video />
-      {isLoggedIn === null ? (
-        <div className="message22">
-          <h1>Login to Access Game</h1>
-          <Link to="/login">
-            <button id="loginBtn">Login</button>
-          </Link>
-          {/* Additional content for non-logged-in users */}
-        </div>
-      ) : loading ? (
+      {loading ? (
         <MatchingPlayers handleCancel={handleCancel} />
       ) : showPlayerVsPlayer ? (
         <PlayerVsPlayer
