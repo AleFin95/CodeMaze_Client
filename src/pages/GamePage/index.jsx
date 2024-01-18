@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts';
 
-import { Link } from 'react-router-dom';
 import {
   FeedbackPopUp,
   GameNavbar,
@@ -324,15 +323,7 @@ const GamePage = () => {
   return (
     <>
       <Video />
-      {isLoggedIn === null ? (
-        <div className='message22'>
-          <h1>Login to Access Game</h1>
-          <Link to='/login'>
-            <button id='loginBtn'>Login</button>
-          </Link>
-          {/* Additional content for non-logged-in users */}
-        </div>
-      ) : loading ? (
+      {loading ? (
         <MatchingPlayers handleCancel={handleCancel} />
       ) : showPlayerVsPlayer ? (
         <PlayerVsPlayer
