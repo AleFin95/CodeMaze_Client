@@ -1,6 +1,6 @@
 import { Editor } from '@monaco-editor/react';
 import axios from 'axios';
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts';
 
@@ -25,34 +25,33 @@ const GamePage = () => {
   const { socket } = useAuth();
   const navigateTo = useNavigate();
 
-  const [ fontSize, setFontSize ] = useState(20);
-  const [ userTheme, setUserTheme ] = useState("vs-dark");
-  const [ userCode, setUserCode ] = useState("");
-  const [ userLang, setUserLang ] = useState("py");
-  const [ userInput, setUserInput ] = useState("");
-  const [ loading, setLoading ] = useState(true);
-  const [ loadingRun, setLoadingRun ] = useState(false);
-  const [ loadingSubmit, setLoadingSubmit ] = useState(false);
-  const [ room, setRoom ] = useState("");
-  const [ username, setUsername ] = useState("");
-  const [ allRooms, setAllRooms ] = useState();
-  const [ showPlayerVsPlayer, setShowPlayerVsPlayer ] = useState(true);
-  const [ roomUsers2, setRoomUsers2 ] = useState();
-  const [ correctAnswer, setCorrectAnswer ] = useState(null)
-  const [ userOutput, setUserOutput ] = useState("");
-  const [ winnerId, setWinnerId ] = useState(0)
-  const [ userId, setUserId ] = useState(0)
-  const [ opponentId, setOpponentId ] = useState(0)
-  const [ initialQ, setIntialQ ] = useState("");
-  const [ testCase, setTestCase ] = useState("");
-  const [ testCases, setTestCases ] = useState([]);
-  const [ expectedOutcome, setExpectedOutcome ] = useState("")
-  const [ problem_id, setProblemId ] = useState(0)
+  const [fontSize, setFontSize] = useState(20);
+  const [userTheme, setUserTheme] = useState('vs-dark');
+  const [userCode, setUserCode] = useState('');
+  const [userLang, setUserLang] = useState('py');
+  const [userInput, setUserInput] = useState('');
+  const [loading, setLoading] = useState(true);
+  const [loadingRun, setLoadingRun] = useState(false);
+  const [loadingSubmit, setLoadingSubmit] = useState(false);
+  const [room, setRoom] = useState('');
+  const [username, setUsername] = useState('');
+  const [allRooms, setAllRooms] = useState();
+  const [showPlayerVsPlayer, setShowPlayerVsPlayer] = useState(true);
+  const [roomUsers2, setRoomUsers2] = useState();
+  const [correctAnswer, setCorrectAnswer] = useState(null);
+  const [userOutput, setUserOutput] = useState('');
+  const [winnerId, setWinnerId] = useState(0);
+  const [userId, setUserId] = useState(0);
+  const [opponentId, setOpponentId] = useState(0);
+  const [initialQ, setIntialQ] = useState('');
+  const [testCase, setTestCase] = useState('');
+  const [testCases, setTestCases] = useState([]);
+  const [expectedOutcome, setExpectedOutcome] = useState('');
+  const [problem_id, setProblemId] = useState(0);
   const [buttonDisabled, setButtonDisabled] = useState(false);
   const [buttonPressed, setButtonPressed] = useState(false);
   const [popupHidden, setPopupHidden] = useState(true);
-  const [ autoClose, setAutoClose ] = useState(true)
-
+  const [autoClose, setAutoClose] = useState(true);
 
   const access_token = localStorage.getItem('access_token');
 
@@ -68,15 +67,13 @@ const GamePage = () => {
     }
   };
 
-
-
   useEffect(() => {
-    let id = localStorage.getItem('user_id')
-    setUserId(id)
+    let id = localStorage.getItem('user_id');
+    setUserId(id);
 
     let r = state?.roomData;
     state?.isSolo ? setLoading(false) : setLoading(true);
-    state.isSolo ? setShowPlayerVsPlayer(false) : setShowPlayerVsPlayer(true) ;
+    state.isSolo ? setShowPlayerVsPlayer(false) : setShowPlayerVsPlayer(true);
 
     socket.emit('sendRooms', { r });
     socket.on('receiveRooms2', handleReceiveRooms2);
@@ -87,95 +84,90 @@ const GamePage = () => {
           Authorization: `Bearer ${access_token}`
         }
       })
-      .then((res)=>{
-        setProblemId(res.data.id)
-        setIntialQ(res.data.description)
-        setTestCase(res.data.examples[0].test_case)
-        setExpectedOutcome(res.data.examples[0].output)
-
+      .then((res) => {
+        setProblemId(res.data.id);
+        setIntialQ(res.data.description);
+        setTestCase(res.data.examples[0].test_case);
+        setExpectedOutcome(res.data.examples[0].output);
       })
-      .catch(error=> {
-          console.error("Error fetching data: ", error)
-      })
-    }, [])
-
-
+      .catch((error) => {
+        console.error('Error fetching data: ', error);
+      });
+  }, []);
 
   useEffect(() => {
     if (state) {
       setRoom(state.room);
       setUsername(state.username);
     }
-    if(initialQ || testCase || expectedOutcome){
-      socket.emit("setting_question", {initialQ, testCase, expectedOutcome})
-      socket.emit("getting_question")
-      socket.on("got_question", data => {
-        setIntialQ(data.question)
-        setTestCase(data.testcases)
-        setExpectedOutcome(data.expected)
-      })
+    if (initialQ || testCase || expectedOutcome) {
+      socket.emit('setting_question', { initialQ, testCase, expectedOutcome });
+      socket.emit('getting_question');
+      socket.on('got_question', (data) => {
+        setIntialQ(data.question);
+        setTestCase(data.testcases);
+        setExpectedOutcome(data.expected);
+      });
     }
-  }, [state.room, state.username, handleReceiveRooms2, initialQ, testCase, expectedOutcome]);
-
-
+  }, [
+    state.room,
+    state.username,
+    handleReceiveRooms2,
+    initialQ,
+    testCase,
+    expectedOutcome
+  ]);
 
   useEffect(() => {
     const tests = [
-      { py: [ `print(${testCase})` ],},
-      { js: [ `console.log(${testCase})` ],},
+      { py: [`print(${testCase})`] },
+      { js: [`console.log(${testCase})`] }
     ];
 
     if (userLang === 'py') {
       setTestCases(tests[0].py);
-    } 
-    else {
+    } else {
       setTestCases(tests[1].js);
     }
   }, [userLang, testCase]);
 
-
-
   useEffect(() => {
     const check_UserOutput_TO_expectedOutput = (user, expected) => {
-      console.log("User output: ", user)
-      console.log("Expected output: ", expected)
+      console.log('User output: ', user);
+      console.log('Expected output: ', expected);
 
-      console.log("user : ", userId)
-      console.log("opponent : ", opponentId)
+      console.log('user : ', userId);
+      console.log('opponent : ', opponentId);
 
       if (user.toLowerCase().trim() === expected.toLowerCase().trim()) {
-        console.log("Outputs match!");
-        let id = localStorage.getItem('user_id')
-        setWinnerId(id)
-        socket.emit("set_winner", userId)
+        console.log('Outputs match!');
+        let id = localStorage.getItem('user_id');
+        setWinnerId(id);
+        socket.emit('set_winner', userId);
 
-        setCorrectAnswer(true)
-        setAutoClose(false)
+        setCorrectAnswer(true);
+        setAutoClose(false);
       } else {
         console.log("Outputs don't match!");
-        setCorrectAnswer(false)
-        setAutoClose(true)        
+        setCorrectAnswer(false);
+        setAutoClose(true);
       }
-    }
+    };
 
-    console.log("!!!!!!!!! Getting 2nd ID !!!!!!")
-    socket.emit("set_opponent", userId)
-    check_UserOutput_TO_expectedOutput(userOutput, expectedOutcome)
-  }, [userOutput])
-
-
+    console.log('!!!!!!!!! Getting 2nd ID !!!!!!');
+    socket.emit('set_opponent', userId);
+    check_UserOutput_TO_expectedOutput(userOutput, expectedOutcome);
+  }, [userOutput]);
 
   useEffect(() => {
     const sendCheckResponse = (response) => {
-      console.log("Answer was correct: ", response)
-      socket.emit("check_answer", response) //////
-    }
-    sendCheckResponse(correctAnswer)
-  }, [correctAnswer])
+      console.log('Answer was correct: ', response);
+      socket.emit('check_answer', response); //////
+    };
+    sendCheckResponse(correctAnswer);
+  }, [correctAnswer]);
 
-
-
-  const API_URL = "https://codex-api.fly.dev/";
+  const API_URL = 'https://codex-api.fly.dev/';
   const handleCompile = (action) => {
     if (action === 'Run') {
       setLoadingRun(true);
@@ -209,32 +201,28 @@ const GamePage = () => {
         } else if (action === 'Submit') {
           setLoadingSubmit(false);
           setPopupHidden(false);
-          socket.emit("display_popup", { room });
+          socket.emit('display_popup', { room });
         }
       });
   };
-
-
 
   const handleClosePopup = () => {
     setButtonDisabled(false);
     setButtonPressed(false);
     setPopupHidden(true);
-    setCorrectAnswer(null)
-    setUserOutput('')
-    setUserInput('')
-    socket.emit("button_enable", { room });
-    socket.emit("hide_popup", { room });
-  }
-
-
+    setCorrectAnswer(null);
+    setUserOutput('');
+    setUserInput('');
+    socket.emit('button_enable', { room });
+    socket.emit('hide_popup', { room });
+  };
 
   const gameFinish = async (e) => {
     e.preventDefault();
-    console.log("problem : ", problem_id)
-    console.log("user : ", userId)
-    console.log("opponent : ", opponentId)
-    console.log("winner : ", winnerId)
+    console.log('problem : ', problem_id);
+    console.log('user : ', userId);
+    console.log('opponent : ', opponentId);
+    console.log('winner : ', winnerId);
 
     const options = {
       method: 'POST',
@@ -245,7 +233,7 @@ const GamePage = () => {
         problem_id: problem_id,
         user_one_id: userId,
         user_two_id: opponentId,
-        winner_id: winnerId,
+        winner_id: winnerId
       })
     };
     const accessToken = localStorage.getItem('access_token');
@@ -257,12 +245,12 @@ const GamePage = () => {
       'https://codemaze-api.onrender.com/sessions',
       options
     );
-    console.log(response.status)
-    handleCancel()
-    navigateTo('/profile')
-  }
 
-
+    if (response.status === 201) {
+      handleCancel();
+      navigateTo('/profile');
+    }
+  };
 
   useEffect(() => {
     const buttonPressedListener = () => {
@@ -279,46 +267,44 @@ const GamePage = () => {
     };
 
     const answerStateListener = (data) => {
-      setCorrectAnswer(data)
-    }
+      setCorrectAnswer(data);
+    };
 
     const opponentIdListener = (data) => {
-      console.log(data) // should be the other id in user_ids
-      setOpponentId(data)
-    }
+      console.log(data); // should be the other id in user_ids
+      setOpponentId(data);
+    };
     const winnerIdListener = (data) => {
-      setWinnerId(data)
-    }
+      setWinnerId(data);
+    };
 
-    socket.on("button_pressed", buttonPressedListener);
-    socket.on("button_enabled", buttonEnabledListener);
-    socket.on("displayed_popup", popupDisplayListener);
-    socket.on("hidden_popup", popupHideListener);
+    socket.on('button_pressed', buttonPressedListener);
+    socket.on('button_enabled', buttonEnabledListener);
+    socket.on('displayed_popup', popupDisplayListener);
+    socket.on('hidden_popup', popupHideListener);
 
-    socket.on("checked_answer", answerStateListener)
+    socket.on('checked_answer', answerStateListener);
 
-    socket.on("opponent_set", opponentIdListener)
-    socket.on("winner_set", winnerIdListener)
+    socket.on('opponent_set', opponentIdListener);
+    socket.on('winner_set', winnerIdListener);
 
     return () => {
-      socket.off("button_pressed", buttonPressedListener);
-      socket.off("button_enabled", buttonEnabledListener);
-      socket.off("displayed_popup", popupDisplayListener);
-      socket.off("hidden_popup", popupHideListener);
+      socket.off('button_pressed', buttonPressedListener);
+      socket.off('button_enabled', buttonEnabledListener);
+      socket.off('displayed_popup', popupDisplayListener);
+      socket.off('hidden_popup', popupHideListener);
 
-      socket.off("checked_answer", answerStateListener)
-      
-      socket.off("opponent_set", opponentIdListener)
-      socket.off("winner_set", winnerIdListener)
+      socket.off('checked_answer', answerStateListener);
+
+      socket.off('opponent_set', opponentIdListener);
+      socket.off('winner_set', winnerIdListener);
     };
   }, []);
 
+  const isLoggedIn = localStorage.getItem('access_token');
 
-
-  const isLoggedIn = localStorage.getItem("access_token");
-  
   const options = {
-    fontSize: fontSize,
+    fontSize: fontSize
   };
 
   const handlePlayerVsPlayerTimeout = () => {
@@ -326,14 +312,14 @@ const GamePage = () => {
   };
 
   const clearOutput = () => {
-    setUserOutput("");
+    setUserOutput('');
   };
 
   const handleCancel = () => {
-    if (socket && socket.connected){
-      socket.disconnect()
+    if (socket && socket.connected) {
+      socket.disconnect();
     }
-  }
+  };
 
   return (
     <>
@@ -398,7 +384,7 @@ const GamePage = () => {
                 initialQ={initialQ}
               />
               <GameTestCases testCases={testCases} />
-              { popupHidden ? (
+              {popupHidden ? (
                 <GameOutput
                   spinner={spinner}
                   userOutput={userOutput}
@@ -406,7 +392,7 @@ const GamePage = () => {
                   clearOutput={clearOutput}
                 />
               ) : (
-                <FeedbackPopUp 
+                <FeedbackPopUp
                   buttonPressed={buttonPressed}
                   correctAnswer={correctAnswer}
                   expectedOutcome={expectedOutcome}
