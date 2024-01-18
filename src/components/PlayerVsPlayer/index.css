@@ -23,7 +23,7 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  gap: 75em;
+  gap: 60em;
   margin-top: 8em;
 }
 
@@ -48,7 +48,7 @@
 .title {
   opacity: 0;
   margin-bottom: 10em;
-  margin-top: -10em; 
+  margin-top: -5em; 
 }
 
 .title.show {

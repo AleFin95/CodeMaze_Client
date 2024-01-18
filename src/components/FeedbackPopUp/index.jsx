@@ -31,8 +31,8 @@ const FeedbackPopUp = ({ buttonPressed, expectedOutcome, correctAnswer, onClose,
       ) : (
         correctAnswer ? (
           <>
-            <h1>You LOST</h1>
-            <p>The CORRECT ANSWER was: {expectedOutcome}</p>
+            <h1 style={{color: "red"}}>You LOST</h1>
+            <p style={{color: "yellow"}}>The expected outcome was: {expectedOutcome}</p>
             <Link to='/'>
               <button onClick={handleCancel}>Exit Game</button>
             </Link>
