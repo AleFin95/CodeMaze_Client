@@ -4,7 +4,7 @@ import { VideoVs } from '../../components';
 import './index.css';
 
 const PlayerVsPlayer = ({ roomUsers2, onTimeOut }) => {
-  const [counter, setCounter] = useState(10);
+  const [counter, setCounter] = useState(5);
   const [showImage, setShowImage] = useState(true);
   const [secondAnimation, setSecondAnimation] = useState(false);
   const [timerShow, setTimerShow] = useState(false);
