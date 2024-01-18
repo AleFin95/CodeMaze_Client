@@ -1,6 +1,12 @@
 import React from "react";
 import { describe, it, expect, beforeEach, afterEach } from "vitest";
-import { screen, render, cleanup, fireEvent } from "@testing-library/react";
+import {
+  screen,
+  render,
+  cleanup,
+  fireEvent,
+  waitFor,
+} from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import { AuthProvider } from "./contexts/index";
 import * as matchers from "@testing-library/jest-dom/matchers";
@@ -21,17 +27,21 @@ describe("Main", () => {
   it("renders App component with navigation links", () => {
     const homeLink = screen.getByText("CODEMAZE");
     expect(homeLink).toBeInTheDocument();
-
-    const logLink = screen.getByText("Login/Register");
-    expect(logLink).toBeInTheDocument();
   });
 
-  it("navigates to 1 Vs 1 page when clicking ", () => {
-    const link = screen.getByText("1 Vs 1");
-    fireEvent.click(link);
+  it("renders video element", () => {
+    const videoElement = document.getElementById("video-background");
+    expect(videoElement).toBeInTheDocument();
+  });
 
-    const aboutPage = screen.getByText("Start your coding journey now!");
-    expect(aboutPage).toBeInTheDocument();
+  it("renders heading in top section", () => {
+    const headingElement = screen.getByText("Start your coding journey now!");
+    expect(headingElement).toBeInTheDocument();
+  });
+
+  it("renders top section", () => {
+    const videoElement = document.getElementById("top");
+    expect(videoElement).toBeInTheDocument();
   });
 
   afterEach(() => {

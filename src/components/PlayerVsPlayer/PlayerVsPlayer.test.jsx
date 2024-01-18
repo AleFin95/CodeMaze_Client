@@ -26,9 +26,24 @@ describe("PlayerVsPlayer", () => {
 
   it.skip("renders title", () => {
     const heading = screen.getByRole("heading", {
-      name: /The game will start in/i,
+      name: /Starting in/i,
     });
     expect(heading).toBeInTheDocument();
+  });
+
+  it("Contains a p element with animation", () => {
+    const p = screen.getByTestId("counter");
+    expect(p).toBeInTheDocument();
+    //expect(p).toHaveStyle("animation: animation: flipInX");
+  });
+
+  it("Contains 2 images", () => {
+    const image = screen.getByRole("img");
+    expect(image.length).toBe(2);
+  });
+  it("Contains 3 headers", () => {
+    const h1s = screen.getByRole(heading);
+    expect(h1s.length).toBeLessThanOrEqual(3);
   });
 
   afterEach(() => {

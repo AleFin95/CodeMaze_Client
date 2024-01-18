@@ -1,6 +1,18 @@
+* {
+  font-family: 'Geist';
+}
+
+@font-face {
+  font-family: 'Geist';
+  src: url('/src/assets/fonts/Geist.woff2') format('woff2-variations');
+}
+
+@font-face {
+  font-family: 'Geist Mono';
+  src: url('/src/assets/fonts/GeistMono.woff2') format('woff2-variations');
+}
+
 /* needed for leaderboard only" */
-
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

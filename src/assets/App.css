@@ -9,35 +9,37 @@ body {
 }
 
 p {
-  font-family: Courier New,monospace;
+  font-family: 'Geist Mono';
   color: #64ffda;
-  animation: fade-from-left .5s forwards;
+  animation: fade-from-left 0.5s forwards;
   animation-duration: 1.25s;
-  letter-spacing: -.75px;
-  animation-delay: .1s;
+  letter-spacing: -0.75px;
+  animation-delay: 0.1s;
   font-size: 1.5rem;
 }
 
+li {
+  font-family: 'Geist Mono';
+}
+
 h1 {
-  font-family: Courier New,monospace;
+  font-family: 'Geist Mono';
   color: #4bf275;
-  animation: fade-from-left .5s forwards;
+  animation: fade-from-left 0.5s forwards;
   animation-duration: 1.25s;
-  letter-spacing: 11px;
-  animation-delay: .1s;
+  animation-delay: 0.1s;
   margin-bottom: 50px;
 }
 
 h2 {
-  font-family: Courier New,monospace;
+  font-family: 'Geist Mono';
   color: #4bf275;
-  animation: fade-from-left .5s forwards;
+  animation: fade-from-left 0.5s forwards;
   animation-duration: 1.25s;
-  letter-spacing: 11px;
-  animation-delay: .1s;
+  letter-spacing: 2px;
+  animation-delay: 0.1s;
   margin-bottom: 50px;
 }
-
 
 .video {
   position: fixed;
@@ -59,7 +61,6 @@ h2 {
   z-index: -1;
 }
 
-
 #video-background {
   position: absolute;
   top: 0;
@@ -70,7 +71,7 @@ h2 {
   z-index: -1;
 }
 
-#video-vs-background{
+#video-vs-background {
   position: absolute;
   top: 0;
   left: 0;
