@@ -10,20 +10,25 @@ let user_rooms = {};
 export const HomePage = () => {
   const { socket } = useAuth();
   const [room, setRoom] = useState();
-  const [username, setUsername] = useState('');
   const [isSolo, setIsSolo] = useState();
   const [roomData, setRoomData] = useState();
   const navigateTo = useNavigate();
+  
+  const [username, setUsername] = useState('');
+  const [userId, setUserId] = useState();
+
 
   useEffect(() => {
     const user = localStorage.getItem('username');
+    const user_id = localStorage.getItem("user_id")
+    setUserId(user_id)
     setUsername(user);
   }, [localStorage.getItem('access_token')]);
 
   const joinRoom = (e) => {
     e.preventDefault();
     socket.connect();
-    socket.emit('join_room', { username });
+    socket.emit('join_room', { username, userId });
   };
 
   const soloRoom = () => {
@@ -86,8 +91,9 @@ export const HomePage = () => {
   };
 
   const h2Styles = {
-    fontSize: '40px',
-    fontFamily: "'Lemon', serif",
+    fontSize: '50px',
+    fontFamily: "'Geist Mono', serif",
+    fontWeight: '900',
     marginBottom: '1em',
     marginTop: '1em'
   };

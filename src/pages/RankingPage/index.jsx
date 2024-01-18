@@ -1,7 +1,7 @@
+import { Leaderboard } from 'flywheel-leaderboard';
 import React, { useEffect, useState } from 'react';
-import './index.css';
 import { Video } from '../../components';
-import { Leaderboard } from "flywheel-leaderboard";
+import './index.css';
 
 const RankingPage = () => {
   const [data, setData] = useState([]);
@@ -13,11 +13,14 @@ const RankingPage = () => {
         const options = {
           method: 'GET',
           headers: {
-            Authorization: `Bearer ${access_token}`,
-          },
+            Authorization: `Bearer ${access_token}`
+          }
         };
 
-        const response = await fetch('https://codemaze-api.onrender.com/users/leaderboard', options);
+        const response = await fetch(
+          'https://codemaze-api.onrender.com/users/leaderboard',
+          options
+        );
 
         if (!response.ok) {
           throw new Error('Network response was not ok');
@@ -32,26 +35,28 @@ const RankingPage = () => {
 
     fetchData();
   }, []);
-  
+
   return (
     <>
-    <Video/>
-    <div className='leaderPage'>
-    <div className='leaderHeader'>
-    <h1>LeaderBoard</h1>
-    </div>
-    <Leaderboard
+      <Video />
+      <div className='leaderPage'>
+        <div className='leaderHeader'>
+          <h1>Leaderboard</h1>
+        </div>
+        <Leaderboard
           className='leaderboard'
-          cell2="username"
-          cell3="xp"
-          cell4="wins" 
-          cell5="losses"
-          items={data.map((item, index) => ({ ...item, key: index.toString() }))}
-        >
-    </Leaderboard>
-    </div>
+          cell2='username'
+          cell3='xp'
+          cell4='wins'
+          cell5='losses'
+          items={data.map((item, index) => ({
+            ...item,
+            key: index.toString()
+          }))}
+        ></Leaderboard>
+      </div>
     </>
-  )
-}
+  );
+};
 
-export default RankingPage
+export default RankingPage;

@@ -3,19 +3,17 @@ body {
 }
 
 .leaderboard {
-  background-color: #2c3e50; 
-  color: #ecf0f1; 
+  background-color: #2c3e50;
+  color: #ecf0f1;
   border-radius: 8px;
   font-size: 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   overflow: hidden;
-
 }
 
 table {
   width: 100%;
   border-collapse: collapse;
-  
 }
 
 thead {
@@ -26,19 +24,16 @@ thead {
   font-weight: bold;
 }
 
-
 tbody {
   display: block;
 }
 tr {
   display: flex;
-  justify-content:space-between;
+  justify-content: space-between;
   align-items: center;
   padding: 10px;
   border-bottom: 1px solid #cdec5184; /* Border color between rows */
   transition: background-color 0.3s ease;
- 
-
 
   &:hover {
     background-color: #b1e7569a; /* Hovered row background color */
@@ -49,7 +44,7 @@ td {
   width: 30px;
 }
 
-.leaderHeader{
+.leaderHeader {
   height: 200px;
   display: flex;
   flex-direction: column;
@@ -61,33 +56,28 @@ td {
   font-size: 4rem;
 }
 
-.leaderPage{
+.leaderPage {
   justify-content: center;
   padding-left: 40px;
   padding-right: 40px;
-
 }
 
 a {
-  color:  #2c3e50;
+  color: #2c3e50;
 }
 
 .text-center {
-  color:  #2c3e50;
+  color: #2c3e50;
 }
 
-th{
-  font-family: Courier New,monospace;
+th {
+  font-family: 'Geist Mono';
   color: #062d24;
-  animation: fade-from-left .5s forwards;
+  animation: fade-from-left 0.5s forwards;
   animation-duration: 1.25s;
-  letter-spacing: -.75px;
-  animation-delay: .1s;
+  letter-spacing: -0.75px;
+  animation-delay: 0.1s;
   font-size: 1.5rem;
   padding: 20px;
   margin-left: 150px;
-
-
 }
-
-

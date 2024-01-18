@@ -1,7 +1,7 @@
 import { Editor } from "@monaco-editor/react";
 import axios from "axios";
 import { useCallback, useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../../contexts";
 
 import { Link } from "react-router-dom";
@@ -23,57 +23,43 @@ import "./index.css";
 const GamePage = () => {
   const { state } = useLocation();
   const { socket } = useAuth();
-  const [fontSize, setFontSize] = useState(20);
+  const navigateTo = useNavigate();
 
+  const [fontSize, setFontSize] = useState(20);
   const [userTheme, setUserTheme] = useState("vs-dark");
   const [userCode, setUserCode] = useState("");
   const [userLang, setUserLang] = useState("py");
   const [userInput, setUserInput] = useState("");
-
   const [loading, setLoading] = useState(true);
   const [loadingRun, setLoadingRun] = useState(false);
   const [loadingSubmit, setLoadingSubmit] = useState(false);
-
   const [room, setRoom] = useState("");
   const [username, setUsername] = useState("");
   const [allRooms, setAllRooms] = useState();
-
   const [showPlayerVsPlayer, setShowPlayerVsPlayer] = useState(true);
   const [roomUsers2, setRoomUsers2] = useState();
+  const [correctAnswer, setCorrectAnswer] = useState(null);
+  const [userOutput, setUserOutput] = useState("");
+  const [winnerId, setWinnerId] = useState(0);
+  const [userId, setUserId] = useState(0);
+  const [opponentId, setOpponentId] = useState(0);
+  const [initialQ, setIntialQ] = useState("");
+  const [testCase, setTestCase] = useState("");
+  const [testCases, setTestCases] = useState([]);
+  const [expectedOutcome, setExpectedOutcome] = useState("");
+  const [problem_id, setProblemId] = useState(0);
+  const [buttonDisabled, setButtonDisabled] = useState(false);
+  const [buttonPressed, setButtonPressed] = useState(false);
+  const [popupHidden, setPopupHidden] = useState(true);
+  const [autoClose, setAutoClose] = useState(true);
 
   const access_token = localStorage.getItem("access_token");
 
-  console.log("state: ", state);
-
-  // const handleReceiveRooms = useCallback(
-  //   (data) => {
-  //     const roomsData = data;
-  //     // console.log("roomsData: ", roomsData);
-
-  //     const roomUsers = roomsData[state.room]?.users;
-  //     const roomData = roomUsers ? roomUsers.length : 0;
-
-  //     // console.log("roomUsers: ", roomUsers);
-  //     // console.log("roomData: ", roomData);
-
-  //     if (roomData === 2 && loading) {
-  //       console.log("Setting loading to false");
-  //       setLoading(false);
-  //     }
-  //   },
-  //   [state.room, loading]
-  // );
-
   const handleReceiveRooms2 = (data) => {
     const roomsData = data;
-    // console.log("roomsData: ", roomsData);
-
     const roomUsers = roomsData[state.room]?.users;
     const roomData = roomUsers ? roomUsers.length : 0;
     setRoomUsers2(roomUsers);
-
-    // console.log("roomUsers: ", roomUsers);
-
     if (roomData === 2 && loading) {
       console.log("Setting loading to false");
       setLoading(false);
@@ -81,17 +67,14 @@ const GamePage = () => {
     }
   };
 
-  const [initialQ, setIntialQ] = useState("");
-  const [testCase, setTestCase] = useState("");
-  const [testCases, setTestCases] = useState([]);
-  const [expectedOutcome, setExpectedOutcome] = useState("");
-
   useEffect(() => {
-    let r = state?.roomData; // Use optional chaining to handle null or undefined
-    state?.isSolo ? setLoading(false) : setLoading(true);
-    state?.isSolo ? setShowPlayerVsPlayer(false) : setShowPlayerVsPlayer(true);
+    let id = localStorage.getItem("user_id");
+    setUserId(id);
 
-    // socket.on("receiveRooms", handleReceiveRooms)
+    let r = state?.roomData;
+    state?.isSolo ? setLoading(false) : setLoading(true);
+    state.isSolo ? setShowPlayerVsPlayer(false) : setShowPlayerVsPlayer(true);
+
     socket.emit("sendRooms", { r });
     socket.on("receiveRooms2", handleReceiveRooms2);
 
@@ -102,7 +85,7 @@ const GamePage = () => {
         },
       })
       .then((res) => {
-        console.log(res);
+        setProblemId(res.data.id);
         setIntialQ(res.data.description);
         setTestCase(res.data.examples[0].test_case);
         setExpectedOutcome(res.data.examples[0].output);
@@ -115,22 +98,20 @@ const GamePage = () => {
   useEffect(() => {
     if (state) {
       setRoom(state.room);
-      console.log("room ", state.room);
       setUsername(state.username);
     }
-    if ((initialQ || testCase || expectedOutcome, expectedOutcome)) {
-      socket.emit("setting_question", { initialQ, testCase });
+    if (initialQ || testCase || expectedOutcome) {
+      socket.emit("setting_question", { initialQ, testCase, expectedOutcome });
       socket.emit("getting_question");
       socket.on("got_question", (data) => {
-        console.log("getting_question: ", data);
         setIntialQ(data.question);
         setTestCase(data.testcases);
         setExpectedOutcome(data.expected);
       });
     }
   }, [
-    state?.room,
-    state?.username,
+    state.room,
+    state.username,
     handleReceiveRooms2,
     initialQ,
     testCase,
@@ -150,23 +131,31 @@ const GamePage = () => {
     }
   }, [userLang, testCase]);
 
-  const [correctAnswer, setCorrectAnswer] = useState(null);
-  const [userOutput, setUserOutput] = useState("");
-
   useEffect(() => {
     const check_UserOutput_TO_expectedOutput = (user, expected) => {
       console.log("User output: ", user);
       console.log("Expected output: ", expected);
 
+      console.log("user : ", userId);
+      console.log("opponent : ", opponentId);
+
       if (user.toLowerCase().trim() === expected.toLowerCase().trim()) {
         console.log("Outputs match!");
+        let id = localStorage.getItem("user_id");
+        setWinnerId(id);
+        socket.emit("set_winner", userId);
+
         setCorrectAnswer(true);
+        setAutoClose(false);
       } else {
         console.log("Outputs don't match!");
         setCorrectAnswer(false);
+        setAutoClose(true);
       }
     };
 
+    console.log("!!!!!!!!! Getting 2nd ID !!!!!!");
+    socket.emit("set_opponent", userId);
     check_UserOutput_TO_expectedOutput(userOutput, expectedOutcome);
   }, [userOutput]);
 
@@ -175,13 +164,8 @@ const GamePage = () => {
       console.log("Answer was correct: ", response);
       socket.emit("check_answer", response); //////
     };
-
     sendCheckResponse(correctAnswer);
   }, [correctAnswer]);
-
-  const [buttonDisabled, setButtonDisabled] = useState(false);
-  const [buttonPressed, setButtonPressed] = useState(false);
-  const [popupHidden, setPopupHidden] = useState(true);
 
   const API_URL = "https://codex-api.fly.dev/";
   const handleCompile = (action) => {
@@ -193,7 +177,6 @@ const GamePage = () => {
       setButtonDisabled(true);
       setButtonPressed(true);
     }
-
     axios
       .post(`${API_URL}`, {
         code: userCode,
@@ -205,7 +188,6 @@ const GamePage = () => {
       })
       .then((res) => {
         setUserOutput(res.data.output);
-        console.log(JSON.stringify(res.data));
       })
       .catch((error) => {
         console.error(`${action} error:`, error);
@@ -220,16 +202,52 @@ const GamePage = () => {
           setLoadingSubmit(false);
           setPopupHidden(false);
           socket.emit("display_popup", { room });
-
-          setTimeout(() => {
-            setButtonDisabled(false);
-            setPopupHidden(true);
-            setButtonPressed(false);
-            socket.emit("button_enable", { room });
-            socket.emit("hide_popup", { room });
-          }, 3000);
         }
       });
+  };
+
+  const handleClosePopup = () => {
+    setButtonDisabled(false);
+    setButtonPressed(false);
+    setPopupHidden(true);
+    setCorrectAnswer(null);
+    setUserOutput("");
+    setUserInput("");
+    socket.emit("button_enable", { room });
+    socket.emit("hide_popup", { room });
+  };
+
+  const gameFinish = async (e) => {
+    e.preventDefault();
+    console.log("problem : ", problem_id);
+    console.log("user : ", userId);
+    console.log("opponent : ", opponentId);
+    console.log("winner : ", winnerId);
+
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        problem_id: problem_id,
+        user_one_id: userId,
+        user_two_id: opponentId,
+        winner_id: winnerId,
+      }),
+    };
+    const accessToken = localStorage.getItem("access_token");
+    if (accessToken) {
+      options.headers["Authorization"] = `Bearer ${accessToken}`;
+    }
+
+    const response = await fetch(
+      "https://codemaze-api.onrender.com/sessions",
+      options
+    );
+    console.log(response.status);
+    handleCancel();
+    navigateTo("/profile");
   };
 
   useEffect(() => {
@@ -247,9 +265,15 @@ const GamePage = () => {
     };
 
     const answerStateListener = (data) => {
-      console.log("THIS IS WHERE YOU WANT TO LOOK");
-      console.log(data);
       setCorrectAnswer(data);
+    };
+
+    const opponentIdListener = (data) => {
+      console.log(data); // should be the other id in user_ids
+      setOpponentId(data);
+    };
+    const winnerIdListener = (data) => {
+      setWinnerId(data);
     };
 
     socket.on("button_pressed", buttonPressedListener);
@@ -259,6 +283,9 @@ const GamePage = () => {
 
     socket.on("checked_answer", answerStateListener);
 
+    socket.on("opponent_set", opponentIdListener);
+    socket.on("winner_set", winnerIdListener);
+
     return () => {
       socket.off("button_pressed", buttonPressedListener);
       socket.off("button_enabled", buttonEnabledListener);
@@ -266,10 +293,14 @@ const GamePage = () => {
       socket.off("hidden_popup", popupHideListener);
 
       socket.off("checked_answer", answerStateListener);
+
+      socket.off("opponent_set", opponentIdListener);
+      socket.off("winner_set", winnerIdListener);
     };
   }, []);
 
   const isLoggedIn = localStorage.getItem("access_token");
+
   const options = {
     fontSize: fontSize,
   };
@@ -363,6 +394,10 @@ const GamePage = () => {
                   buttonPressed={buttonPressed}
                   correctAnswer={correctAnswer}
                   expectedOutcome={expectedOutcome}
+                  onClose={handleClosePopup}
+                  autoClose={autoClose}
+                  gameFinish={gameFinish}
+                  handleCancel={handleCancel}
                 />
               )}
             </div>

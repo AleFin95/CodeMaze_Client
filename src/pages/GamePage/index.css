@@ -96,7 +96,8 @@ h4 {
   padding: 10px;
   font-family: monospace;
   font-size: 1rem;
-  border: 1px solid;
+  border: 1px solid #565656;
+  border-radius: 8px;
 }
 
 #code-inp ul {
@@ -154,7 +155,7 @@ h4 {
 #loginBtn {
   padding: 25px 100px;
   font-size: 25px;
-  font-family: Courier New,monospace;
+  font-family: Courier New, monospace;
   background-color: rgb(24, 161, 116);
   border-style: none;
   border-radius: 8px;
@@ -166,5 +167,5 @@ h4 {
 }
 
 .message22 {
-  margin-top:20em;
+  margin-top: 20em;
 }
