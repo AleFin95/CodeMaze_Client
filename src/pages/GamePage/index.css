@@ -1,0 +1,171 @@
+.App {
+  height: 60vh;
+  width: 98vw;
+  margin: 0 auto;
+  border-radius: 25px;
+  background-color: #474747;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  text-align: left;
+}
+
+.main {
+  display: flex;
+  height: 77vh;
+}
+
+.left-container {
+  position: relative;
+  flex: 60%;
+  border-bottom-left-radius: 10px;
+}
+
+.right-container {
+  flex: 40%;
+  display: flex;
+  flex-direction: column;
+  background-color: #242424;
+  border-left: 3px solid #1f65e6;
+  padding: 5px;
+  border-bottom-right-radius: 10px;
+}
+
+.input-box {
+  flex: 50%;
+}
+
+.input-box textarea {
+  font-size: 16px;
+}
+
+.spinner-box {
+  flex: 50%;
+  background-color: #242424;
+  overflow-y: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.spinner-box img {
+  width: 200px;
+}
+
+.output-box {
+  flex: 50%;
+  background-color: #242424;
+  overflow-y: auto;
+  color: white;
+  position: relative;
+}
+
+.clear-btn {
+  position: absolute;
+  bottom: 14px;
+  right: 18px;
+  width: auto;
+  height: auto;
+  font-size: 22px;
+  font-weight: bold;
+  color: white;
+  background-color: #1f65e6;
+  border: none;
+  border-radius: 4px;
+  transition: 0.3s;
+  cursor: pointer;
+  padding: 10px;
+}
+
+.output-box pre {
+  font-size: 15px;
+  white-space: pre-wrap;
+}
+
+h4 {
+  color: #afec3f;
+}
+
+#code-inp {
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  resize: none;
+  background-color: #242424;
+  color: whitesmoke;
+  padding: 10px;
+  font-family: monospace;
+  font-size: 1rem;
+  border: 1px solid #565656;
+  border-radius: 8px;
+}
+
+#code-inp ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+#code-inp:focus {
+  outline: none;
+}
+
+.run-btn {
+  position: absolute;
+  bottom: 10px;
+  right: 130px;
+  width: auto;
+  height: auto;
+  font-size: 22px;
+  font-weight: bold;
+  background-color: #afec3f;
+  border: none;
+  border-radius: 4px;
+  transition: 0.3s;
+  cursor: pointer;
+  z-index: 10;
+  padding: 10px;
+}
+
+.run-btn:active {
+  background-color: #6e9427;
+}
+
+.sub-btn {
+  position: absolute;
+  bottom: 10px;
+  right: 18px;
+  width: auto;
+  height: auto;
+  font-size: 22px;
+  font-weight: bold;
+  background-color: yellow;
+  border: none;
+  border-radius: 4px;
+  transition: 0.3s;
+  cursor: pointer;
+  z-index: 10;
+  padding: 10px;
+}
+
+.sub-btn:active {
+  background-color: #ffd700;
+}
+
+#loginBtn {
+  padding: 25px 100px;
+  font-size: 25px;
+  font-family: Courier New, monospace;
+  background-color: rgb(24, 161, 116);
+  border-style: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+#loginBtn:hover {
+  background-color: rgb(22, 109, 80);
+}
+
+.message22 {
+  margin-top: 20em;
+}

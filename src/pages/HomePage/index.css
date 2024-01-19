@@ -1,0 +1,162 @@
+@import url('https://fonts.googleapis.com/css2?family=Lemon&display=swap');
+
+/*#page{
+    background-image: url("https://wallpapercave.com/wp/wp4469691.jpg");
+}
+*/
+#page {
+  margin-top: 8em;
+  color: white;
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+}
+
+.buttons {
+  margin-top: 2em;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 1em;
+}
+
+.button1:hover {
+  transform: scale(1.05); /* Enlarge the button slightly on hover */
+  /* box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.2); /* Adjusting shadow on hover for depth */
+  background-color: #4bf275;
+}
+
+.button2:hover {
+  transform: scale(1.05); /* Enlarge the button slightly on hover */
+  /*box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.2); /* Adjusting shadow on hover for depth */
+  background-color: #4bf275;
+}
+
+.button1:active {
+  transform: scale(0.95); /* Slightly shrink the button when clicked */
+  box-shadow: none; /* Remove shadow on click */
+}
+
+.button2:active {
+  transform: scale(0.95); /* Slightly shrink the button when clicked */
+  box-shadow: none; /* Remove shadow on click */
+}
+
+.message {
+  border-radius: 40px;
+  padding-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0em;
+  /* margin-top: 2em;*/
+  font-family: 'Lemon', serif;
+}
+
+.fa-ul {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+/*.message li i {
+    font-size: 40px;
+    color: #4bf275;;
+    animation: arrowBounce 2s infinite;
+}*/
+
+#link1,
+#link2 {
+  text-decoration: none;
+  color: rgb(44, 59, 51);
+  padding: 0;
+  margin: 0;
+}
+
+@keyframes arrowBounce {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(20px);
+  }
+}
+
+.message li {
+  display: flex;
+  gap: 2em;
+  font-size: 30px;
+
+  align-items: center;
+}
+/*<li><i class="fa-li fa fa-spinner fa-spin"></i>List icons</li>*/
+
+.message h1 {
+  font-size: 30px;
+  margin-top: 0;
+}
+
+.message p {
+  font-size: 20px;
+  margin-top: 0.1em;
+}
+
+#games {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 1em;
+  transition: transform 4s ease-out;
+  /*margin-right: 10em;
+    margin-left: 10em;*/
+}
+
+#games div {
+  height: 300px;
+  width: 220px;
+  background-size: cover;
+  background-position: center center;
+  border-radius: 10px;
+  cursor: pointer;
+  /* Initially transparent */
+  transition: 1 ease;
+}
+
+.first {
+  background-image: url('https://img.icons8.com/external-flaticons-flat-flat-icons/452/external-debug-computer-programming-flaticons-flat-flat-icons.png');
+}
+
+.second {
+  background-image: url('https://img.icons8.com/external-flaticons-flat-flat-icons/452/external-debug-computer-programming-flaticons-flat-flat-icons.png');
+}
+
+.third {
+  background-image: url('https://img.icons8.com/external-flaticons-flat-flat-icons/452/external-debug-computer-programming-flaticons-flat-flat-icons.png ');
+}
+
+.fourth {
+  background-image: url('https://img.icons8.com/external-flaticons-flat-flat-icons/452/external-debug-computer-programming-flaticons-flat-flat-icons.png ');
+}
+
+.fifth {
+  background-image: url('https://img.icons8.com/external-flaticons-flat-flat-icons/452/external-debug-computer-programming-flaticons-flat-flat-icons.png ');
+}
+
+.buttons p:hover {
+  background-color: rgb(207, 93, 93);
+}
+
+#games div:hover .buttons {
+  display: flex;
+}
+
+.hidden {
+  transform: translateX(-100%); /* Move the section to the left to hide it */
+}
+
+footer {
+  display: flex;
+  flex-direction: column;
+}

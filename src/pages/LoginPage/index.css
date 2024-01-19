@@ -1,0 +1,121 @@
+
+.loginPage {
+    background-size: cover;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .login {
+    margin-bottom: 300px;
+  }
+  
+  .login * {
+    color: #ffffff;
+    outline: none;
+    font-size: 24px;
+    border: none;
+
+  }
+
+  .login h1 {
+    font-size: 4rem;
+  }
+  
+  form p {
+
+    justify-content: center; /* Center vertically */
+    text-align: center;
+    
+  }
+  
+  .login h2 {
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .login label {
+    display: block;
+    font-size: 16px;
+    font-weight: 500;
+    width: 400px;
+  }
+  
+  .login input {
+    display: block;
+    width: 400px;
+    height: 40px;
+    background-color: rgba(0, 0, 0, 0.25);
+    border-radius: 3px;
+    padding: 6px 12px;
+    font-size: 20px;
+    font-weight: 300;
+    color: #f2f24b;
+    border: 1px solid #f2f24ba2;
+  }
+  input{
+    margin-bottom: 20px;
+    
+  }
+  .login input[type='submit'] {
+    background: #f2f24b;
+    color: #2f0550;
+    width: 100%;
+    color: #1f1a3f;
+    font-size: 20px;
+    font-weight: 600;
+
+  }
+
+  .login input[type='submit']:hover {
+    background-color: #2f0550; 
+    color: #4bf275;
+  }
+
+  .login ::placeholder {
+    color: #ffffff;
+    
+  }
+
+  input:hover {
+    background-color: #2f0550; 
+    color: #4bf275; 
+    cursor: pointer; 
+  }
+  
+  .loginHeader {
+    z-index: 10;
+    text-align: center;
+    font-size: 3em;
+    color: #d7e259;
+    margin-top : 50px;
+    -webkit-text-stroke: 0px #c0a3c2;
+    font: weight 600px;
+  }
+  
+ 
+  .loginForm {
+    display: flex;
+    flex-flow: column;
+  }
+
+
+  .login-button  {
+    width: 100%;
+    background-color: #ffffff;
+    color: #1f1a3f;
+    font-size: 20px;
+    font-weight: 600;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    height: 35px;
+  }
+
+  

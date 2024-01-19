@@ -1,0 +1,62 @@
+
+.progress-bar-container {
+    text-align: center;
+  }
+  
+  .progress-bar {
+    height: 30px;
+    border-radius: 5px;
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 10px;
+    background-color: #b6b2b2d4;
+  }
+  
+  .bronze-light {
+    height: 100%;
+    border-radius: 5px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 25%;
+    background: #ad4f1172; /* Lighter Bronze color */
+  }
+  
+  .silver-light {
+    height: 100%;
+    border-radius: 5px;
+    position: absolute;
+    top: 0;
+    left: 25%;
+    width: 25%;
+    background: #b6b2b270; /* Lighter Silver color */
+  }
+  
+  .gold-light {
+    height: 100%;
+    border-radius: 5px;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 25%;
+    background: #ebbe0b69; /* Lighter Gold color */
+  }
+  
+  .platinum-light {
+    height: 100%;
+    border-radius: 5px;
+    position: absolute;
+    top: 0;
+    left: 75%;
+    width: 25%;
+    background: #d0cece81; /* Lighter Platinum color */
+  }
+  
+  .mainbar {
+    height: 100%;
+    border-radius: 5px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #00cc00; /* Darker Green color for the progressing part */
+  }
