@@ -62,13 +62,16 @@ const PlayerVsPlayer = ({ roomUsers2, onTimeOut }) => {
     };
 
     console.log('roomUsers2: ', roomUsers2);
-
+    if (roomUsers2 && roomUsers2.length) {
     for (let i = 0; i < roomUsers2.length; i++) {
       const currentName = roomUsers2[i];
       if (currentName !== username) {
         setEnemyName(currentName);
         fetchUsersAvatarData(username, currentName);
       }
+    }}
+    else {
+      console.error('roomUsers2 is undefined or has a length of 0');
     }
 
     // Clean up the timeout when the component is unmounted or when the class is added
@@ -135,7 +138,7 @@ const PlayerVsPlayer = ({ roomUsers2, onTimeOut }) => {
         </section>
         <div className={`title ${timerShow ? 'show' : ''}`}>
           <h1>Starting in </h1>
-          <p>{counter}</p>
+          <p data-testid="counter">{counter}</p>
         </div>
       </section>
     </>
